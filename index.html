@@ -161,27 +161,33 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Spring-Boot-2-Spring-Boot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Spring-Boot-3-Spring-Boot-单元测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/23/Spring-Boot-2-Spring-Boot/">[Spring Boot] 2 Spring Boot</a>
+      <a class="article-title" href="/2019/10/23/Spring-Boot-3-Spring-Boot-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">[Spring Boot] 3 Spring Boot 单元测试</a>
     </h1>
   
 
         
-        <a href="/2019/10/23/Spring-Boot-2-Spring-Boot/" class="archive-article-date">
-  	<time datetime="2019-10-23T08:14:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-23</time>
+        <a href="/2019/10/23/Spring-Boot-3-Spring-Boot-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" class="archive-article-date">
+  	<time datetime="2019-10-23T09:12:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>主要是通过<code>@RunWith</code>和<code>@SpringBootTest</code>注解来开启单元测试功能</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.funtl.hello.spring.boot;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.web.client.TestRestTemplate;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.web.server.LocalServerPort;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.ResponseEntity;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.hamcrest.CoreMatchers.equalTo;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.assertThat;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span>(classes = HelloSpringBootApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloSpringBootApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@LocalServerPort</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> port;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> URL base;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> TestRestTemplate template;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.base = <span class="keyword">new</span> URL(<span class="string">"http://localhost:"</span> + port + <span class="string">"/"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ResponseEntity&lt;String&gt; response = template.getForEntity(base.toString(), String.class);</span><br><span class="line">        assertThat(response.getBody(), equalTo(<span class="string">"Hello Spring Boot"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>运行它会先启动Spring Boot工程，再启动单元测试</p>
+
       
 
       
@@ -189,11 +195,22 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Spring Boot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/23/Spring-Boot-2-Spring-Boot/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/10/23/Spring-Boot-3-Spring-Boot-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">展开全文 >></a>
         </p>
       
 
@@ -223,19 +240,19 @@
 
 
   
-    <article id="post-m13525736099_4@163.com/B22B5A05141444E380B40C97F33952EE/Spring-Boot-2-Spring-Boot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Spring-Boot-2-Spring-Boot-应用案例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/23/m13525736099_4@163.com/B22B5A05141444E380B40C97F33952EE/Spring-Boot-2-Spring-Boot/">[Spring Boot] 2 Spring Boot</a>
+      <a class="article-title" href="/2019/10/23/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/">[Spring Boot] 2 Spring Boot 应用案例</a>
     </h1>
   
 
         
-        <a href="/2019/10/23/m13525736099_4@163.com/B22B5A05141444E380B40C97F33952EE/Spring-Boot-2-Spring-Boot/" class="archive-article-date">
+        <a href="/2019/10/23/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/" class="archive-article-date">
   	<time datetime="2019-10-23T08:14:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-23</time>
 </a>
         
@@ -243,7 +260,46 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>这里我们使用 Intellij IDEA 来新建一个 Spring Boot 项目。</p>
+<h3 id="打开-IDEA-gt-New-Project-gt-Spring-Initializr"><a href="#打开-IDEA-gt-New-Project-gt-Spring-Initializr" class="headerlink" title="打开 IDEA -&gt; New Project -&gt; Spring Initializr"></a>打开 IDEA -&gt; New Project -&gt; Spring Initializr</h3><p><img src="https://wvincen.gitee.io/2019/06/29/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/1.png" alt="1"></p>
+<h3 id="填写项目信息"><a href="#填写项目信息" class="headerlink" title="填写项目信息"></a>填写项目信息</h3><p><img src="https://wvincen.gitee.io/2019/06/29/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/2.png" alt="2"></p>
+<h3 id="选择-Spring-Boot-版本及-Web-开发所需的依赖"><a href="#选择-Spring-Boot-版本及-Web-开发所需的依赖" class="headerlink" title="选择 Spring Boot 版本及 Web 开发所需的依赖"></a>选择 Spring Boot 版本及 Web 开发所需的依赖</h3><p><img src="https://wvincen.gitee.io/2019/06/29/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/3.png" alt="3"></p>
+<h3 id="保存项目到指定目录"><a href="#保存项目到指定目录" class="headerlink" title="保存项目到指定目录"></a>保存项目到指定目录</h3><p><img src="https://wvincen.gitee.io/2019/06/29/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/4.png" alt="4"></p>
+<h3 id="工程目录结构"><a href="#工程目录结构" class="headerlink" title="工程目录结构"></a>工程目录结构</h3><p>创建完成后的工程目录结构如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">│  .gitignore</span><br><span class="line">│  pom.xml</span><br><span class="line">│</span><br><span class="line">│</span><br><span class="line">└─src</span><br><span class="line">    ├─main</span><br><span class="line">    │  ├─java</span><br><span class="line">    │  │  └─com</span><br><span class="line">    │  │      └─funtl</span><br><span class="line">    │  │          └─hello</span><br><span class="line">    │  │              └─spring</span><br><span class="line">    │  │                  └─boot</span><br><span class="line">    │  │                          HelloSpringBootApplication.java</span><br><span class="line">    │  │</span><br><span class="line">    │  └─resources</span><br><span class="line">    │      │  application.properties</span><br><span class="line">    │      │</span><br><span class="line">    │      ├─static</span><br><span class="line">    │      └─templates</span><br><span class="line">    └─test</span><br><span class="line">        └─java</span><br><span class="line">            └─com</span><br><span class="line">                └─funtl</span><br><span class="line">                    └─hello</span><br><span class="line">                        └─spring</span><br><span class="line">                            └─boot</span><br><span class="line">                                    HelloSpringBootApplicationTests.java</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>.gitignore：Git 过滤配置文件</li>
+<li>pom.xml：Maven 的依赖管理配置文件</li>
+<li>HelloSpringBootApplication.java：程序入口</li>
+<li>resources：资源文件目录<ul>
+<li>static: 静态资源文件目录</li>
+<li>templates：模板资源文件目录</li>
+<li>application.properties：Spring Boot 的配置文件，实际开发中会替换成 YAML 语言配置（application.yml）</li>
+</ul>
+</li>
+</ul>
+<h3 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.funtl<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hello-spring-boot<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hello-spring-boot<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span><span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.reporting.outputEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>parent：继承了 Spring Boot 的 Parent，表示我们是一个 Spring Boot 工程</li>
+<li>spring-boot-starter-web：包含了 spring-boot-starter 还自动帮我们开启了 Web 支持</li>
+</ul>
+<h2 id="功能演示"><a href="#功能演示" class="headerlink" title="功能演示"></a>功能演示</h2><p>我们创建一个 Controller 来演示一下 Spring Boot 的神奇功能</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.funtl.hello.spring.boot.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">""</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">sayHi</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello Spring Boot"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>启动 <code>HelloSpringBootApplication</code> 的 <code>main()</code> 方法，浏览器访问 <a href="https://wvincen.gitee.io/404.html" target="_blank" rel="noopener">http://localhost:8080</a> 可以看到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello Spring Boot</span><br></pre></td></tr></table></figure>
+
+<h2 id="神奇之处"><a href="#神奇之处" class="headerlink" title="神奇之处"></a>神奇之处</h2><ul>
+<li>没有配置 web.xml</li>
+<li>没有配置 application.xml，Spring Boot 帮你配置了</li>
+<li>没有配置 application-mvc.xml，Spring Boot 帮你配置了</li>
+<li>没有配置 Tomcat，Spring Boot 内嵌了 Tomcat 容器</li>
+</ul>
+
       
 
       
@@ -251,11 +307,22 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Spring Boot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/23/m13525736099_4@163.com/B22B5A05141444E380B40C97F33952EE/Spring-Boot-2-Spring-Boot/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/10/23/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/">展开全文 >></a>
         </p>
       
 
@@ -385,531 +452,6 @@
 
 
   
-    <article id="post-m13525736099_4@163.com/F608ABCE197E4B6A9466A39DEE9F119D/Spring-Boot-1-Spring-Boot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/23/m13525736099_4@163.com/F608ABCE197E4B6A9466A39DEE9F119D/Spring-Boot-1-Spring-Boot/">[Spring Boot] 1 Spring Boot</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/23/m13525736099_4@163.com/F608ABCE197E4B6A9466A39DEE9F119D/Spring-Boot-1-Spring-Boot/" class="archive-article-date">
-  	<time datetime="2019-10-23T08:01:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Spring-简史"><a href="#Spring-简史" class="headerlink" title="Spring 简史"></a>Spring 简史</h2><h3 id="Spring-1-x-时代"><a href="#Spring-1-x-时代" class="headerlink" title="Spring 1.x 时代"></a>Spring 1.x 时代</h3><p>在 Spring1.x 时代，都是通过 xml 文件配置 bean，随着项目的不断扩大，需要将 xml 配置分放到不同的配置文件中，需要频繁的在 java 类和 xml 配置文件中切换。</p>
-<h3 id="Spring-2-x-时代"><a href="#Spring-2-x-时代" class="headerlink" title="Spring 2.x 时代"></a>Spring 2.x 时代</h3><p>随着 JDK 1.5 带来的注解支持，Spring2.x 可以使用注解对 Bean 进行申明和注入，大大的减少了 xml 配置文件，同时也大大简化了项目的开发。</p>
-<p>那么，问题来了，究竟是应该使用 xml 还是注解呢？</p>
-<p>最佳实践：</p>
-<ul>
-<li>应用的基本配置用 xml，比如：数据源、资源文件等</li>
-<li>业务开发用注解，比如：Service 中注入 bean 等</li>
-</ul>
-<h3 id="Spring-3-x-时代"><a href="#Spring-3-x-时代" class="headerlink" title="Spring 3.x 时代"></a>Spring 3.x 时代</h3><p>从 Spring3.x 开始提供了 Java 配置方式，使用 Java 配置方式可以更好的理解你配置的 Bean，现在我们就处于这个时代，并且 Spring4.x 和 Spring boot 都推荐使用 java 配置的方式。</p>
-<h3 id="Spring-5-x-时代"><a href="#Spring-5-x-时代" class="headerlink" title="Spring 5.x 时代"></a>Spring 5.x 时代</h3><p>Spring5.x 是 Java 界首个支持响应式的 Web 框架，是 Spring 的一个重要版本，距离 Spring4.x  差不多四年。在此期间，大多数增强都是在 SpringBoot 项目中完成的，其最大的亮点就是提供了完整的端到端响应式编程的支持（新增  Spring WebFlux 模块）。</p>
-<p>Spring WebFlux 同时支持使用旧的 Spring MVC 注解声明 <code>Reactive Controller</code>。和传统的 <code>MVC Controller</code> 不同，<code>Reactive Controller</code> 操作的是 <strong>非阻塞</strong> 的 <code>ServerHttpRequest</code> 和 <code>ServerHttpResponse</code>，而不再是 Spring MVC 里的 HttpServletRequest 和 HttpServletResponse。</p>
-<p>至此也代表着 Java 正式迎来了响应式异步编程的时代。</p>
-<h2 id="Spring-Boot-简介"><a href="#Spring-Boot-简介" class="headerlink" title="Spring Boot 简介"></a>Spring Boot 简介</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>随着动态语言的流行 (Ruby、Groovy、Scala、Node.js)，Java 的开发显得格外的笨重：繁多的配置、低下的开发效率、复杂的部署流程以及第三方技术集成难度大。</p>
-<p>在上述环境下，Spring Boot  应运而生。它使用“习惯优于配置”（项目中存在大量的配置，此外还内置了一个习惯性的配置，让你无需手动进行配置）的理念让你的项目快速的运行起来。使用 Spring Boot 很容易创建一个独立运行（运行 Jar，内嵌 Servlet 容器）准生产级别的基于 Spring 框架的项目，使用  Spring Boot 你可以不用或者只需很少的 Spring 配置。</p>
-<h2 id="Spring-Boot-优缺点"><a href="#Spring-Boot-优缺点" class="headerlink" title="Spring Boot 优缺点"></a>Spring Boot 优缺点</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
-<li>快速构建项目</li>
-<li>对主流开发框架的无配置集成</li>
-<li>项目可独立运行，无需外部依赖 Servlet 容器</li>
-<li>提供运行时的应用监控</li>
-<li>极大地提高了开发、部署效率</li>
-<li>与云计算的天然集成</li>
-</ul>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>版本迭代速度很快，一些模块改动很大</li>
-<li>由于不用自己做配置，报错时很难定位</li>
-<li>网上现成的解决方案比较少</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Spring Boot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/23/m13525736099_4@163.com/F608ABCE197E4B6A9466A39DEE9F119D/Spring-Boot-1-Spring-Boot/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-微服务架构的构成" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/23/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E6%9E%84%E6%88%90/">微服务架构的构成</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/23/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E6%9E%84%E6%88%90/" class="archive-article-date">
-  	<time datetime="2019-10-23T07:23:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>微服务的两种方法:</p>
-<p>Spring Boot + Spring CLoud</p>
-<p>Dubbo :RPC通信框架</p>
-<p>Zooleeper:服务注册与发现中心,主要解决了一个分布式锁的问题(单点故障)</p>
-<p>LB  负载均衡</p>
-<p>应用的基本配置用xml,比如:数据源、资源文件等</p>
-<p>业务开发用注解,比如:service中注入bean等</p>
-<p>javaWeb要有控制层 mvc模式 要写jsp,要连数据库</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">____旧事</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/23/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E6%9E%84%E6%88%90/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-m13525736099_4@163.com/0AA738C11B6342958C13A1300CD39A51/3、Thymeleaf" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/22/m13525736099_4@163.com/0AA738C11B6342958C13A1300CD39A51/3%E3%80%81Thymeleaf/">m13525736099_4@163.com/0AA738C11B6342958C13A1300CD39A51/3、Thymeleaf</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/22/m13525736099_4@163.com/0AA738C11B6342958C13A1300CD39A51/3%E3%80%81Thymeleaf/" class="archive-article-date">
-  	<time datetime="2019-10-22T06:23:46.113Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/22/m13525736099_4@163.com/0AA738C11B6342958C13A1300CD39A51/3%E3%80%81Thymeleaf/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-m13525736099_4@163.com/89273D8F0A3A44AE9B12BF84DB36C8D9/2、Zookeeper" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/21/m13525736099_4@163.com/89273D8F0A3A44AE9B12BF84DB36C8D9/2%E3%80%81Zookeeper/">m13525736099_4@163.com/89273D8F0A3A44AE9B12BF84DB36C8D9/2、Zookeeper</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/21/m13525736099_4@163.com/89273D8F0A3A44AE9B12BF84DB36C8D9/2%E3%80%81Zookeeper/" class="archive-article-date">
-  	<time datetime="2019-10-21T05:56:20.768Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/21/m13525736099_4@163.com/89273D8F0A3A44AE9B12BF84DB36C8D9/2%E3%80%81Zookeeper/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-m13525736099_4@163.com/FD2DB5F65B024B2C9B3C7B2A78387D4E/无标题Markdown" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/21/m13525736099_4@163.com/FD2DB5F65B024B2C9B3C7B2A78387D4E/%E6%97%A0%E6%A0%87%E9%A2%98Markdown/">m13525736099_4@163.com/FD2DB5F65B024B2C9B3C7B2A78387D4E/无标题Markdown</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/21/m13525736099_4@163.com/FD2DB5F65B024B2C9B3C7B2A78387D4E/%E6%97%A0%E6%A0%87%E9%A2%98Markdown/" class="archive-article-date">
-  	<time datetime="2019-10-21T05:55:10.951Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/21/m13525736099_4@163.com/FD2DB5F65B024B2C9B3C7B2A78387D4E/%E6%97%A0%E6%A0%87%E9%A2%98Markdown/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-m13525736099_4@163.com/1DCE5D213288480E9806E81233F15052/无标题Markdown" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/21/m13525736099_4@163.com/1DCE5D213288480E9806E81233F15052/%E6%97%A0%E6%A0%87%E9%A2%98Markdown/">m13525736099_4@163.com/1DCE5D213288480E9806E81233F15052/无标题Markdown</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/21/m13525736099_4@163.com/1DCE5D213288480E9806E81233F15052/%E6%97%A0%E6%A0%87%E9%A2%98Markdown/" class="archive-article-date">
-  	<time datetime="2019-10-21T00:27:34.865Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/21/m13525736099_4@163.com/1DCE5D213288480E9806E81233F15052/%E6%97%A0%E6%A0%87%E9%A2%98Markdown/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-m13525736099_4@163.com/C52829A12510429E9452B64931B775E1/框架,基础名词" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/14/m13525736099_4@163.com/C52829A12510429E9452B64931B775E1/%E6%A1%86%E6%9E%B6,%E5%9F%BA%E7%A1%80%E5%90%8D%E8%AF%8D/">m13525736099_4@163.com/C52829A12510429E9452B64931B775E1/框架,基础名词</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/14/m13525736099_4@163.com/C52829A12510429E9452B64931B775E1/%E6%A1%86%E6%9E%B6,%E5%9F%BA%E7%A1%80%E5%90%8D%E8%AF%8D/" class="archive-article-date">
-  	<time datetime="2019-10-14T06:43:07.948Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><p>​    spring就像是整个项目中装配bean的大工厂,在配置文件中可以指定使用特定的参数去调用实体类的构造方法,来实例化对象。也称之为项目中的粘合剂。</p>
-<p>​    spring的核心思想时IOC(控制反转),即不在需要程序员去显式的’new’一个对象而是让spring框架帮你完成这一切。</p>
-<h2 id="Spring-Mvc"><a href="#Spring-Mvc" class="headerlink" title="Spring Mvc"></a>Spring Mvc</h2><p>​    spring mvc在项目中拦截用户请求,它的核心Servlet即DispatcherServlet承担中介或是前端这样的职责,将用户请求通过HandleMapping去匹配controller,controller就是具体对应请求所执行的操作,Spring mvc相当于SSH框架中Struts。</p>
-<p>Spring MVC 工作流程</p>
-<ol>
-<li><p>​    在接收HTTP请求后,DispacheerServlet会查询HandlerMapping以调用相应的Controller</p>
-</li>
-<li><p>​    Controller接收请求并根据使用的Get或Post方法调用响应的服务方法.服务方法将基于定义的业务逻辑设置模型数据, 并将视图名称返回给DispatcherServlet。</p>
-</li>
-<li><p>​    DispatcherServlet将从ViewResolver获取请求的定义视图</p>
-</li>
-<li><p>​    当试图完成,DispatcherServlet将模型数据传递到最终的视图,并在浏览器上呈现。</p>
-<p> <img src="https://note.youdao.com/yws/public/resource/3418d3ec21ded1ab3e79355e28d6670b/xmlnote/2EFFA60222C44BA58DECE468940D293D/968" alt="img"> </p>
-</li>
-</ol>
-<h2 id="Spring-Boot"><a href="#Spring-Boot" class="headerlink" title="Spring Boot"></a>Spring Boot</h2><p>​    spring boot是由pivotal团队提供的全新框架,其设计目的是用来简化新spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置,从而使开发人员不在需要定义样板化的配置。通过这种方式,spring boot致力于在蓬勃发展的快速应用开发领域。</p>
-<ul>
-<li>可以创建独立的Spring应用程序,并且基于maven插件</li>
-<li>内嵌Tomcat、jetty等Servlet容器</li>
-<li>提供自动配置的”starter”项目对象模型,以简化Maven配置</li>
-<li>尽可能自动配置spring容器</li>
-<li>提供准备好的特性,如指标、健康检查和外部化配置</li>
-<li>不需要XML配置</li>
-</ul>
-<h2 id="spring-cloud"><a href="#spring-cloud" class="headerlink" title="spring cloud"></a>spring cloud</h2><p>​    spring cloud是一系列框架的有序集合。利用了spring boot的开发便利性巧妙地简化了分布式系统设施的开发,如服务发现注册,配置中心,消息总线,负载均衡,断路器,数据监控等。通过spring boot风格进行再封装,屏蔽掉复杂的配置和实现原理,最终给开发者流出一套简单易懂、易部署和易维护的分布式系统开发工具包</p>
-<h2 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h2><p>​    有了jdbc就不必为访问数据库专门写一个程序了,也就是说他封装了<code>加载驱动</code>、<code>连接数据库</code>、<code>创建发射器</code>、<code>发送Sql给数据库</code>、<code>得到结果</code>、<code>关闭连接</code>这些,单纯的将书写Sql语句列出,让程序员专注Sql语句不在为繁琐的敲写代码而生。</p>
-<h2 id="mybatis"><a href="#mybatis" class="headerlink" title="mybatis"></a>mybatis</h2><p>​    mubatis是对jdbc的封装,她让数据库底层操作变得透明。mybatis的操作都是围绕一个SqlSessionFactory实例展开的。mybatis通过配置文件关联到各实体类的Mapper文件,Mapper文件配置了每个对数据库所需进行的sql语句映射。在每次与数据库交互时,通过sqlSessionFactory拿到一个sqlsession,在执行sql命令。</p>
-<p>​    页面发来请求给控制器,控制器调用业务层处理逻辑,逻辑层想持久层发送请求,持久层与数据库交互,后将结果返回给业务层,业务层处理逻辑发送给控制器,控制器再调用视图展现数据。</p>
-<h2 id="SOAP"><a href="#SOAP" class="headerlink" title="SOAP"></a>SOAP</h2><p>​    简单对象访问协议是交换数据的一种协议规范,是一种轻量级的,简单的,基于XML(标准通用标记语言下的一个子集)的协议,他被设计成在web上交换结构化的和固话的信息。</p>
-<h2 id="ajax"><a href="#ajax" class="headerlink" title="ajax"></a>ajax</h2><p>​    ajax是一种创建快速动态网页技术,在无需重新加载整个网页的情况下,能够更新部分网页技术(局部刷新),通过在后台与服务器进行少量的局部交换,ajax可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下,对网页的某部分进行更新。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/14/m13525736099_4@163.com/C52829A12510429E9452B64931B775E1/%E6%A1%86%E6%9E%B6,%E5%9F%BA%E7%A1%80%E5%90%8D%E8%AF%8D/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -1004,10 +546,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">__Spring Boot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">____旧事</a>
               </li>
             
             <div class="clearfix"></div>
