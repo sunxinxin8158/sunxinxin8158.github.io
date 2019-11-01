@@ -305,7 +305,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h2><hr>
+<p>主要增加<code>spring-boot-starter-thymeleaf</code> 和 <code>nekohtml</code> 这两个依赖</p>
+<ul>
+<li><code>spring-boot-starter-thymeleaf</code>：Thymeleaf 自动配置</li>
+<li><code>nekohtml</code>：允许使用非严格的 HTML 语法<br>完整的 <code>pom.xml</code> 如下：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.funtl<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hello-spring-boot<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hello-spring-boot<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span><span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.reporting.outputEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-tomcat<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-actuator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.sourceforge.nekohtml<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>nekohtml<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.9.22<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>com.funtl.hello.spring.boot.HelloSpringBootApplication<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="在-application-yml-中配置-Thymeleaf"><a href="#在-application-yml-中配置-Thymeleaf" class="headerlink" title="在 application.yml 中配置 Thymeleaf"></a>在 application.yml 中配置 Thymeleaf</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  thymeleaf:</span><br><span class="line">    cache: false # 开发时关闭缓存,不然没法看到实时页面</span><br><span class="line">    mode: LEGACYHTML5 # 用非严格的 HTML</span><br><span class="line">    encoding: UTF-<span class="number">8</span></span><br><span class="line">    servlet:</span><br><span class="line">      content-type: text/html</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建测试用-JavaBean"><a href="#创建测试用-JavaBean" class="headerlink" title="创建测试用 JavaBean"></a>创建测试用 JavaBean</h2><hr>
+<h3 id="创建一个测试效果的-JavaBean，简单封装一下即可"><a href="#创建一个测试效果的-JavaBean，简单封装一下即可" class="headerlink" title="创建一个测试效果的 JavaBean，简单封装一下即可"></a>创建一个测试效果的 JavaBean，简单封装一下即可</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.funtl.hello.spring.boot.entity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PersonBean</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建测试用-Controller"><a href="#创建测试用-Controller" class="headerlink" title="创建测试用 Controller"></a>创建测试用 Controller</h3><p>创建一个 Controller，造一些测试数据并设置跳转</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.funtl.hello.spring.boot.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.funtl.hello.spring.boot.entity.PersonBean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.ui.Model;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"thymeleaf"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"index"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">(Model model)</span> </span>&#123;</span><br><span class="line">        PersonBean person = <span class="keyword">new</span> PersonBean();</span><br><span class="line">        person.setName(<span class="string">"张三"</span>);</span><br><span class="line">        person.setAge(<span class="number">22</span>);</span><br><span class="line"></span><br><span class="line">        List&lt;PersonBean&gt; people = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        PersonBean p1 = <span class="keyword">new</span> PersonBean();</span><br><span class="line">        p1.setName(<span class="string">"李四"</span>);</span><br><span class="line">        p1.setAge(<span class="number">23</span>);</span><br><span class="line">        people.add(p1);</span><br><span class="line"></span><br><span class="line">        PersonBean p2 = <span class="keyword">new</span> PersonBean();</span><br><span class="line">        p2.setName(<span class="string">"王五"</span>);</span><br><span class="line">        p2.setAge(<span class="number">24</span>);</span><br><span class="line">        people.add(p2);</span><br><span class="line"></span><br><span class="line">        PersonBean p3 = <span class="keyword">new</span> PersonBean();</span><br><span class="line">        p3.setName(<span class="string">"赵六"</span>);</span><br><span class="line">        p3.setAge(<span class="number">25</span>);</span><br><span class="line">        people.add(p3);</span><br><span class="line"></span><br><span class="line">        model.addAttribute(<span class="string">"person"</span>, person);</span><br><span class="line">        model.addAttribute(<span class="string">"people"</span>, people);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"index"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建测试页面"><a href="#创建测试页面" class="headerlink" title="创建测试页面"></a>创建测试页面</h3><p>在 templates 目录下创建 <code>index.html</code> 文件，代码如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html SYSTEM <span class="string">"http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd"</span>&gt;</span><br><span class="line">&lt;html xmlns=<span class="string">"http://www.w3.org/1999/xhtml"</span> xmlns:th=<span class="string">"http://www.thymeleaf.org"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;Hello Thymeleaf&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;span&gt;访问 Model：&lt;/span&gt;&lt;span th:text="$&#123;person.name&#125;"&gt;&lt;/span&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;span&gt;访问列表&lt;/span&gt;</span><br><span class="line">        &lt;table&gt;</span><br><span class="line">            &lt;thead&gt;</span><br><span class="line">                &lt;tr&gt;</span><br><span class="line">                    &lt;th&gt;姓名&lt;/th&gt;</span><br><span class="line">                    &lt;th&gt;年龄&lt;/th&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">            &lt;/thead&gt;</span><br><span class="line">            &lt;tbody&gt;</span><br><span class="line">                &lt;tr th:each=<span class="string">"human : $&#123;people&#125;"</span>&gt;</span><br><span class="line">                    &lt;td th:text="$&#123;human.name&#125;"&gt;&lt;/td&gt;</span><br><span class="line">                    &lt;td th:text="$&#123;human.age&#125;"&gt;&lt;/td&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">            &lt;/tbody&gt;</span><br><span class="line">        &lt;/table&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p> 修改 html 标签用于引入 thymeleaf 引擎，这样才可以在其他标签里使用 <code>th:*</code> 语法，声明如下： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html SYSTEM <span class="string">"http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd"</span>&gt;</span><br><span class="line">&lt;html xmlns=<span class="string">"http://www.w3.org/1999/xhtml"</span> xmlns:th=<span class="string">"http://www.thymeleaf.org"</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试访问"><a href="#测试访问" class="headerlink" title="测试访问"></a>测试访问</h3><p>启动成功后，访问：<a href="https://wvincen.gitee.io/404.html" target="_blank" rel="noopener">http://localhost:9090/thymeleaf/index</a> 即可看到效果</p>
+<p><img src="D:%5Cblog%5Csource_posts%5CSpring-Boot-5-Spring-Boot-%E6%95%B4%E5%90%88Thymeleaf.assets%5C1.png" alt=""></p>
+
       
 
       
@@ -313,6 +337,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Spring Boot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -506,13 +541,13 @@
 <li>选择the USB hard dive</li>
 <li>进入系统安装界面</li>
 </ul>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572422890060.png" alt="1572422890060"></p>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572423573433.png" alt="1572423573433"></p>
+<p>​    <img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/B2C263FB852C4585848C4A83CE5F982E/1080" alt="1"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/8477E02B6D764ED8B15691A177CA6ACB/1088" alt="1572423573433"></p>
 <ul>
 <li>这里可以区分台式机和笔记本</li>
 </ul>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572423702170.png" alt="1572423702170"></p>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572423920982.png" alt="1572423920982"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/F6544BA2BC2C4EF8B2C0A97D03FE0714/1079" alt="1572423702170"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/F94D124F876544C89EBE36669CC221E1/1086" alt="1572423920982"></p>
 <ul>
 <li><p>安装的语言:Chinese(PRC)</p>
 </li>
@@ -522,11 +557,11 @@
 <p>(黑屏解决方案:强制关机,按F9(Lenovo按F12)选择硬盘启动)</p>
 </li>
 </ul>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572424911875.png" alt="1572424911875"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/764D613BE40741C0ABDCBF0E952DB6F7/1093" alt="1572424911875"></p>
 <ul>
 <li>装完机后会如图所示,点击Start Windows进入登录页面</li>
 </ul>
-<h1 id="系统配置"><a href="#系统配置" class="headerlink" title="系统配置"></a>系统配置</h1><p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572425411865.png" alt="1572425411865"></p>
+<h1 id="系统配置"><a href="#系统配置" class="headerlink" title="系统配置"></a>系统配置</h1><p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/D6991DB2608C4ED88679B83532456AD3/1085" alt="1572425411865"></p>
 <ul>
 <li><p>用本地管理员账号登录</p>
 <ul>
@@ -535,28 +570,28 @@
 <h4 id="WIN-R–-gt-gt-输入TPM-MSC"><a href="#WIN-R–-gt-gt-输入TPM-MSC" class="headerlink" title="WIN+R–&gt;&gt;输入TPM.MSC"></a>WIN+R–&gt;&gt;输入TPM.MSC</h4></li>
 </ul>
 <p>有三种情况:</p>
-<h5 id="情况一-如下图所示-则跳过此步骤-直接进入加域"><a href="#情况一-如下图所示-则跳过此步骤-直接进入加域" class="headerlink" title="情况一:如下图所示,则跳过此步骤,直接进入加域"></a>情况一:如下图所示,则跳过此步骤,直接进入加域</h5><p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572425508980.png" alt="1572425508980"></p>
-<h5 id="情况二-如下图所示-选择右侧的Tunr-TPM-on"><a href="#情况二-如下图所示-选择右侧的Tunr-TPM-on" class="headerlink" title="情况二:如下图所示,选择右侧的Tunr TPM on"></a>情况二:如下图所示,选择右侧的Tunr TPM on</h5><p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572425660574.png" alt="1572425660574"></p>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572426163633.png" alt="1572426163633"></p>
-<h5 id="情况三-如下图所示-选择右侧的Initialize-TPM"><a href="#情况三-如下图所示-选择右侧的Initialize-TPM" class="headerlink" title="情况三:如下图所示,选择右侧的Initialize TPM"></a>情况三:如下图所示,选择右侧的Initialize TPM</h5><p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572426298476.png" alt="1572426298476"></p>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572426317377.png" alt="1572426317377"></p>
+<h5 id="情况一-如下图所示-则跳过此步骤-直接进入加域"><a href="#情况一-如下图所示-则跳过此步骤-直接进入加域" class="headerlink" title="情况一:如下图所示,则跳过此步骤,直接进入加域"></a>情况一:如下图所示,则跳过此步骤,直接进入加域</h5><p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/C75C44F64C7C4D57B223B2318BF40855/1076" alt="1572425508980"></p>
+<h5 id="情况二-如下图所示-选择右侧的Tunr-TPM-on"><a href="#情况二-如下图所示-选择右侧的Tunr-TPM-on" class="headerlink" title="情况二:如下图所示,选择右侧的Tunr TPM on"></a>情况二:如下图所示,选择右侧的Tunr TPM on</h5><p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/80706E7CA09D4859ABF27E59A4BE345A/1082" alt="1572425660574"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/9148845F648D4EEEA8C273C5F111B82F/1089" alt="1572426163633"></p>
+<h5 id="情况三-如下图所示-选择右侧的Initialize-TPM"><a href="#情况三-如下图所示-选择右侧的Initialize-TPM" class="headerlink" title="情况三:如下图所示,选择右侧的Initialize TPM"></a>情况三:如下图所示,选择右侧的Initialize TPM</h5><p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/2018E1547E1B4D95936B402BE8C4859C/1075" alt="1572426298476"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/5F42BB8D68B0407189B44731C748E38A/1091" alt="1572426317377"></p>
 <ul>
 <li>点击重启</li>
 </ul>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572426349563.png" alt="1572426349563"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/31044D7183404AE8BEE06D2DC5BE9AB1/1087" alt="1572426349563"></p>
 <ul>
 <li>重启后会自动跳出左侧的弹窗点击Automatically create the password(recommended)</li>
 </ul>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572426510566.png" alt="1572426510566"></p>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572426524079.png" alt="1572426524079"></p>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572426537019.png" alt="1572426537019"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/4AF8C314C23E42B6BED3A6AEEC844A5D/1081" alt="1572426510566"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/7CFEB086B6E24BCFAC585077479855B0/1078" alt="1572426524079"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/82DF89441E5C4B13838BBA31F640C221/1074" alt="1572426537019"></p>
 <h5 id="完成后-再次进入TPM控制台确认是否TPM状态已如情况一所示即可"><a href="#完成后-再次进入TPM控制台确认是否TPM状态已如情况一所示即可" class="headerlink" title="完成后,再次进入TPM控制台确认是否TPM状态已如情况一所示即可"></a>完成后,再次进入TPM控制台确认是否TPM状态已如情况一所示即可</h5><h1 id="加密设置"><a href="#加密设置" class="headerlink" title="加密设置"></a>加密设置</h1><p>点开controlpanel找到bitlocker驱动器加密</p>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572427105696.png" alt="1572427105696"></p>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572428543562.png" alt="1572428543562"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/4121C517CF5F42F1BA0786FB0DB9A6A2/1061" alt="1572427105696"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/5B54E39C851B47EAB897267ED0595600/1068" alt="1572428543562"></p>
 <ul>
 <li>点击开始加密</li>
 </ul>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572428591453.png" alt="1572428591453"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/99EEF5385C61462C954F83ED9400F32B/1063" alt="1572428591453"></p>
 <ul>
 <li>选择Print the recovery key</li>
 <li>选择XPS打印机<ul>
@@ -565,16 +600,16 @@
 </li>
 <li>点击继续,将会自动开始加密</li>
 </ul>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572485959461.png" alt="1572485959461"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/D19EA8E3087B4A40BAE15DA9A74E20D9/1060" alt="1572485959461"></p>
 <h1 id="加域-需插上连接礼来网络的网线"><a href="#加域-需插上连接礼来网络的网线" class="headerlink" title="加域(需插上连接礼来网络的网线)"></a>加域(<code>需插上连接礼来网络的网线</code>)</h1><p>右键computer-属性</p>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572429090909.png" alt="1572429090909"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/92D10F329019418AB58C572856B4C7A3/1084" alt="1572429090909"></p>
 <ul>
 <li>确保在域控上已经添加过该计算机名</li>
 <li>加域:AP.LILLY.COM(需输入DS账号密码)</li>
 <li>域管理员账号DS账号,密码(每天都会更新,这个要跟同事沟通)</li>
 <li>成功加入AP域,点击OK重启电脑。</li>
 </ul>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572429353070.png" alt="1572429353070"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/0D8D49A2FB9C4042B1808E2F3573C7F2/1083" alt="1572429353070"></p>
 <h1 id="加管理员组-需插上连接礼来网络的网线"><a href="#加管理员组-需插上连接礼来网络的网线" class="headerlink" title="加管理员组(需插上连接礼来网络的网线)"></a>加管理员组(<code>需插上连接礼来网络的网线</code>)</h1><ul>
 <li>用本地管理员账号登录<ul>
 <li>用户名: .\Deployment</li>
@@ -582,11 +617,11 @@
 </ul>
 </li>
 </ul>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572486190860.png" alt="1572486190860"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/54ECC90DDFAF454486B422C6DAAF1240/1059" alt="1572486190860"></p>
 <ul>
 <li>选择Administrator Group</li>
 </ul>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572486398975.png" alt="1572486398975"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/ABBAA9AE5D5048A1B55B45CE9F00AEC3/1055" alt="1572486398975"></p>
 <ul>
 <li>添加以下账户到管理员组(每添加一个管理员都需要输入DS账号密码)<ul>
 <li>用户账号</li>
@@ -598,7 +633,7 @@
 <li>点击开始</li>
 <li>选择Log off</li>
 </ul>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572486720243.png" alt="1572486720243"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/1705EA9F9C444FE9B0390FB85AE56AC3/1077" alt="1572486720243"></p>
 <ul>
 <li>输入用户账户的账号密码登录Windows</li>
 </ul>
@@ -608,7 +643,7 @@
 <li>在搜索框中输入CMD</li>
 <li>打开programs中的CMD程序</li>
 </ul>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572487281415.png" alt="1572487281415"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/F06759CD06124013B8055EB4D5C14F19/1065" alt="1572487281415"></p>
 <ul>
 <li>输入Gpupdate /force</li>
 <li>出现上图所示的两个Successful即成功</li>
@@ -617,7 +652,7 @@
 <li>点击屏幕右下角时间</li>
 <li>点击Change date and time settings…</li>
 </ul>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572487425400.png" alt="1572487425400"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/6BA60AE6CE1C43FCBB1F172532B4F2BC/1064" alt="1572487425400"></p>
 <ul>
 <li>点击Change time zone…</li>
 <li>选择beijing </li>
@@ -628,18 +663,19 @@
 <li>配置Outlook profile时若出现下图情况,点击Useanother account</li>
 <li>输入用户的账号\密码点击OK</li>
 </ul>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572488126569.png" alt="1572488126569"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/6F9AFEA2EA51474CAD917FC761CAF69F/1058" alt="1572488126569"></p>
 <ul>
 <li>打开Outlook加载数据</li>
 <li>修改junk mail level:NO Automatic Fitering</li>
 </ul>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572488261435.png" alt="1572488261435"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/90EADF54295B4CB895F914A1716BD2B5/1062" alt="1572488261435"></p>
 <ul>
 <li>选择canlendar</li>
 <li>选择New Online Metting(<code>需要开启Skype for business</code>)</li>
 <li>选择Metting options</li>
 </ul>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572488649743.png" alt="1572488649743"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/1054CB97BC7442429BB4D7EF401439E9/1072" alt="1572488649743"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/18237EF177584B55BBD25DD241F7B479/1066" alt="11111"></p>
 <ul>
 <li>在Audio and phone中选择china,勾上Remember settings,然后OK关闭页面</li>
 <li>完成配置Outlook后需要退出Skype for business 和Outlook</li>
@@ -648,15 +684,15 @@
 <li>安装软件路径如下:\40.197.57.19</li>
 <li>安装软件过程中,凡是遇到需要重启电脑的,一律选择稍后重启,等待全部软件安装完成,且其他如硬盘加密,更新sep,安装打印机等配置完成后再进行重启电脑。</li>
 </ul>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572489350793.png" alt="1572489350793"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/2A21DBE64FCA445AACCAEF7524E2FD81/1069" alt="1572489350793"></p>
 <ul>
 <li>安装必装文件夹里的软件(``Firmware Updates里文件需要根据安装的电脑型号进行安装)</li>
 </ul>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572489512183.png" alt="1572489512183"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/AC9C67540265406AA8C2F8E8FB0BDBDA/1071" alt="1572489512183"></p>
 <h1 id="安装打印机"><a href="#安装打印机" class="headerlink" title="安装打印机"></a>安装打印机</h1><ul>
 <li>打印机地址: \\40.197.6.156</li>
 </ul>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572489621571.png" alt="1572489621571"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/F10BDFCC03664AEFBC813318187A30E4/1057" alt="1572489621571"></p>
 <h1 id="桌面配置"><a href="#桌面配置" class="headerlink" title="桌面配置"></a>桌面配置</h1><ul>
 <li>将公司网站设置成主页</li>
 <li>将office常用应用的快捷方式发到桌面(``word、excel、PPT、Outlook等)</li>
@@ -674,13 +710,13 @@
 <li>运行Health Check Tool</li>
 <li>点击两次Start</li>
 </ul>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572490415187.png" alt="1572490415187"></p>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572490467691.png" alt="1572490467691"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/6991344C1FFC475E9FB3AA1CCE64EEBA/1092" alt="1572490415187"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/21092A8F9BD44D9AA157792F23429635/1090" alt="1572490467691"></p>
 <ul>
 <li>核对用户账号,计算机名和检测结果,点击print打印,附加在checklist后面。</li>
 </ul>
-<p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572490941996.png" alt="1572490941996"></p>
-<h1 id="填写Check-Lisk和IT-设备单"><a href="#填写Check-Lisk和IT-设备单" class="headerlink" title="填写Check Lisk和IT 设备单"></a>填写Check Lisk和IT 设备单</h1><p><img src="D:%5Cblog%5Csource_posts%5C%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE.assets%5C1572490880150.png" alt="1572490880150"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/4FADE593E51A42CCB31FAB15E844C70F/1073" alt="1572490941996"></p>
+<h1 id="填写Check-Lisk和IT-设备单"><a href="#填写Check-Lisk和IT-设备单" class="headerlink" title="填写Check Lisk和IT 设备单"></a>填写Check Lisk和IT 设备单</h1><p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/E493F05818294B50905A9CB195E8665D/1067" alt="1572490880150"></p>
 
       
 
