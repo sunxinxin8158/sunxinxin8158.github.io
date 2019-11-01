@@ -6,17 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>[Spring Boot] 7 Spring Boot 测试MyBatis操作数据库 | DavidRacecourse | 码上说话</title>
+  <title>DavidRacecourse | 码上说话</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="使用 tk.mybatis 操作数据库经过之前章节一系列的配置之后，我们已经满足了使用 MyBaits 操作数据库的必要条件，下面是使用 tk.mybatis 操作数据库的例子。 我们以测试操作用户表为例（tb_user） 修改入口类 需要使用 @MapperScan 注解来指定 Mapper 接口的路径 PS： 注意这里的 @MapperScan 注解是 tk.mybatis.spring.an">
-<meta name="keywords" content="__Spring Boot">
-<meta property="og:type" content="article">
-<meta property="og:title" content="[Spring Boot] 7 Spring Boot 测试MyBatis操作数据库">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;31&#x2F;Spring-Boot-7-Spring-Boot-%E6%B5%8B%E8%AF%95MyBatis%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93&#x2F;index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="DavidRacecourse | 码上说话">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;page&#x2F;2&#x2F;index.html">
 <meta property="og:site_name" content="DavidRacecourse | 码上说话">
-<meta property="og:description" content="使用 tk.mybatis 操作数据库经过之前章节一系列的配置之后，我们已经满足了使用 MyBaits 操作数据库的必要条件，下面是使用 tk.mybatis 操作数据库的例子。 我们以测试操作用户表为例（tb_user） 修改入口类 需要使用 @MapperScan 注解来指定 Mapper 接口的路径 PS： 注意这里的 @MapperScan 注解是 tk.mybatis.spring.an">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-01T08:51:17.565Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="DavidRacecourse | 码上说话" type="application/atom+xml">
@@ -163,36 +159,66 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Spring-Boot-7-Spring-Boot-测试MyBatis操作数据库" class="article article-type-post " itemscope itemprop="blogPost">
+            
+  
+    <article id="post-Spring-Boot-4-Spring-Boot-常用配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      [Spring Boot] 7 Spring Boot 测试MyBatis操作数据库
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/31/Spring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/">[Spring Boot] 4 Spring Boot 常用配置</a>
     </h1>
   
 
         
-        <a href="/2019/10/31/Spring-Boot-7-Spring-Boot-%E6%B5%8B%E8%AF%95MyBatis%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/" class="archive-article-date">
-  	<time datetime="2019-10-31T03:10:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-31</time>
+        <a href="/2019/10/31/Spring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/" class="archive-article-date">
+  	<time datetime="2019-10-31T03:08:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-31</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="使用-tk-mybatis-操作数据库"><a href="#使用-tk-mybatis-操作数据库" class="headerlink" title="使用 tk.mybatis 操作数据库"></a>使用 tk.mybatis 操作数据库</h2><p>经过之前章节一系列的配置之后，我们已经满足了使用 MyBaits 操作数据库的必要条件，下面是使用 tk.mybatis 操作数据库的例子。</p>
-<p>我们以测试操作用户表为例（tb_user）</p>
-<h2 id="修改入口类"><a href="#修改入口类" class="headerlink" title="修改入口类"></a>修改入口类</h2><hr>
-<p>需要使用 <code>@MapperScan</code> 注解来指定 Mapper 接口的路径</p>
-<p>PS： 注意这里的 <code>@MapperScan</code> 注解是 <code>tk.mybatis.spring.annotation.MapperScan;</code> 包下的</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.funtl.hello.spring.boot;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> tk.mybatis.spring.annotation.MapperScan;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@MapperScan</span>(basePackages = <span class="string">"com.funtl.hello.spring.boot.mapper"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloSpringBootApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(HelloSpringBootApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="Spring-Boot-常用配置"><a href="#Spring-Boot-常用配置" class="headerlink" title="Spring Boot 常用配置"></a>Spring Boot 常用配置</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>本章节主要介绍一下Spring Boot中的一些常用配置，比如：自定义Banner、配置日志、关闭特定的自动配置等。</p>
+<h2 id="自定义-Banner"><a href="#自定义-Banner" class="headerlink" title="自定义 Banner"></a>自定义 Banner</h2><hr>
+<p>在Spring Boot启动的时候会有一个默认的启动图案</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  .   ____          _            __ _ _</span><br><span class="line"> /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \</span><br><span class="line">( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \</span><br><span class="line"> \\/  ___)| |_)| | | | | || (_| |  ) ) ) )</span><br><span class="line">  '  |____| .__|_| |_|_| |_\__, | / / / /</span><br><span class="line"> =========|_|==============|___/=/_/_/_/</span><br><span class="line"> :: Spring Boot ::        (v1.5.8.RELEASE)</span><br></pre></td></tr></table></figure>
 
-<h2 id="创建测试类"><a href="#创建测试类" class="headerlink" title="创建测试类"></a>创建测试类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.funtl.hello.spring.boot;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.funtl.hello.spring.boot.entity.TbUser;</span><br><span class="line"><span class="keyword">import</span> com.funtl.hello.spring.boot.mapper.TbUserMapper;</span><br><span class="line"><span class="keyword">import</span> com.github.pagehelper.PageHelper;</span><br><span class="line"><span class="keyword">import</span> com.github.pagehelper.PageInfo;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.annotation.Rollback;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"><span class="keyword">import</span> org.springframework.transaction.annotation.Transactional;</span><br><span class="line"><span class="keyword">import</span> tk.mybatis.mapper.entity.Example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span>(classes = HelloSpringBootApplication.class)</span><br><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="meta">@Rollback</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBatisTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 注入数据查询接口</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> TbUserMapper tbUserMapper;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试插入数据</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testInsert</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 构造一条测试数据</span></span><br><span class="line">        TbUser tbUser = <span class="keyword">new</span> TbUser();</span><br><span class="line">        tbUser.setUsername(<span class="string">"Lusifer"</span>);</span><br><span class="line">        tbUser.setPassword(<span class="string">"123456"</span>);</span><br><span class="line">        tbUser.setPhone(<span class="string">"15888888888"</span>);</span><br><span class="line">        tbUser.setEmail(<span class="string">"topsale@vip.qq.com"</span>);</span><br><span class="line">        tbUser.setCreated(<span class="keyword">new</span> Date());</span><br><span class="line">        tbUser.setUpdated(<span class="keyword">new</span> Date());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 插入数据</span></span><br><span class="line">        tbUserMapper.insert(tbUser);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试删除数据</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDelete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 构造条件，等同于 DELETE from tb_user WHERE username = 'Lusifer'</span></span><br><span class="line">        Example example = <span class="keyword">new</span> Example(TbUser.class);</span><br><span class="line">        example.createCriteria().andEqualTo(<span class="string">"username"</span>, <span class="string">"Lusifer"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 删除数据</span></span><br><span class="line">        tbUserMapper.deleteByExample(example);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试修改数据</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testUpdate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 构造条件</span></span><br><span class="line">        Example example = <span class="keyword">new</span> Example(TbUser.class);</span><br><span class="line">        example.createCriteria().andEqualTo(<span class="string">"username"</span>, <span class="string">"Lusifer"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构造一条测试数据</span></span><br><span class="line">        TbUser tbUser = <span class="keyword">new</span> TbUser();</span><br><span class="line">        tbUser.setUsername(<span class="string">"LusiferNew"</span>);</span><br><span class="line">        tbUser.setPassword(<span class="string">"123456"</span>);</span><br><span class="line">        tbUser.setPhone(<span class="string">"15888888888"</span>);</span><br><span class="line">        tbUser.setEmail(<span class="string">"topsale@vip.qq.com"</span>);</span><br><span class="line">        tbUser.setCreated(<span class="keyword">new</span> Date());</span><br><span class="line">        tbUser.setUpdated(<span class="keyword">new</span> Date());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 修改数据</span></span><br><span class="line">        tbUserMapper.updateByExample(tbUser, example);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试查询集合</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSelect</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        List&lt;TbUser&gt; tbUsers = tbUserMapper.selectAll();</span><br><span class="line">        <span class="keyword">for</span> (TbUser tbUser : tbUsers) &#123;</span><br><span class="line">            System.out.println(tbUser.getUsername());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试分页查询</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testPage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// PageHelper 使用非常简单，只需要设置页码和每页显示笔数即可</span></span><br><span class="line">        PageHelper.startPage(<span class="number">0</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置分页查询条件</span></span><br><span class="line">        Example example = <span class="keyword">new</span> Example(TbUser.class);</span><br><span class="line">        PageInfo&lt;TbUser&gt; pageInfo = <span class="keyword">new</span> PageInfo&lt;&gt;(tbUserMapper.selectByExample(example));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取查询结果</span></span><br><span class="line">        List&lt;TbUser&gt; tbUsers = pageInfo.getList();</span><br><span class="line">        <span class="keyword">for</span> (TbUser tbUser : tbUsers) &#123;</span><br><span class="line">            System.out.println(tbUser.getUsername());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 通过<a href="http://patorjk.com/software/taag网站生成字符串，将网站生成的字符复制到banner.txt中" target="_blank" rel="noopener">http://patorjk.com/software/taag网站生成字符串，将网站生成的字符复制到banner.txt中</a> </p>
+<p> 再次运行这个程序 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">$&#123;AnsiColor.BRIGHT_RED&#125;</span><br><span class="line">////////////////////////////////////////////////////////////////////</span><br><span class="line">//                          _ooOoo_                               //</span><br><span class="line">//                         o8888888o                              //</span><br><span class="line">//                         88" . "88                              //</span><br><span class="line">//                         (| ^_^ |)                              //</span><br><span class="line">//                         O\  =  /O                              //</span><br><span class="line">//                      ____/`---'\____                           //</span><br><span class="line">//                    .'  \\|     |//  `.                         //</span><br><span class="line">//                   /  \\|||  :  |||//  \                        //</span><br><span class="line">//                  /  _||||| -:- |||||-  \                       //</span><br><span class="line">//                  |   | \\\  -  /// |   |                       //</span><br><span class="line">//                  | \_|  ''\---/''  |   |                       //</span><br><span class="line">//                  \  .-\__  `-`  ___/-. /                       //</span><br><span class="line">//                ___`. .'  /--.--\  `. . ___                     //</span><br><span class="line">//              ."" '&lt;  `.___\_&lt;|&gt;_/___.'  &gt;'"".                  //</span><br><span class="line">//            | | :  `- \`.;`\ _ /`;.`/ - ` : | |                 //</span><br><span class="line">//            \  \ `-.   \_ __\ /__ _/   .-` /  /                 //</span><br><span class="line">//      ========`-.____`-.___\_____/___.-`____.-'========         //</span><br><span class="line">//                           `=---='                              //</span><br><span class="line">//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        //</span><br><span class="line">//            佛祖保佑       永不宕机     永无BUG                  //</span><br><span class="line">////////////////////////////////////////////////////////////////////</span><br></pre></td></tr></table></figure>
 
-<h2 id="附：完整的-POM"><a href="#附：完整的-POM" class="headerlink" title="附：完整的 POM"></a>附：完整的 POM</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.funtl<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hello-spring-boot<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hello-spring-boot<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span><span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.reporting.outputEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-tomcat<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-actuator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>tk.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mapper-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.pagehelper<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>pagehelper-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.sourceforge.nekohtml<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>nekohtml<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.9.22<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>com.funtl.hello.spring.boot.HelloSpringBootApplication<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.generator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-generator-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">configurationFile</span>&gt;</span>$&#123;basedir&#125;/src/main/resources/generator/generatorConfig.xml<span class="tag">&lt;/<span class="name">configurationFile</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">overwrite</span>&gt;</span>true<span class="tag">&lt;/<span class="name">overwrite</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">verbose</span>&gt;</span>true<span class="tag">&lt;/<span class="name">verbose</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;mysql.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>tk.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mapper<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="常用属性设置："><a href="#常用属性设置：" class="headerlink" title="常用属性设置："></a>常用属性设置：</h3><ul>
+<li><code>${AnsiColor.BRIGHT_RED}</code>：设置控制台中输出内容的颜色</li>
+<li><code>${application.version}</code>：用来获取 MANIFEST.MF 文件中的版本号</li>
+<li><code>${application.formatted-version}</code>：格式化后的 <code>${application.version}</code> 版本信息</li>
+<li><code>${spring-boot.version}</code>：Spring Boot 的版本号</li>
+<li><code>${spring-boot.formatted-version}</code>：格式化后的 <code>${spring-boot.version}</code> 版本信息</li>
+</ul>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><hr>
+<p>Spring Boot 项目使用一个全局的配置文件<code>application.properties</code>或者是<code>application.yml</code>在<code>resources</code>目录下或者类路径下的<code>/config</code>下，一般我们放到<code>resources</code>下。</p>
+<p>修改Tomcat的端口为9090，并将默认的访问路径 “/“ 修改为 “boot”，可以在<code>application.properties</code>中添加：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server.port=9090</span><br><span class="line">server.context-path=/boot</span><br></pre></td></tr></table></figure>
+
+<p> 或在<code>application.yml</code>中添加： </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line"> port: 9090</span><br><span class="line"> context-path: /boot</span><br></pre></td></tr></table></figure>
+
+<p> 测试效果： </p>
+<p>  <img src="D:%5Cblog%5Csource_posts%5CSpring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE.assets%5C1.png" alt=""></p>
+<p><a href="https://docs.spring.io/spring-boot/docs/2.0.2.RELEASE/reference/html/common-application-properties.html" target="_blank" rel="noopener">更多配置</a></p>
+<h2 id="Starter-POM"><a href="#Starter-POM" class="headerlink" title="Starter POM"></a>Starter POM</h2><hr>
+<p>Spring Boot为我们提供了简化企业级开发绝大多数场景的starter pom，只要使用了应用场景所需要的starter pom，相关的技术配置将会消除，就可以得到Spring Boot为我们提供的自动配置的Bean。</p>
+<p><a href="https://docs.spring.io/spring-boot/docs/2.0.2.RELEASE/reference/html/using-boot-build-systems.html#using-boot-starter" target="_blank" rel="noopener">更多Starter POM</a></p>
+<h2 id="日志配置"><a href="#日志配置" class="headerlink" title="日志配置"></a>日志配置</h2><hr>
+<p>Spring Boot对各种日志框架都做了支持，我们可以通过配置来修改默认的日志的配置</p>
+<p>默认情况下，Spring Boot使用Logback作为日志框架</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">logging:</span><br><span class="line"> file: ../logs/spring-boot-hello.log</span><br><span class="line"> level.org.springframework.web: DEBUG</span><br></pre></td></tr></table></figure>
+
+<h2 id="关闭特定的自动配置"><a href="#关闭特定的自动配置" class="headerlink" title="关闭特定的自动配置"></a>关闭特定的自动配置</h2><hr>
+<p>关闭特定的自动配置使用<code>@SpringBootApplication</code>注解的<code>exclude</code>参数即可，这里以关闭数据源的自动配置为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication(exclude = &#123;DataSourceAutoConfiguration.class&#125;)</span><br></pre></td></tr></table></figure>
 
 
       
@@ -216,84 +242,16 @@
       
 
       
-
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/31/Spring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/">展开全文 >></a>
+        </p>
       
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/31/Spring-Boot-7-Spring-Boot-%E6%B5%8B%E8%AF%95MyBatis%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/11/01/Hexo-1-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          [Hexo] 1 搭建个人博客
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2019/10/31/Spring-Boot-6-Spring-Boot-%E6%95%B4%E5%90%88Druid%E3%80%81MyBatis%E5%92%8CPagehelper/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">[Spring Boot] 6 Spring Boot 整合Druid、MyBatis和Pagehelper</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -313,14 +271,579 @@
 
 
 
-  
-  
-  
 
   
-
+    <article id="post-系统升级及加域-美国礼来项目" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/24/%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE/">系统升级及加域 美国礼来项目</a>
+    </h1>
   
 
+        
+        <a href="/2019/10/24/%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE/" class="archive-article-date">
+  	<time datetime="2019-10-24T07:20:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="分辨机型"><a href="#分辨机型" class="headerlink" title="分辨机型"></a>分辨机型</h1><h3 id="1-HP-840-G3型号"><a href="#1-HP-840-G3型号" class="headerlink" title="(1)HP 840 G3型号"></a>(1)HP 840 G3型号</h3><ol>
+<li>开机按F10</li>
+<li>在<code>Security</code>–&gt;&gt;<code>Security Configuration</code>下,选择<code>TPM Embedded Security</code></li>
+<li>确认<code>TPM Device</code>–&gt;&gt;设置为<code>Available</code></li>
+<li>确认<code>TPM State</code>是<code>checked</code></li>
+<li>确认<code>Clear TPM</code>这是为<code>NO</code></li>
+<li>确认<code>TPM Activation Policy</code> 设置为<code>No prompts</code></li>
+<li>在<code>Advanced</code>下,选择<code>Boot Options</code></li>
+<li>确认<code>UEFI Boot Order</code> is <strong>checked</strong></li>
+<li>确认<code>Legacy Boot Order</code> is not <strong>checked</strong></li>
+<li><code>UEFI Boot Oeder</code>下确认<code>hard drive</code>是最优先启动(排在第一个)</li>
+</ol>
+<h3 id="2-HP-9480M"><a href="#2-HP-9480M" class="headerlink" title="(2)HP 9480M"></a>(2)HP 9480M</h3><ol>
+<li>开机按F10</li>
+<li>在<code>Security</code>,确认<code>TPM Embedded Security</code>是否存在,若存在,清确认是否已将其设置为<strong>available</strong></li>
+<li>在Advanced–&gt;&gt;Boot Options下</li>
+<li>确认<code>SecureBoot Configuration</code> 的两个选项<strong>SecureBoot</strong> &amp;&amp; <strong>Clear</strong> <strong>SecureBoot</strong> <strong>Keys</strong> 都未被选择。</li>
+<li><code>Boot Mode</code>–&gt;&gt;<strong>UEFI</strong> <strong>Hybrid</strong> <strong>(with</strong> <strong>CSM)</strong> </li>
+<li><strong>UEFI</strong> <strong>Boot</strong> <strong>Order</strong>–&gt;&gt;hard drive 是最优先启动（排在第一个） </li>
+<li><strong><code>Advanced</code></strong>–&gt;&gt; <strong>Built-in</strong> <strong>Device</strong> <strong>Option</strong> 确认选择了<strong>LAN/WLAN</strong> <strong>Switching</strong> </li>
+</ol>
+<h3 id="3-配置好以后按F10保存并退出BIOS"><a href="#3-配置好以后按F10保存并退出BIOS" class="headerlink" title="(3)配置好以后按F10保存并退出BIOS"></a>(3)配置好以后按F10保存并退出BIOS</h3><h1 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h1><ul>
+<li>HP</li>
+<li>开机按F9</li>
+<li>选择the USB hard dive</li>
+<li>进入系统安装界面</li>
+</ul>
+<p>​    <img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/B2C263FB852C4585848C4A83CE5F982E/1080" alt="1"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/8477E02B6D764ED8B15691A177CA6ACB/1088" alt="1572423573433"></p>
+<ul>
+<li>这里可以区分台式机和笔记本</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/F6544BA2BC2C4EF8B2C0A97D03FE0714/1079" alt="1572423702170"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/F94D124F876544C89EBE36669CC221E1/1086" alt="1572423920982"></p>
+<ul>
+<li><p>安装的语言:Chinese(PRC)</p>
+</li>
+<li><p>安装系统过程中注意接通电源</p>
+</li>
+<li><p>若在装机过程中,自动重启,出现黑屏情况,清确认是否将硬盘启动设置为第一启动项。</p>
+<p>(黑屏解决方案:强制关机,按F9(Lenovo按F12)选择硬盘启动)</p>
+</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/764D613BE40741C0ABDCBF0E952DB6F7/1093" alt="1572424911875"></p>
+<ul>
+<li>装完机后会如图所示,点击Start Windows进入登录页面</li>
+</ul>
+<h1 id="系统配置"><a href="#系统配置" class="headerlink" title="系统配置"></a>系统配置</h1><p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/D6991DB2608C4ED88679B83532456AD3/1085" alt="1572425411865"></p>
+<ul>
+<li><p>用本地管理员账号登录</p>
+<ul>
+<li>用户名:Deployment        密码:@W10PreRL/@W7PreRL</li>
+</ul>
+<h4 id="WIN-R–-gt-gt-输入TPM-MSC"><a href="#WIN-R–-gt-gt-输入TPM-MSC" class="headerlink" title="WIN+R–&gt;&gt;输入TPM.MSC"></a>WIN+R–&gt;&gt;输入TPM.MSC</h4></li>
+</ul>
+<p>有三种情况:</p>
+<h5 id="情况一-如下图所示-则跳过此步骤-直接进入加域"><a href="#情况一-如下图所示-则跳过此步骤-直接进入加域" class="headerlink" title="情况一:如下图所示,则跳过此步骤,直接进入加域"></a>情况一:如下图所示,则跳过此步骤,直接进入加域</h5><p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/C75C44F64C7C4D57B223B2318BF40855/1076" alt="1572425508980"></p>
+<h5 id="情况二-如下图所示-选择右侧的Tunr-TPM-on"><a href="#情况二-如下图所示-选择右侧的Tunr-TPM-on" class="headerlink" title="情况二:如下图所示,选择右侧的Tunr TPM on"></a>情况二:如下图所示,选择右侧的Tunr TPM on</h5><p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/80706E7CA09D4859ABF27E59A4BE345A/1082" alt="1572425660574"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/9148845F648D4EEEA8C273C5F111B82F/1089" alt="1572426163633"></p>
+<h5 id="情况三-如下图所示-选择右侧的Initialize-TPM"><a href="#情况三-如下图所示-选择右侧的Initialize-TPM" class="headerlink" title="情况三:如下图所示,选择右侧的Initialize TPM"></a>情况三:如下图所示,选择右侧的Initialize TPM</h5><p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/2018E1547E1B4D95936B402BE8C4859C/1075" alt="1572426298476"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/5F42BB8D68B0407189B44731C748E38A/1091" alt="1572426317377"></p>
+<ul>
+<li>点击重启</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/31044D7183404AE8BEE06D2DC5BE9AB1/1087" alt="1572426349563"></p>
+<ul>
+<li>重启后会自动跳出左侧的弹窗点击Automatically create the password(recommended)</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/4AF8C314C23E42B6BED3A6AEEC844A5D/1081" alt="1572426510566"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/7CFEB086B6E24BCFAC585077479855B0/1078" alt="1572426524079"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/82DF89441E5C4B13838BBA31F640C221/1074" alt="1572426537019"></p>
+<h5 id="完成后-再次进入TPM控制台确认是否TPM状态已如情况一所示即可"><a href="#完成后-再次进入TPM控制台确认是否TPM状态已如情况一所示即可" class="headerlink" title="完成后,再次进入TPM控制台确认是否TPM状态已如情况一所示即可"></a>完成后,再次进入TPM控制台确认是否TPM状态已如情况一所示即可</h5><h1 id="加密设置"><a href="#加密设置" class="headerlink" title="加密设置"></a>加密设置</h1><p>点开controlpanel找到bitlocker驱动器加密</p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/4121C517CF5F42F1BA0786FB0DB9A6A2/1061" alt="1572427105696"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/5B54E39C851B47EAB897267ED0595600/1068" alt="1572428543562"></p>
+<ul>
+<li>点击开始加密</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/99EEF5385C61462C954F83ED9400F32B/1063" alt="1572428591453"></p>
+<ul>
+<li>选择Print the recovery key</li>
+<li>选择XPS打印机<ul>
+<li>保存地址为C:Temp,文件名改为:XXXX</li>
+</ul>
+</li>
+<li>点击继续,将会自动开始加密</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/D19EA8E3087B4A40BAE15DA9A74E20D9/1060" alt="1572485959461"></p>
+<h1 id="加域-需插上连接礼来网络的网线"><a href="#加域-需插上连接礼来网络的网线" class="headerlink" title="加域(需插上连接礼来网络的网线)"></a>加域(<code>需插上连接礼来网络的网线</code>)</h1><p>右键computer-属性</p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/92D10F329019418AB58C572856B4C7A3/1084" alt="1572429090909"></p>
+<ul>
+<li>确保在域控上已经添加过该计算机名</li>
+<li>加域:AP.LILLY.COM(需输入DS账号密码)</li>
+<li>域管理员账号DS账号,密码(每天都会更新,这个要跟同事沟通)</li>
+<li>成功加入AP域,点击OK重启电脑。</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/0D8D49A2FB9C4042B1808E2F3573C7F2/1083" alt="1572429353070"></p>
+<h1 id="加管理员组-需插上连接礼来网络的网线"><a href="#加管理员组-需插上连接礼来网络的网线" class="headerlink" title="加管理员组(需插上连接礼来网络的网线)"></a>加管理员组(<code>需插上连接礼来网络的网线</code>)</h1><ul>
+<li>用本地管理员账号登录<ul>
+<li>用户名: .\Deployment</li>
+<li>密码:@W10PreRL/@W7PreRL</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/54ECC90DDFAF454486B422C6DAAF1240/1059" alt="1572486190860"></p>
+<ul>
+<li>选择Administrator Group</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/ABBAA9AE5D5048A1B55B45CE9F00AEC3/1055" alt="1572486398975"></p>
+<ul>
+<li>添加以下账户到管理员组(每添加一个管理员都需要输入DS账号密码)<ul>
+<li>用户账号</li>
+<li>AP_WP_dskadmp_dl</li>
+</ul>
+</li>
+</ul>
+<h1 id="注销Deployment账号"><a href="#注销Deployment账号" class="headerlink" title="注销Deployment账号"></a>注销Deployment账号</h1><ul>
+<li>点击开始</li>
+<li>选择Log off</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/1705EA9F9C444FE9B0390FB85AE56AC3/1077" alt="1572486720243"></p>
+<ul>
+<li>输入用户账户的账号密码登录Windows</li>
+</ul>
+<p>  <strong>刷新组策略</strong></p>
+<ul>
+<li>点击开始</li>
+<li>在搜索框中输入CMD</li>
+<li>打开programs中的CMD程序</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/F06759CD06124013B8055EB4D5C14F19/1065" alt="1572487281415"></p>
+<ul>
+<li>输入Gpupdate /force</li>
+<li>出现上图所示的两个Successful即成功</li>
+</ul>
+<h1 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h1><ul>
+<li>点击屏幕右下角时间</li>
+<li>点击Change date and time settings…</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/6BA60AE6CE1C43FCBB1F172532B4F2BC/1064" alt="1572487425400"></p>
+<ul>
+<li>点击Change time zone…</li>
+<li>选择beijing </li>
+<li>点击OK</li>
+</ul>
+<h1 id="配置Outlook"><a href="#配置Outlook" class="headerlink" title="配置Outlook"></a>配置Outlook</h1><ul>
+<li>打开Outlook</li>
+<li>配置Outlook profile时若出现下图情况,点击Useanother account</li>
+<li>输入用户的账号\密码点击OK</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/6F9AFEA2EA51474CAD917FC761CAF69F/1058" alt="1572488126569"></p>
+<ul>
+<li>打开Outlook加载数据</li>
+<li>修改junk mail level:NO Automatic Fitering</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/90EADF54295B4CB895F914A1716BD2B5/1062" alt="1572488261435"></p>
+<ul>
+<li>选择canlendar</li>
+<li>选择New Online Metting(<code>需要开启Skype for business</code>)</li>
+<li>选择Metting options</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/1054CB97BC7442429BB4D7EF401439E9/1072" alt="1572488649743"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/18237EF177584B55BBD25DD241F7B479/1066" alt="11111"></p>
+<ul>
+<li>在Audio and phone中选择china,勾上Remember settings,然后OK关闭页面</li>
+<li>完成配置Outlook后需要退出Skype for business 和Outlook</li>
+</ul>
+<h1 id="安装必装软件"><a href="#安装必装软件" class="headerlink" title="安装必装软件"></a>安装必装软件</h1><ul>
+<li>安装软件路径如下:\40.197.57.19</li>
+<li>安装软件过程中,凡是遇到需要重启电脑的,一律选择稍后重启,等待全部软件安装完成,且其他如硬盘加密,更新sep,安装打印机等配置完成后再进行重启电脑。</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/2A21DBE64FCA445AACCAEF7524E2FD81/1069" alt="1572489350793"></p>
+<ul>
+<li>安装必装文件夹里的软件(``Firmware Updates里文件需要根据安装的电脑型号进行安装)</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/AC9C67540265406AA8C2F8E8FB0BDBDA/1071" alt="1572489512183"></p>
+<h1 id="安装打印机"><a href="#安装打印机" class="headerlink" title="安装打印机"></a>安装打印机</h1><ul>
+<li>打印机地址: \\40.197.6.156</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/F10BDFCC03664AEFBC813318187A30E4/1057" alt="1572489621571"></p>
+<h1 id="桌面配置"><a href="#桌面配置" class="headerlink" title="桌面配置"></a>桌面配置</h1><ul>
+<li>将公司网站设置成主页</li>
+<li>将office常用应用的快捷方式发到桌面(``word、excel、PPT、Outlook等)</li>
+<li>测试WIFI</li>
+<li>将用户之前旧电脑上安装过的软件也安装上</li>
+</ul>
+<h1 id="禁用Deployment账号"><a href="#禁用Deployment账号" class="headerlink" title="禁用Deployment账号"></a>禁用Deployment账号</h1><ul>
+<li>用户账号登录系统</li>
+<li>Disable Deployment</li>
+<li>Apply—&gt;&gt;OK</li>
+<li>在Computer右键–&gt;&gt;Manage–&gt;&gt;Computer–&gt;&gt;Management–&gt;&gt;SystemTools–&gt;&gt;Local user and Groups–&gt;&gt;Users</li>
+<li>即可找到Deployment账号</li>
+</ul>
+<h1 id="Health-Check"><a href="#Health-Check" class="headerlink" title="Health Check"></a>Health Check</h1><ul>
+<li>运行Health Check Tool</li>
+<li>点击两次Start</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/6991344C1FFC475E9FB3AA1CCE64EEBA/1092" alt="1572490415187"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/21092A8F9BD44D9AA157792F23429635/1090" alt="1572490467691"></p>
+<ul>
+<li>核对用户账号,计算机名和检测结果,点击print打印,附加在checklist后面。</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/4FADE593E51A42CCB31FAB15E844C70F/1073" alt="1572490941996"></p>
+<h1 id="填写Check-Lisk和IT-设备单"><a href="#填写Check-Lisk和IT-设备单" class="headerlink" title="填写Check Lisk和IT 设备单"></a>填写Check Lisk和IT 设备单</h1><p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/E493F05818294B50905A9CB195E8665D/1067" alt="1572490880150"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">__桌面运维</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/24/%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spring-Boot-3-Spring-Boot-单元测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/23/Spring-Boot-3-Spring-Boot-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">[Spring Boot] 3 Spring Boot 单元测试</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/23/Spring-Boot-3-Spring-Boot-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" class="archive-article-date">
+  	<time datetime="2019-10-23T09:12:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>主要是通过<code>@RunWith</code>和<code>@SpringBootTest</code>注解来开启单元测试功能</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.funtl.hello.spring.boot;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.web.client.TestRestTemplate;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.web.server.LocalServerPort;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.ResponseEntity;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.hamcrest.CoreMatchers.equalTo;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.assertThat;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span>(classes = HelloSpringBootApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloSpringBootApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@LocalServerPort</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> port;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> URL base;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> TestRestTemplate template;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.base = <span class="keyword">new</span> URL(<span class="string">"http://localhost:"</span> + port + <span class="string">"/"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ResponseEntity&lt;String&gt; response = template.getForEntity(base.toString(), String.class);</span><br><span class="line">        assertThat(response.getBody(), equalTo(<span class="string">"Hello Spring Boot"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>运行它会先启动Spring Boot工程，再启动单元测试</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Spring Boot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/23/Spring-Boot-3-Spring-Boot-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spring-Boot-2-Spring-Boot-应用案例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/23/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/">[Spring Boot] 2 Spring Boot 应用案例</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/23/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/" class="archive-article-date">
+  	<time datetime="2019-10-23T08:14:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>这里我们使用 Intellij IDEA 来新建一个 Spring Boot 项目。</p>
+<h3 id="打开-IDEA-gt-New-Project-gt-Spring-Initializr"><a href="#打开-IDEA-gt-New-Project-gt-Spring-Initializr" class="headerlink" title="打开 IDEA -&gt; New Project -&gt; Spring Initializr"></a>打开 IDEA -&gt; New Project -&gt; Spring Initializr</h3><p><img src="https://wvincen.gitee.io/2019/06/29/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/1.png" alt="1"></p>
+<h3 id="填写项目信息"><a href="#填写项目信息" class="headerlink" title="填写项目信息"></a>填写项目信息</h3><p><img src="https://wvincen.gitee.io/2019/06/29/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/2.png" alt="2"></p>
+<h3 id="选择-Spring-Boot-版本及-Web-开发所需的依赖"><a href="#选择-Spring-Boot-版本及-Web-开发所需的依赖" class="headerlink" title="选择 Spring Boot 版本及 Web 开发所需的依赖"></a>选择 Spring Boot 版本及 Web 开发所需的依赖</h3><p><img src="https://wvincen.gitee.io/2019/06/29/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/3.png" alt="3"></p>
+<h3 id="保存项目到指定目录"><a href="#保存项目到指定目录" class="headerlink" title="保存项目到指定目录"></a>保存项目到指定目录</h3><p><img src="https://wvincen.gitee.io/2019/06/29/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/4.png" alt="4"></p>
+<h3 id="工程目录结构"><a href="#工程目录结构" class="headerlink" title="工程目录结构"></a>工程目录结构</h3><p>创建完成后的工程目录结构如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">│  .gitignore</span><br><span class="line">│  pom.xml</span><br><span class="line">│</span><br><span class="line">│</span><br><span class="line">└─src</span><br><span class="line">    ├─main</span><br><span class="line">    │  ├─java</span><br><span class="line">    │  │  └─com</span><br><span class="line">    │  │      └─funtl</span><br><span class="line">    │  │          └─hello</span><br><span class="line">    │  │              └─spring</span><br><span class="line">    │  │                  └─boot</span><br><span class="line">    │  │                          HelloSpringBootApplication.java</span><br><span class="line">    │  │</span><br><span class="line">    │  └─resources</span><br><span class="line">    │      │  application.properties</span><br><span class="line">    │      │</span><br><span class="line">    │      ├─static</span><br><span class="line">    │      └─templates</span><br><span class="line">    └─test</span><br><span class="line">        └─java</span><br><span class="line">            └─com</span><br><span class="line">                └─funtl</span><br><span class="line">                    └─hello</span><br><span class="line">                        └─spring</span><br><span class="line">                            └─boot</span><br><span class="line">                                    HelloSpringBootApplicationTests.java</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>.gitignore：Git 过滤配置文件</li>
+<li>pom.xml：Maven 的依赖管理配置文件</li>
+<li>HelloSpringBootApplication.java：程序入口</li>
+<li>resources：资源文件目录<ul>
+<li>static: 静态资源文件目录</li>
+<li>templates：模板资源文件目录</li>
+<li>application.properties：Spring Boot 的配置文件，实际开发中会替换成 YAML 语言配置（application.yml）</li>
+</ul>
+</li>
+</ul>
+<h3 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.funtl<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hello-spring-boot<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hello-spring-boot<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span><span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.reporting.outputEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>parent：继承了 Spring Boot 的 Parent，表示我们是一个 Spring Boot 工程</li>
+<li>spring-boot-starter-web：包含了 spring-boot-starter 还自动帮我们开启了 Web 支持</li>
+</ul>
+<h2 id="功能演示"><a href="#功能演示" class="headerlink" title="功能演示"></a>功能演示</h2><p>我们创建一个 Controller 来演示一下 Spring Boot 的神奇功能</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.funtl.hello.spring.boot.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">""</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">sayHi</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello Spring Boot"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>启动 <code>HelloSpringBootApplication</code> 的 <code>main()</code> 方法，浏览器访问 <a href="https://wvincen.gitee.io/404.html" target="_blank" rel="noopener">http://localhost:8080</a> 可以看到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello Spring Boot</span><br></pre></td></tr></table></figure>
+
+<h2 id="神奇之处"><a href="#神奇之处" class="headerlink" title="神奇之处"></a>神奇之处</h2><ul>
+<li>没有配置 web.xml</li>
+<li>没有配置 application.xml，Spring Boot 帮你配置了</li>
+<li>没有配置 application-mvc.xml，Spring Boot 帮你配置了</li>
+<li>没有配置 Tomcat，Spring Boot 内嵌了 Tomcat 容器</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Spring Boot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/23/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spring-Boot-1-Spring-Boot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/23/Spring-Boot-1-Spring-Boot/">[Spring Boot] 1 Spring Boot</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/23/Spring-Boot-1-Spring-Boot/" class="archive-article-date">
+  	<time datetime="2019-10-23T08:01:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Spring-简史"><a href="#Spring-简史" class="headerlink" title="Spring 简史"></a>Spring 简史</h2><h3 id="Spring-1-x-时代"><a href="#Spring-1-x-时代" class="headerlink" title="Spring 1.x 时代"></a>Spring 1.x 时代</h3><p>在 Spring1.x 时代，都是通过 xml 文件配置 bean，随着项目的不断扩大，需要将 xml 配置分放到不同的配置文件中，需要频繁的在 java 类和 xml 配置文件中切换。</p>
+<h3 id="Spring-2-x-时代"><a href="#Spring-2-x-时代" class="headerlink" title="Spring 2.x 时代"></a>Spring 2.x 时代</h3><p>随着 JDK 1.5 带来的注解支持，Spring2.x 可以使用注解对 Bean 进行申明和注入，大大的减少了 xml 配置文件，同时也大大简化了项目的开发。</p>
+<p>那么，问题来了，究竟是应该使用 xml 还是注解呢？</p>
+<p>最佳实践：</p>
+<ul>
+<li>应用的基本配置用 xml，比如：数据源、资源文件等</li>
+<li>业务开发用注解，比如：Service 中注入 bean 等</li>
+</ul>
+<h3 id="Spring-3-x-时代"><a href="#Spring-3-x-时代" class="headerlink" title="Spring 3.x 时代"></a>Spring 3.x 时代</h3><p>从 Spring3.x 开始提供了 Java 配置方式，使用 Java 配置方式可以更好的理解你配置的 Bean，现在我们就处于这个时代，并且 Spring4.x 和 Spring boot 都推荐使用 java 配置的方式。</p>
+<h3 id="Spring-5-x-时代"><a href="#Spring-5-x-时代" class="headerlink" title="Spring 5.x 时代"></a>Spring 5.x 时代</h3><p>Spring5.x 是 Java 界首个支持响应式的 Web 框架，是 Spring 的一个重要版本，距离 Spring4.x  差不多四年。在此期间，大多数增强都是在 SpringBoot 项目中完成的，其最大的亮点就是提供了完整的端到端响应式编程的支持（新增  Spring WebFlux 模块）。</p>
+<p>Spring WebFlux 同时支持使用旧的 Spring MVC 注解声明 <code>Reactive Controller</code>。和传统的 <code>MVC Controller</code> 不同，<code>Reactive Controller</code> 操作的是 <strong>非阻塞</strong> 的 <code>ServerHttpRequest</code> 和 <code>ServerHttpResponse</code>，而不再是 Spring MVC 里的 HttpServletRequest 和 HttpServletResponse。</p>
+<p>至此也代表着 Java 正式迎来了响应式异步编程的时代。</p>
+<h2 id="Spring-Boot-简介"><a href="#Spring-Boot-简介" class="headerlink" title="Spring Boot 简介"></a>Spring Boot 简介</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>随着动态语言的流行 (Ruby、Groovy、Scala、Node.js)，Java 的开发显得格外的笨重：繁多的配置、低下的开发效率、复杂的部署流程以及第三方技术集成难度大。</p>
+<p>在上述环境下，Spring Boot  应运而生。它使用“习惯优于配置”（项目中存在大量的配置，此外还内置了一个习惯性的配置，让你无需手动进行配置）的理念让你的项目快速的运行起来。使用 Spring Boot 很容易创建一个独立运行（运行 Jar，内嵌 Servlet 容器）准生产级别的基于 Spring 框架的项目，使用  Spring Boot 你可以不用或者只需很少的 Spring 配置。</p>
+<h2 id="Spring-Boot-优缺点"><a href="#Spring-Boot-优缺点" class="headerlink" title="Spring Boot 优缺点"></a>Spring Boot 优缺点</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>快速构建项目</li>
+<li>对主流开发框架的无配置集成</li>
+<li>项目可独立运行，无需外部依赖 Servlet 容器</li>
+<li>提供运行时的应用监控</li>
+<li>极大地提高了开发、部署效率</li>
+<li>与云计算的天然集成</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>版本迭代速度很快，一些模块改动很大</li>
+<li>由于不用自己做配置，报错时很难定位</li>
+<li>网上现成的解决方案比较少</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Spring Boot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/23/Spring-Boot-1-Spring-Boot/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
   
 
 
@@ -343,8 +866,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

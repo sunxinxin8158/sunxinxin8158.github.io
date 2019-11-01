@@ -161,6 +161,1091 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Hexo-4-Hexo-图片插入" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/01/Hexo-4-Hexo-%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5/">[Hexo] 4 Hexo 图片插入</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/01/Hexo-4-Hexo-%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5/" class="archive-article-date">
+  	<time datetime="2019-11-01T09:00:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在网上查了一下有以下几种方式往hexo文章中插入图片</p>
+<h3 id="本地引用"><a href="#本地引用" class="headerlink" title="本地引用"></a>本地引用</h3><hr>
+<p><strong>绝对路径</strong></p>
+<p>当Hexo项目中只用到少量图片时，可以将图片统一放在<code>source/images</code>文件夹中，通过markdown语法访问它们。对于<code>source/images/image.jpg</code>这张图片可以用以下语法访问到</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![](/images/image.jpg)</span><br></pre></td></tr></table></figure>
+
+<p>图片既可以在首页内容中访问到，也可以在文章正文中访问到。</p>
+<p><strong>相对路径</strong></p>
+<p>图片除了可以放在统一的images文件夹中，还可以放在文章自己的目录中。文章的目录可以通过配置博客根目录下的<code>_config.yml</code>来生成。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br><span class="line">relative_link: true</span><br></pre></td></tr></table></figure>
+
+<p>将<code>_config.yml</code>文件中的配置项<code>post_asset_folder</code>设为<code>true</code>后，执行命<code>令$ hexo new post_name</code>，在<code>source/_posts</code>中会生成文章<code>post_name.md</code>和同名文件夹<code>post_name</code>。</p>
+<p>将<code>_config.yml</code>文件中的配置项<code>relative_link</code>设为<code>true</code>后，将图片资源放在<code>post_name</code>中，文章就可以使用相对路径引用图片资源了。<code>_posts/post_name/image.jpg</code>这张照片可以用以下方式访问：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![](image.jpg)</span><br></pre></td></tr></table></figure>
+
+<p> 上述markdown的引用方式，图片只能在文章中显示，但无法在首页中正常显示。<br>如果希望图片在文章和首页中同时显示，可以使用标签插件语法。<code>_posts/post_name/image.jpg</code>这张照片可以用以下方式访问： </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset_img image.jpg This is an image %&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="CDN引用"><a href="#CDN引用" class="headerlink" title="CDN引用"></a>CDN引用</h3><hr>
+<p>除了在本地存储图片，还可以将图片上传到一些免费的CDN服务中。因国内访问github速度较慢，所以将突破放到国内图床上，然后引用外链是常用的方法。<br>常用图床总结：<a href="https://sspai.com/post/40499" target="_blank" rel="noopener">https://sspai.com/post/40499</a></p>
+<blockquote>
+<p>图床，也就是专门提供存储图片的地方，我们只要通过图床提供的 API  接口，把图片上传上去，就可以通过外链访问了，根本不用操心图片是怎么存的，硬盘空间不够了，硬盘坏了，访问速度比较慢等等问题，这些图床都会帮我们搞定，他们会用各种技术帮我们做图片相 &gt; 关的优化和服务，比如多机互备、CDN 加速、图片处理、图片鉴黄、文本识别等等。</p>
+</blockquote>
+<blockquote>
+<p>当然，图床也是有缺点的，当所有人都把图片存在同一个图床上，万一有一天图床真挂了，那所有图片就都无法访问了，虽然这种情况的概率很低，但并不等于不会发生。</p>
+</blockquote>
+<blockquote>
+<p>目前图床可以分为两种，一种是公共图床，一种是自建图床。公共图床也就是利用公共服务的图片上传接口，来提供图片外链的服务，比如新浪微博。自建图床，也就是利用各大云服务商提供的存储空 &gt; 间或者自己在 VPS 上使用开源软件来搭建图床，存储图片，生成外链提供访问，比如七牛、Lychee 开源自建图床方案。</p>
+</blockquote>
+<ul>
+<li>微博图床（Chrome浏览器有个“新浪微博图床”插件，可以自动生成markdown链接）简单方便</li>
+<li>七牛：需要注册且实名认证等太麻烦，放弃</li>
+<li>腾讯云等云存储服务，需要先将照片放到云盘，然后找到超链接，然后粘贴到文章。太麻烦，放弃。</li>
+<li>【强烈推荐！！！】ipic 工具，具体用法请谷歌，支持监控剪贴板，一键上传到微博图床，免费版默认是微博图床，支持七牛云等，下载地址: <a href="https://itunes.apple.com/cn/app/id1101244278?mt=12" target="_blank" rel="noopener">https://itunes.apple.com/cn/app/id1101244278?mt=12</a></li>
+</ul>
+<h3 id="使用GitHub（亲测可用）"><a href="#使用GitHub（亲测可用）" class="headerlink" title="使用GitHub（亲测可用）"></a>使用GitHub（亲测可用）</h3><hr>
+<p>使用github存储博客图片</p>
+<ul>
+<li>创建一个空的repo</li>
+<li>然后将图片push到repo中</li>
+<li>点击图片进去，有个download，右键复制链接</li>
+<li>将链接插入文章</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![logo](https://github.com/xxxx/xx.jpg)</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">__hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/01/Hexo-4-Hexo-%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Hexo-3-Hexo-修改主题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/01/Hexo-3-Hexo-%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98/">[Hexo] 3 Hexo 修改主题</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/01/Hexo-3-Hexo-%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2019-11-01T08:59:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>参考：<a href="https://lanmiao.oschina.io/2017/02/01/hexo4/" target="_blank" rel="noopener">hexo博客(四)：自定义主题并发布</a></p>
+<p><img src="https://wvincen.gitee.io/2019/06/08/Hexo-3-Hexo-%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98/5.png" alt="图片5"><br>这是 hexo 默认的主题，我们需要修改这个主题，那么我们可以去找一些符合我们个人爱好的一些主题<a href="https://hexo.io/themes/" target="_blank" rel="noopener">选择一个自己喜欢的 Hexo 主题</a><br>这个网站有很多主题可以供我们去选择，如下图所示。每一个主题都有对应网站可以预览，并且都有 Github 地址，我们可以照着 Github 的 wiki 就可以安装了，过程都比较简单。</p>
+<p><img src="https://wvincen.gitee.io/2019/06/08/Hexo-3-Hexo-%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98/6.png" alt="图片6"></p>
+<blockquote>
+<p>我们这次安装主题也是上面这些主题中其中一个，它就是 <strong>LanMiao</strong> (A Pink and simple theme) 。</p>
+</blockquote>
+<h3 id="安装-LanMiao-主题"><a href="#安装-LanMiao-主题" class="headerlink" title="安装 LanMiao 主题"></a>安装 LanMiao 主题</h3><hr>
+<h5 id="下载：LanMiao-主题"><a href="#下载：LanMiao-主题" class="headerlink" title="下载：LanMiao 主题"></a>下载：<a href="https://github.com/hilanmiao/hexo-theme-lanmiao" target="_blank" rel="noopener">LanMiao 主题</a></h5><p>将主题克隆到 themes 目录下，以下截图就是 clone 之后的结果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd &lt;博客存放的目录&gt;$ git clone https://github.com/hilanmiao/hexo-theme-lanmiao</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://wvincen.gitee.io/2019/06/08/Hexo-3-Hexo-%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98/7.png" alt="图片7"></p>
+<h5 id="使用：LanMiao-主题"><a href="#使用：LanMiao-主题" class="headerlink" title="使用：LanMiao 主题"></a>使用：LanMiao 主题</h5><p>打开在 Hexo 文件根目录下的 <code>_config.yml</code>，就是整个 hexo 框架的配置文件了。可以在里面修改大部分的配置。详细可参考官方的配置描述。找到 <code>theme</code> 把 <code>landscape</code>修改为 <code>hexo-theme-lanmiao</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">theme: landscape</span><br><span class="line">theme: hexo-theme-lanmiao# Deployment## Docs: https://hexo.io/docs/deployment.htmldeploy:  type: git  repo: &lt;repository url&gt;  branch: [branch]</span><br></pre></td></tr></table></figure>
+
+<p>打开 Github 官网上 <a href="https://github.com/hilanmiao/hexo-theme-lanmiao" target="_blank" rel="noopener"><strong>LanMiao 主题</strong> 的地址</a>，认真阅读 <strong>LanMiao 主题</strong> 开发者的 README.md 文档：</p>
+<p><img src="https://wvincen.gitee.io/2019/06/08/Hexo-3-Hexo-%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98/8.png" alt="图片8"></p>
+<p>根据 <strong>README.md</strong> 文档，修改 Hexo 根目录下的 <code>_config.yml</code> 配置文件：</p>
+<p><img src="https://wvincen.gitee.io/2019/06/08/Hexo-3-Hexo-%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98/9.png" alt="图片9"></p>
+<p>然后在本地测试下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean &amp;  hexo g &amp; hexo s</span><br></pre></td></tr></table></figure>
+
+<p> 修改成功，推送到 Github 上： </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean &amp;  hexo g &amp; hexo d</span><br></pre></td></tr></table></figure>
+
+<p> <img src="https://wvincen.gitee.io/2019/06/08/Hexo-3-Hexo-%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98/10.png" alt="图片10"> </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">__hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/01/Hexo-3-Hexo-%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Hexo-2-开始搭建GitHub-Pages" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/01/Hexo-2-%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAGitHub-Pages/">[Hexo] 2 开始搭建GitHub Pages</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/01/Hexo-2-%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAGitHub-Pages/" class="archive-article-date">
+  	<time datetime="2019-11-01T08:58:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>参考：<a href="https://www.cnblogs.com/jackyroc/p/7681938.html" target="_blank" rel="noopener">我是如何利用Github Pages搭建起我的博客，细数一路的坑</a></p>
+<p>参考：<a href="https://www.jianshu.com/p/05289a4bc8b2" target="_blank" rel="noopener">如何搭建一个独立博客——简明Github Pages与Hexo教程</a></p>
+<p>参考：<a href="https://blog.csdn.net/KNIGH_YUN/article/details/79774344" target="_blank" rel="noopener">搭建 Github Pages 个人博客网站</a></p>
+<p>可以选择阅读完以上三篇教程后倒回来看不懂的地方.</p>
+<h3 id="什么是-Github-Pages"><a href="#什么是-Github-Pages" class="headerlink" title="什么是 Github Pages"></a>什么是 Github Pages</h3><hr>
+<p><a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> 本用于介绍托管在 GitHub 的项目，不过，由于他的空间免费稳定，用来做搭建一个博客再好不过了。</p>
+<p>每个帐号只能有一个仓库来存放个人主页，而且仓库的名字必须是 username/username.github.io，这是特殊的命名约定。你可以通过 <a href="http://username.github.io" target="_blank" rel="noopener">http://username.github.io</a> 来访问你的个人主页。</p>
+<p>这里特别提醒一下，需要注意的个人主页的网站内容是在master分支下的。</p>
+<h3 id="创建自己的-Github-Pages"><a href="#创建自己的-Github-Pages" class="headerlink" title="创建自己的 Github Pages"></a>创建自己的 Github Pages</h3><hr>
+<p>在 Github 首页右上角头像左侧加号点选择 New repositor (新存储库)或<a href="https://github.com/new" target="_blank" rel="noopener">点击这里</a>进行创建一个仓库。<br><img src="https://wvincen.gitee.io/2019/06/08/Hexo-2-%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA-Github-Pages/1.png" alt="图片1"></p>
+<p>开启 Github Pages，进入设置</p>
+<p><img src="https://wvincen.gitee.io/2019/06/08/Hexo-2-%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA-Github-Pages/2.png" alt="图片2"></p>
+<p>找到这一块</p>
+<p><img src="https://wvincen.gitee.io/2019/06/08/Hexo-2-%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA-Github-Pages/3.png" alt="图片3"></p>
+<p>当你的仓库名为：用户名.github.io 之后默认开启Github Pages。</p>
+<p>现在随便选择一个主题,选择上图的 Choose a theme 之后会跳转到下面这个页面（可以不选）<br><img src="https://wvincen.gitee.io/2019/06/08/Hexo-2-%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA-Github-Pages/4.png" alt="图片4"><br>设置完毕后你就可以通过 username.github.io(username为你的用户名访问你的博客了)</p>
+<p><strong><em>在这里我创建了一个github repo叫做 <a href="http://wvincen.gitee.io/" target="_blank" rel="noopener">wvincen.gitee.io</a> 创建完成之后，需要有一次提交(git commit)操作，然后就可以通过链接 <a href="http://wvincen.gitee.io/" target="_blank" rel="noopener">http:wvincen.gitee.io</a> 访问了。\</em></strong></p>
+<h3 id="部署-Hexo-到-Github-Pages"><a href="#部署-Hexo-到-Github-Pages" class="headerlink" title="部署 Hexo 到 Github Pages"></a>部署 Hexo 到 Github Pages</h3><hr>
+<p>这一步恐怕是最关键的一步了，让我们把在本地web环境下预览到的博客部署到 github 上，然后就可以直接通过 <a href="http://wvincen.gitee.io/" target="_blank" rel="noopener">http:wvincen.gitee.io</a> 访问了。不过很多教程文章对这个步骤语焉不详，这里着重说下。</p>
+<p>首先需要明白所谓部署到github的原理。</p>
+<ul>
+<li>之前步骤中在 Github 上创建的那个特别的 repo ( wvincen.gitee.io ) 一个最大的特点就是其master中的html静态文件，可以通过链接 <a href="http://wvincen.gitee.io/" target="_blank" rel="noopener">http:wvincen.gitee.io</a> 来直接访问。</li>
+<li>Hexo -g 会生成一个静态网站（第一次会生成一个 public 目录），这个静态文件可以直接访问。</li>
+<li>需要将 hexo 生成的静态网站，提交 ( git commit ) 到 github 上。</li>
+</ul>
+<p>明白了原理，怎么做自然就清晰了。</p>
+<h3 id="使用-hexo-deploy-部署"><a href="#使用-hexo-deploy-部署" class="headerlink" title="使用 hexo deploy 部署"></a>使用 hexo deploy 部署</h3><hr>
+<p>hexo deploy 可以部署到很多平台，具体可以<a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">参考这个链接</a>。</p>
+<p>这一步，我们就可以将 hexo 和 GitHub 关联起来，也就是将 hexo 生成的文章部署到 GitHub 上，打开站点配置文件 _config.yml，翻到最后，修改为<br>YourgithubName 就是你的 GitHub 账户</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/YourgithubName/YourgithubName.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<p> 这个时候需要先安装 deploy-git ，也就是部署的命令,这样你才能用命令部署到GitHub。 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p> 然后 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>其中 </p>
+<ul>
+<li>hexo clean 清除了你之前生成的东西，也可以不加。</li>
+<li>hexo generate 顾名思义，生成静态文章，可以用 hexo g 缩写</li>
+<li>hexo deploy 部署文章，可以用 hexo d 缩写</li>
+</ul>
+<p>注意 deploy 时可能要你输入 username 和 password。</p>
+<p>之后你就可以在<a href="http://yourname.github.io" target="_blank" rel="noopener">http://yourname.github.io</a> 这个网站看到你的博客了！！</p>
+<p> <img src="https://wvincen.gitee.io/2019/06/08/Hexo-2-%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA-Github-Pages/5.png" alt="图片5"> </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">__hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/01/Hexo-2-%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAGitHub-Pages/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Hexo-1-3-指令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/01/Hexo-1-3-%E6%8C%87%E4%BB%A4/">[Hexo] 1.3 指令</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/01/Hexo-1-3-%E6%8C%87%E4%BB%A4/" class="archive-article-date">
+  	<time datetime="2019-11-01T08:57:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="init"><a href="#init" class="headerlink" title="init"></a>init</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init [folder]</span><br></pre></td></tr></table></figure>
+
+<p> 新建一个网站。如果没有设置 <code>folder</code> ，Hexo 默认在目前的文件夹建立网站。 </p>
+<h2 id="new"><a href="#new" class="headerlink" title="new"></a>new</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new [layout] <span class="tag">&lt;<span class="name">title</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> 新建一篇文章。如果没有设置 <code>layout</code> 的话，默认使用 <a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener">_config.yml</a> 中的 default_layout 参数代替。如果标题包含空格的话，请使用引号括起来。 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new "post title with whitespace"</span><br></pre></td></tr></table></figure>
+
+<h2 id="generate"><a href="#generate" class="headerlink" title="generate"></a>generate</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>生成静态文件。</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-d, –deploy</td>
+<td>文件生成后立即部署网站</td>
+</tr>
+<tr>
+<td>-w, –watch</td>
+<td>监视文件变动</td>
+</tr>
+<tr>
+<td>该命令可以简写为</td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`$ hexo g`</span><br></pre></td></tr></table></figure>
+
+<h2 id="publish"><a href="#publish" class="headerlink" title="publish"></a>publish</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo publish [layout] <span class="tag">&lt;<span class="name">filename</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>发表草稿。</p>
+<h2 id="server"><a href="#server" class="headerlink" title="server"></a>server</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>启动服务器。默认情况下，访问网址为： <code>http://localhost:4000/</code>。</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-p, –port</td>
+<td>重设端口</td>
+</tr>
+<tr>
+<td>-s, –static</td>
+<td>只使用静态文件</td>
+</tr>
+<tr>
+<td>-l, –log</td>
+<td>启动日记记录，使用覆盖记录格式</td>
+</tr>
+</tbody></table>
+<h2 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>部署网站。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-g, –generate</td>
+<td>部署之前预先生成静态文件</td>
+</tr>
+<tr>
+<td>该命令可以简写为：</td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+
+<h2 id="render"><a href="#render" class="headerlink" title="render"></a>render</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo render <span class="tag">&lt;<span class="name">file1</span>&gt;</span> [file2] ...</span><br></pre></td></tr></table></figure>
+
+<p>渲染文件。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-o, –output</td>
+<td>设置输出路径</td>
+</tr>
+</tbody></table>
+<h2 id="migrate"><a href="#migrate" class="headerlink" title="migrate"></a>migrate</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo migrate <span class="tag">&lt;<span class="name">type</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>从其他博客系统 <a href="https://hexo.io/zh-cn/docs/migration" target="_blank" rel="noopener">迁移内容</a></p>
+<h2 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
+
+<p>清除缓存文件 (<code>db.json</code>) 和已生成的静态文件 (<code>public</code>)。</p>
+<p>在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。</p>
+<h2 id="list"><a href="#list" class="headerlink" title="list"></a>list</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo list <span class="tag">&lt;<span class="name">type</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>列出网站资料。</p>
+<h2 id="version"><a href="#version" class="headerlink" title="version"></a>version</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo version</span><br></pre></td></tr></table></figure>
+
+<p>显示 Hexo 版本。</p>
+<h3 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h3><hr>
+<h3 id="安全模式"><a href="#安全模式" class="headerlink" title="安全模式"></a>安全模式</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo --safe</span><br></pre></td></tr></table></figure>
+
+<p>在安全模式下，不会载入插件和脚本。当您在安装新插件遭遇问题时，可以尝试以安全模式重新执行。</p>
+<h3 id="调试模式"><a href="#调试模式" class="headerlink" title="调试模式"></a>调试模式</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo --debug</span><br></pre></td></tr></table></figure>
+
+<p>在终端中显示调试信息并记录到 <code>debug.log</code>。当您碰到问题时，可以尝试用调试模式重新执行一次，并 <a href="https://github.com/hexojs/hexo/issues/new" target="_blank" rel="noopener">提交调试信息到 GitHub</a>。</p>
+<h3 id="简洁模式"><a href="#简洁模式" class="headerlink" title="简洁模式"></a>简洁模式</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo --silent</span><br></pre></td></tr></table></figure>
+
+<p>隐藏终端信息。</p>
+<h3 id="自定义配置文件的路径"><a href="#自定义配置文件的路径" class="headerlink" title="自定义配置文件的路径"></a>自定义配置文件的路径</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo --config custom.yml</span><br></pre></td></tr></table></figure>
+
+<p>自定义配置文件的路径，执行后将不再使用 _config.yml。</p>
+<h3 id="显示草稿"><a href="#显示草稿" class="headerlink" title="显示草稿"></a>显示草稿</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo --draft</span><br></pre></td></tr></table></figure>
+
+<p>显示 <code>source/_drafts</code> 文件夹中的草稿文章。</p>
+<h3 id="自定义-CWD"><a href="#自定义-CWD" class="headerlink" title="自定义 CWD"></a>自定义 CWD</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo --cwd /path/to/cwd</span><br></pre></td></tr></table></figure>
+
+<p> 自定义当前工作目录（Current working directory）的路径。 </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">__hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/01/Hexo-1-3-%E6%8C%87%E4%BB%A4/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Hexo-1-2-配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/01/Hexo-1-2-%E9%85%8D%E7%BD%AE/">[Hexo] 1.2 配置</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/01/Hexo-1-2-%E9%85%8D%E7%BD%AE/" class="archive-article-date">
+  	<time datetime="2019-11-01T08:55:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>您可以在 _config.yml 中修改大部分的配置。</p>
+<h3 id="网站"><a href="#网站" class="headerlink" title="网站"></a>网站</h3><hr>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>title</td>
+<td>网站标题</td>
+</tr>
+<tr>
+<td>subtitle</td>
+<td>网站副标题</td>
+</tr>
+<tr>
+<td>description</td>
+<td>网站描述</td>
+</tr>
+<tr>
+<td>author</td>
+<td>您的名字</td>
+</tr>
+<tr>
+<td>language</td>
+<td>网站使用的语言</td>
+</tr>
+<tr>
+<td>timezone</td>
+<td>网站时区。Hexo 默认使用您电脑的时区。时区列表。比如说：America/New_York, Japan, 和 UTC 。</td>
+</tr>
+<tr>
+<td>其中，description主要用于SEO，告诉搜索引擎一个关于您站点的简单描述，通常建议在其中包含您网站的关键词。author参数用于主题显示文章的作者。</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h3><hr>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>url</td>
+<td>网址</td>
+<td></td>
+</tr>
+<tr>
+<td>root</td>
+<td>网站根目录</td>
+<td></td>
+</tr>
+<tr>
+<td>permalink</td>
+<td>文章的 永久链接 格式</td>
+<td>:year/:month/:day/:title/</td>
+</tr>
+<tr>
+<td>permalink_defaults</td>
+<td>永久链接中各部分的默认值</td>
+<td></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>网站存放在子目录</strong><br>如果您的网站存放在子目录中，例如 <code>http://yoursite.com/blog</code>，则请将您的 <code>url</code> 设为 <code>http://yoursite.com/blog</code> 并把 <code>root</code> 设为 <code>/blog/</code>。</p>
+</blockquote>
+<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><hr>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>source_dir</td>
+<td>资源文件夹，这个文件夹用来存放内容。</td>
+<td>source</td>
+</tr>
+<tr>
+<td>public_dir</td>
+<td>公共文件夹，这个文件夹用于存放生成的站点文件。</td>
+<td>public</td>
+</tr>
+<tr>
+<td>tag_dir</td>
+<td>标签文件夹</td>
+<td>tags</td>
+</tr>
+<tr>
+<td>archive_dir</td>
+<td>归档文件夹</td>
+<td>archives</td>
+</tr>
+<tr>
+<td>category_dir</td>
+<td>分类文件夹</td>
+<td>categories</td>
+</tr>
+<tr>
+<td>code_dir</td>
+<td>Include code 文件夹</td>
+<td>downloads/code</td>
+</tr>
+<tr>
+<td>i18n_dir</td>
+<td>国际化（i18n）文件夹</td>
+<td>:lang</td>
+</tr>
+<tr>
+<td>skip_render</td>
+<td>跳过指定文件的渲染，您可使用 glob 表达式来匹配路径。</td>
+<td></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>提示</strong><br>如果您刚刚开始接触Hexo，通常没有必要修改这一部分的值。</p>
+</blockquote>
+<h3 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h3><hr>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>new_post_name</td>
+<td>新文章的文件名称</td>
+<td>:title.md</td>
+</tr>
+<tr>
+<td>default_layout</td>
+<td>预设布局</td>
+<td>post</td>
+</tr>
+<tr>
+<td>auto_spacing</td>
+<td>在中文和英文之间加入空格</td>
+<td>false</td>
+</tr>
+<tr>
+<td>titlecase</td>
+<td>把标题转换为 title case</td>
+<td>false</td>
+</tr>
+<tr>
+<td>external_link</td>
+<td>在新标签中打开链接</td>
+<td>true</td>
+</tr>
+<tr>
+<td>filename_case</td>
+<td>把文件名称转换为 (1) 小写或 (2) 大写</td>
+<td>0</td>
+</tr>
+<tr>
+<td>render_drafts</td>
+<td>显示草稿</td>
+<td>false</td>
+</tr>
+<tr>
+<td>post_asset_folder</td>
+<td>启动 Asset 文件夹</td>
+<td>false</td>
+</tr>
+<tr>
+<td>relative_link</td>
+<td>把链接改为与根目录的相对位址</td>
+<td>false</td>
+</tr>
+<tr>
+<td>future</td>
+<td>显示未来的文章</td>
+<td>true</td>
+</tr>
+<tr>
+<td>highlight</td>
+<td>代码块的设置</td>
+<td></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>相对地址</strong><br>默认情况下，Hexo生成的超链接都是绝对地址。例如，如果您的网站&gt; 域名为<code>example.com</code>,您有一篇文章名为<code>hello</code>，那么绝对链接可能像这样：<code>http://example.com/hello.html</code>，它是绝对于域名的。相对链接像这样：<code>/hello.html</code>，也就是说，无论用什么域名访问该站点，都没有关系，这在进行反向代理时可能用到。通常情况下，建议用绝对地址。</p>
+</blockquote>
+<h3 id="分类-amp-标签"><a href="#分类-amp-标签" class="headerlink" title="分类 &amp; 标签"></a>分类 &amp; 标签</h3><hr>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>default_category</td>
+<td>默认分类</td>
+<td>uncategorized</td>
+</tr>
+<tr>
+<td>category_map</td>
+<td>分类别名</td>
+<td></td>
+</tr>
+<tr>
+<td>tag_map</td>
+<td>标签别名</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="日期-时间格式"><a href="#日期-时间格式" class="headerlink" title="日期 / 时间格式"></a>日期 / 时间格式</h3><hr>
+<p>Hexo 使用 <a href="http://momentjs.com/" target="_blank" rel="noopener">Moment.js</a> 来解析和显示时间。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>date_format</td>
+<td>日期格式</td>
+<td>YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>time_format</td>
+<td>时间格式</td>
+<td>H:mm:ss</td>
+</tr>
+</tbody></table>
+<h3 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h3><hr>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>per_page</td>
+<td>每页显示的文章量 (0 = 关闭分页功能)</td>
+<td>10</td>
+</tr>
+<tr>
+<td>pagination_dir</td>
+<td>分页目录</td>
+<td>page</td>
+</tr>
+</tbody></table>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><hr>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>theme</td>
+<td>当前主题名称。值为false时禁用主题</td>
+</tr>
+<tr>
+<td>deploy</td>
+<td>部署部分的设置</td>
+</tr>
+</tbody></table>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">__hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/01/Hexo-1-2-%E9%85%8D%E7%BD%AE/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Hexo-1-1-建站" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/01/Hexo-1-1-%E5%BB%BA%E7%AB%99/">[Hexo] 1.1 建站</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/01/Hexo-1-1-%E5%BB%BA%E7%AB%99/" class="archive-article-date">
+  	<time datetime="2019-11-01T08:55:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> 安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init <span class="tag">&lt;<span class="name">folder</span>&gt;</span></span><br><span class="line">$ cd <span class="tag">&lt;<span class="name">folder</span>&gt;</span></span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+
+<p> 新建完成后，指定文件夹的目录如下： </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
+
+<h3 id="config-yml"><a href="#config-yml" class="headerlink" title="_config.yml"></a>_config.yml</h3><p>网站的 <a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener">配置</a> 信息，您可以在此配置大部分的参数。</p>
+<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><p>应用程序的信息。<a href="https://ejs.co/" target="_blank" rel="noopener">EJS</a>, <a href="http://learnboost.github.io/stylus/" target="_blank" rel="noopener">Stylus</a> 和 <a href="http://daringfireball.net/projects/markdown/" target="_blank" rel="noopener">Markdown</a> renderer 已默认安装，您可以自由移除。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">package.json</span><br><span class="line">&#123;</span><br><span class="line">  "name": "hexo-site",</span><br><span class="line">  "version": "0.0.0",</span><br><span class="line">  "private": true,</span><br><span class="line">  "hexo": &#123;</span><br><span class="line">    "version": ""</span><br><span class="line">  &#125;,</span><br><span class="line">  "dependencies": &#123;</span><br><span class="line">    "hexo": "^3.8.0",</span><br><span class="line">    "hexo-generator-archive": "^0.1.5",</span><br><span class="line">    "hexo-generator-category": "^0.1.3",</span><br><span class="line">    "hexo-generator-index": "^0.2.1",</span><br><span class="line">    "hexo-generator-tag": "^0.2.0",</span><br><span class="line">    "hexo-renderer-ejs": "^0.3.1",</span><br><span class="line">    "hexo-renderer-stylus": "^0.3.3",</span><br><span class="line">    "hexo-renderer-marked": "^0.3.2",</span><br><span class="line">    "hexo-server": "^0.3.3"</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="scaffolds"><a href="#scaffolds" class="headerlink" title="scaffolds"></a>scaffolds</h3><p><a href="https://hexo.io/zh-cn/docs/writing" target="_blank" rel="noopener">模版</a> 文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。</p>
+<p>Hexo的模板是指在新建的markdown文件中默认填充的内容。例如，如果您修改scaffold/post.md中的Front-matter内容，那么每次新建一篇文章时都会包含这个修改。</p>
+<h3 id="source"><a href="#source" class="headerlink" title="source"></a>source</h3><p>资源文件夹是存放用户资源的地方。除 <code>_posts</code> 文件夹之外，开头命名为 <code>_</code> (下划线)的文件 / 文件夹和隐藏的文件将会被忽略。Markdown 和 HTML 文件会被解析并放到 <code>public</code> 文件夹，而其他文件会被拷贝过去。</p>
+<p>themes<br><a href="https://hexo.io/zh-cn/docs/themes" target="_blank" rel="noopener">主题</a> 文件夹。Hexo 会根据主题来生成静态页面。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">__hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/01/Hexo-1-1-%E5%BB%BA%E7%AB%99/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Hexo-1-搭建个人博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/01/Hexo-1-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">[Hexo] 1 搭建个人博客</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/01/Hexo-1-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
+  	<time datetime="2019-11-01T08:53:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="什么是-Hexo-？"><a href="#什么是-Hexo-？" class="headerlink" title="什么是 Hexo ？"></a>什么是 Hexo ？</h1><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>安装 Hexo 只需几分钟时间，若您在安装过程中遇到问题或无法找到解决方式，请提交问题，我会尽力解决您的问题。</p>
+<h1 id="安装前提"><a href="#安装前提" class="headerlink" title="安装前提"></a>安装前提</h1><p>安装 Hexo 相当简单。然而在安装前，您必须检查电脑中是否已安装下列应用程序：</p>
+<ul>
+<li>Node.js (Should be at least nodejs 6.9)</li>
+<li>Git<br>如果您的电脑中已经安装上述必备程序，那么恭喜您！接下来只需要使用 npm 即可完成 Hexo 的安装。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p>如果您的电脑中尚未安装所需要的程序，请根据以下安装指示完成安装。</p>
+<blockquote>
+<p><strong>Mac 用户</strong><br>您在编译时可能会遇到问题，请先到 App Store &gt; 安装Xcode，Xcode 完成后，启动并进入<strong>Preferences -&gt; Download -&gt; Command Line Tools -&gt; Install</strong> 安装命令行工具。</p>
+</blockquote>
+<h1 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h1><hr>
+<ul>
+<li>Windows：下载并安装 <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git</a>.</li>
+<li>Mac：使用 <a href="http://mxcl.github.com/homebrew/" target="_blank" rel="noopener">Homebrew</a>, <a href="http://www.macports.org/" target="_blank" rel="noopener">MacPorts</a> ：<code>brew install</code> git;或下载 <a href="http://sourceforge.net/projects/git-osx-installer/" target="_blank" rel="noopener">安装程序</a> 安装。</li>
+<li>Linux (Ubuntu, Debian)：<code>sudo apt-get install git-core</code></li>
+<li>Linux (Fedora, Red Hat, CentOS)：<code>sudo yum install git-core</code></li>
+</ul>
+<blockquote>
+<p><strong>Windows 用户</strong><br>由于众所周知的原因，从上面的链接下载 git for windows最好挂上一个代理，否则下载速度十分缓慢。也可以参考<a href="https://github.com/waylau/git-for-win" target="_blank" rel="noopener">这个页面</a>，收录了存储于百度云的下载地址。</p>
+</blockquote>
+<h1 id="安装-Node-js"><a href="#安装-Node-js" class="headerlink" title="安装 Node.js"></a>安装 Node.js</h1><hr>
+<p>安装 Node.js 的最佳方式是使用 <a href="https://github.com/creationix/nvm" target="_blank" rel="noopener">nvm</a>。</p>
+<p>cURL:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl https://raw.github.com/creationix/nvm/v0.33.11/install.sh | sh</span><br></pre></td></tr></table></figure>
+
+<p> Wget: </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget -qO- https://raw.github.com/creationix/nvm/v0.33.11/install.sh | sh</span><br></pre></td></tr></table></figure>
+
+<p> 安装完成后，重启终端并执行下列命令即可安装 Node.js。 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm install stable</span><br></pre></td></tr></table></figure>
+
+<p> 或者您也可以下载 <a href="http://nodejs.org/" target="_blank" rel="noopener">安装程序</a> 来安装。</p>
+<blockquote>
+<p><strong>Windows 用户</strong><br>对于windows用户来说，建议使用安装程序进行安装。安装时，请勾选 <strong>Add to PATH</strong>选项。另外，您也可以使用 <strong>Git Bash</strong>，这是git for  windows自带的一组程序，提供了Linux风格的shell，在该环境下，您可以直接用上面提到的命令来安装Node.js。打开它的方法很简单  ，在任意位置单击右键，选择“Git Bash Here”即可。由于Hexo的很多操作都涉及到命令行，您可以考虑始终使用 <strong>Git Bash</strong> 来进行操作。</p>
+</blockquote>
+<h1 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h1><hr>
+<p>所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">__hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/01/Hexo-1-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Spring-Boot-7-Spring-Boot-测试MyBatis操作数据库" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -181,7 +1266,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="使用-tk-mybatis-操作数据库"><a href="#使用-tk-mybatis-操作数据库" class="headerlink" title="使用 tk.mybatis 操作数据库"></a>使用 tk.mybatis 操作数据库</h2><p>经过之前章节一系列的配置之后，我们已经满足了使用 MyBaits 操作数据库的必要条件，下面是使用 tk.mybatis 操作数据库的例子。</p>
+<p>我们以测试操作用户表为例（tb_user）</p>
+<h2 id="修改入口类"><a href="#修改入口类" class="headerlink" title="修改入口类"></a>修改入口类</h2><hr>
+<p>需要使用 <code>@MapperScan</code> 注解来指定 Mapper 接口的路径</p>
+<p>PS： 注意这里的 <code>@MapperScan</code> 注解是 <code>tk.mybatis.spring.annotation.MapperScan;</code> 包下的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.funtl.hello.spring.boot;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> tk.mybatis.spring.annotation.MapperScan;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@MapperScan</span>(basePackages = <span class="string">"com.funtl.hello.spring.boot.mapper"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloSpringBootApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(HelloSpringBootApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建测试类"><a href="#创建测试类" class="headerlink" title="创建测试类"></a>创建测试类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.funtl.hello.spring.boot;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.funtl.hello.spring.boot.entity.TbUser;</span><br><span class="line"><span class="keyword">import</span> com.funtl.hello.spring.boot.mapper.TbUserMapper;</span><br><span class="line"><span class="keyword">import</span> com.github.pagehelper.PageHelper;</span><br><span class="line"><span class="keyword">import</span> com.github.pagehelper.PageInfo;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.annotation.Rollback;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"><span class="keyword">import</span> org.springframework.transaction.annotation.Transactional;</span><br><span class="line"><span class="keyword">import</span> tk.mybatis.mapper.entity.Example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span>(classes = HelloSpringBootApplication.class)</span><br><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="meta">@Rollback</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBatisTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 注入数据查询接口</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> TbUserMapper tbUserMapper;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试插入数据</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testInsert</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 构造一条测试数据</span></span><br><span class="line">        TbUser tbUser = <span class="keyword">new</span> TbUser();</span><br><span class="line">        tbUser.setUsername(<span class="string">"Lusifer"</span>);</span><br><span class="line">        tbUser.setPassword(<span class="string">"123456"</span>);</span><br><span class="line">        tbUser.setPhone(<span class="string">"15888888888"</span>);</span><br><span class="line">        tbUser.setEmail(<span class="string">"topsale@vip.qq.com"</span>);</span><br><span class="line">        tbUser.setCreated(<span class="keyword">new</span> Date());</span><br><span class="line">        tbUser.setUpdated(<span class="keyword">new</span> Date());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 插入数据</span></span><br><span class="line">        tbUserMapper.insert(tbUser);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试删除数据</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDelete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 构造条件，等同于 DELETE from tb_user WHERE username = 'Lusifer'</span></span><br><span class="line">        Example example = <span class="keyword">new</span> Example(TbUser.class);</span><br><span class="line">        example.createCriteria().andEqualTo(<span class="string">"username"</span>, <span class="string">"Lusifer"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 删除数据</span></span><br><span class="line">        tbUserMapper.deleteByExample(example);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试修改数据</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testUpdate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 构造条件</span></span><br><span class="line">        Example example = <span class="keyword">new</span> Example(TbUser.class);</span><br><span class="line">        example.createCriteria().andEqualTo(<span class="string">"username"</span>, <span class="string">"Lusifer"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构造一条测试数据</span></span><br><span class="line">        TbUser tbUser = <span class="keyword">new</span> TbUser();</span><br><span class="line">        tbUser.setUsername(<span class="string">"LusiferNew"</span>);</span><br><span class="line">        tbUser.setPassword(<span class="string">"123456"</span>);</span><br><span class="line">        tbUser.setPhone(<span class="string">"15888888888"</span>);</span><br><span class="line">        tbUser.setEmail(<span class="string">"topsale@vip.qq.com"</span>);</span><br><span class="line">        tbUser.setCreated(<span class="keyword">new</span> Date());</span><br><span class="line">        tbUser.setUpdated(<span class="keyword">new</span> Date());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 修改数据</span></span><br><span class="line">        tbUserMapper.updateByExample(tbUser, example);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试查询集合</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSelect</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        List&lt;TbUser&gt; tbUsers = tbUserMapper.selectAll();</span><br><span class="line">        <span class="keyword">for</span> (TbUser tbUser : tbUsers) &#123;</span><br><span class="line">            System.out.println(tbUser.getUsername());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试分页查询</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testPage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// PageHelper 使用非常简单，只需要设置页码和每页显示笔数即可</span></span><br><span class="line">        PageHelper.startPage(<span class="number">0</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置分页查询条件</span></span><br><span class="line">        Example example = <span class="keyword">new</span> Example(TbUser.class);</span><br><span class="line">        PageInfo&lt;TbUser&gt; pageInfo = <span class="keyword">new</span> PageInfo&lt;&gt;(tbUserMapper.selectByExample(example));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取查询结果</span></span><br><span class="line">        List&lt;TbUser&gt; tbUsers = pageInfo.getList();</span><br><span class="line">        <span class="keyword">for</span> (TbUser tbUser : tbUsers) &#123;</span><br><span class="line">            System.out.println(tbUser.getUsername());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="附：完整的-POM"><a href="#附：完整的-POM" class="headerlink" title="附：完整的 POM"></a>附：完整的 POM</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.funtl<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hello-spring-boot<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hello-spring-boot<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span><span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.reporting.outputEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-tomcat<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-actuator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>tk.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mapper-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.pagehelper<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>pagehelper-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.sourceforge.nekohtml<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>nekohtml<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.9.22<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>com.funtl.hello.spring.boot.HelloSpringBootApplication<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.generator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-generator-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">configurationFile</span>&gt;</span>$&#123;basedir&#125;/src/main/resources/generator/generatorConfig.xml<span class="tag">&lt;/<span class="name">configurationFile</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">overwrite</span>&gt;</span>true<span class="tag">&lt;/<span class="name">overwrite</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">verbose</span>&gt;</span>true<span class="tag">&lt;/<span class="name">verbose</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;mysql.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>tk.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mapper<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
       
 
       
@@ -189,6 +1285,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Spring Boot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -243,7 +1350,35 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="Spring-Boot-整合-Druid"><a href="#Spring-Boot-整合-Druid" class="headerlink" title="Spring Boot 整合 Druid"></a>Spring Boot 整合 Druid</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>Druid 是阿里巴巴开源平台上的一个项目，整个项目由数据库连接池、插件框架和 SQL 解析器组成。该项目主要是为了扩展 JDBC  的一些限制，可以让程序员实现一些特殊的需求，比如向密钥服务请求凭证、统计 SQL 信息、SQL 性能收集、SQL 注入检查、SQL  翻译等，程序员可以通过定制来实现自己需要的功能。</p>
+<p>Druid 是目前最好的数据库连接池，在功能、性能、扩展性方面，都超过其他数据库连接池，包括  DBCP、C3P0、BoneCP、Proxool、JBoss DataSource。Druid 已经在阿里巴巴部署了超过 600  个应用，经过多年生产环境大规模部署的严苛考验。Druid 是阿里巴巴开发的号称为监控而生的数据库连接池！</p>
+<h3 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h3><hr>
+<p>在 <code>pom.xml</code> 文件中引入 <code>druid-spring-boot-starter</code> 依赖</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> 引入数据库连接依赖 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="配置-application-yml"><a href="#配置-application-yml" class="headerlink" title="配置 application.yml"></a>配置 <code>application.yml</code></h3><p>在 <code>application.yml</code> 中配置数据库连接</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    druid:</span><br><span class="line">      url: jdbc:mysql://ip:port/dbname?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false</span><br><span class="line">      username: root</span><br><span class="line">      password: 123456</span><br><span class="line">      initial-size: 1</span><br><span class="line">      min-idle: 1</span><br><span class="line">      max-active: 20</span><br><span class="line">      test-on-borrow: true</span><br><span class="line">      # MySQL 8.x: com.mysql.cj.jdbc.Driver</span><br><span class="line">      driver-class-name: com.mysql.jdbc.Driver</span><br></pre></td></tr></table></figure>
+
+<h2 id="Spring-Boot-整合-tk-mybatis"><a href="#Spring-Boot-整合-tk-mybatis" class="headerlink" title="Spring Boot 整合 tk.mybatis"></a>Spring Boot 整合 tk.mybatis</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><p>tk.mybatis 是在 MyBatis 框架的基础上提供了很多工具，让开发更加高效</p>
+<h3 id="引入依赖-1"><a href="#引入依赖-1" class="headerlink" title="引入依赖"></a>引入依赖</h3><hr>
+<p>在 <code>pom.xml</code> 文件中引入 <code>mapper-spring-boot-starter</code> 依赖，该依赖会自动引入MyBaits相关依赖</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>tk.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mapper-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="配置-application-yml-1"><a href="#配置-application-yml-1" class="headerlink" title="配置 application.yml"></a>配置 <code>application.yml</code></h3><p>配置 MyBatis</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mybatis:</span><br><span class="line"> type-aliases-package: 实体类的存放路径，如：com.funtl.hello.spring.boot.entity</span><br><span class="line"> mapper-locations: classpath:mapper/*.xml</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建一个通用的父级接口"><a href="#创建一个通用的父级接口" class="headerlink" title="创建一个通用的父级接口"></a>创建一个通用的父级接口</h3><hr>
+<p>主要作用是让 DAO 层的接口继承该接口，以达到使用 tk.mybatis 的目的</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package com.funtl.utils;</span><br><span class="line"></span><br><span class="line">import tk.mybatis.mapper.common.Mapper;</span><br><span class="line">import tk.mybatis.mapper.common.MySqlMapper;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 自己的 Mapper</span><br><span class="line"> * 特别注意，该接口不能被扫描到，否则会出错</span><br><span class="line"> * <span class="tag">&lt;<span class="name">p</span>&gt;</span>Title: MyMapper<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"> * <span class="tag">&lt;<span class="name">p</span>&gt;</span>Description: <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"> *</span><br><span class="line"> * @author Lusifer</span><br><span class="line"> * @version 1.0.0</span><br><span class="line"> * @date 2018/5/29 0:57</span><br><span class="line"> */</span><br><span class="line">public interface MyMapper<span class="tag">&lt;<span class="name">T</span>&gt;</span> extends Mapper<span class="tag">&lt;<span class="name">T</span>&gt;</span>, MySqlMapper<span class="tag">&lt;<span class="name">T</span>&gt;</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Spring-Boot-整合-PageHelper"><a href="#Spring-Boot-整合-PageHelper" class="headerlink" title="Spring Boot 整合 PageHelper"></a>Spring Boot 整合 PageHelper</h2><h3 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h3><p>PageHelper 是 Mybatis 的分页插件，支持多数据库、多数据源。可以简化数据库的分页查询操作，整合过程也极其简单，只需引入依赖即可。</p>
+<h3 id="引入依赖-2"><a href="#引入依赖-2" class="headerlink" title="引入依赖"></a>引入依赖</h3><p>在 <code>pom.xml</code> 文件中引入 <code>pagehelper-spring-boot-starter</code> 依赖</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.pagehelper<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>pagehelper-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
       
 
       
@@ -251,6 +1386,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Spring Boot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -382,685 +1528,10 @@
 
 
   
-    <article id="post-Spring-Boot-4-Spring-Boot-常用配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/31/Spring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/">[Spring Boot] 4 Spring Boot 常用配置</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/31/Spring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/" class="archive-article-date">
-  	<time datetime="2019-10-31T03:08:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Spring-Boot-常用配置"><a href="#Spring-Boot-常用配置" class="headerlink" title="Spring Boot 常用配置"></a>Spring Boot 常用配置</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>本章节主要介绍一下Spring Boot中的一些常用配置，比如：自定义Banner、配置日志、关闭特定的自动配置等。</p>
-<h2 id="自定义-Banner"><a href="#自定义-Banner" class="headerlink" title="自定义 Banner"></a>自定义 Banner</h2><hr>
-<p>在Spring Boot启动的时候会有一个默认的启动图案</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  .   ____          _            __ _ _</span><br><span class="line"> /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \</span><br><span class="line">( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \</span><br><span class="line"> \\/  ___)| |_)| | | | | || (_| |  ) ) ) )</span><br><span class="line">  '  |____| .__|_| |_|_| |_\__, | / / / /</span><br><span class="line"> =========|_|==============|___/=/_/_/_/</span><br><span class="line"> :: Spring Boot ::        (v1.5.8.RELEASE)</span><br></pre></td></tr></table></figure>
-
-<p> 通过<a href="http://patorjk.com/software/taag网站生成字符串，将网站生成的字符复制到banner.txt中" target="_blank" rel="noopener">http://patorjk.com/software/taag网站生成字符串，将网站生成的字符复制到banner.txt中</a> </p>
-<p> 再次运行这个程序 </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">$&#123;AnsiColor.BRIGHT_RED&#125;</span><br><span class="line">////////////////////////////////////////////////////////////////////</span><br><span class="line">//                          _ooOoo_                               //</span><br><span class="line">//                         o8888888o                              //</span><br><span class="line">//                         88" . "88                              //</span><br><span class="line">//                         (| ^_^ |)                              //</span><br><span class="line">//                         O\  =  /O                              //</span><br><span class="line">//                      ____/`---'\____                           //</span><br><span class="line">//                    .'  \\|     |//  `.                         //</span><br><span class="line">//                   /  \\|||  :  |||//  \                        //</span><br><span class="line">//                  /  _||||| -:- |||||-  \                       //</span><br><span class="line">//                  |   | \\\  -  /// |   |                       //</span><br><span class="line">//                  | \_|  ''\---/''  |   |                       //</span><br><span class="line">//                  \  .-\__  `-`  ___/-. /                       //</span><br><span class="line">//                ___`. .'  /--.--\  `. . ___                     //</span><br><span class="line">//              ."" '&lt;  `.___\_&lt;|&gt;_/___.'  &gt;'"".                  //</span><br><span class="line">//            | | :  `- \`.;`\ _ /`;.`/ - ` : | |                 //</span><br><span class="line">//            \  \ `-.   \_ __\ /__ _/   .-` /  /                 //</span><br><span class="line">//      ========`-.____`-.___\_____/___.-`____.-'========         //</span><br><span class="line">//                           `=---='                              //</span><br><span class="line">//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        //</span><br><span class="line">//            佛祖保佑       永不宕机     永无BUG                  //</span><br><span class="line">////////////////////////////////////////////////////////////////////</span><br></pre></td></tr></table></figure>
-
-<h3 id="常用属性设置："><a href="#常用属性设置：" class="headerlink" title="常用属性设置："></a>常用属性设置：</h3><ul>
-<li><code>${AnsiColor.BRIGHT_RED}</code>：设置控制台中输出内容的颜色</li>
-<li><code>${application.version}</code>：用来获取 MANIFEST.MF 文件中的版本号</li>
-<li><code>${application.formatted-version}</code>：格式化后的 <code>${application.version}</code> 版本信息</li>
-<li><code>${spring-boot.version}</code>：Spring Boot 的版本号</li>
-<li><code>${spring-boot.formatted-version}</code>：格式化后的 <code>${spring-boot.version}</code> 版本信息</li>
-</ul>
-<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><hr>
-<p>Spring Boot 项目使用一个全局的配置文件<code>application.properties</code>或者是<code>application.yml</code>在<code>resources</code>目录下或者类路径下的<code>/config</code>下，一般我们放到<code>resources</code>下。</p>
-<p>修改Tomcat的端口为9090，并将默认的访问路径 “/“ 修改为 “boot”，可以在<code>application.properties</code>中添加：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server.port=9090</span><br><span class="line">server.context-path=/boot</span><br></pre></td></tr></table></figure>
-
-<p> 或在<code>application.yml</code>中添加： </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line"> port: 9090</span><br><span class="line"> context-path: /boot</span><br></pre></td></tr></table></figure>
-
-<p> 测试效果： </p>
-<p>  <img src="D:%5Cblog%5Csource_posts%5CSpring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE.assets%5C1.png" alt=""></p>
-<p><a href="https://docs.spring.io/spring-boot/docs/2.0.2.RELEASE/reference/html/common-application-properties.html" target="_blank" rel="noopener">更多配置</a></p>
-<h2 id="Starter-POM"><a href="#Starter-POM" class="headerlink" title="Starter POM"></a>Starter POM</h2><hr>
-<p>Spring Boot为我们提供了简化企业级开发绝大多数场景的starter pom，只要使用了应用场景所需要的starter pom，相关的技术配置将会消除，就可以得到Spring Boot为我们提供的自动配置的Bean。</p>
-<p><a href="https://docs.spring.io/spring-boot/docs/2.0.2.RELEASE/reference/html/using-boot-build-systems.html#using-boot-starter" target="_blank" rel="noopener">更多Starter POM</a></p>
-<h2 id="日志配置"><a href="#日志配置" class="headerlink" title="日志配置"></a>日志配置</h2><hr>
-<p>Spring Boot对各种日志框架都做了支持，我们可以通过配置来修改默认的日志的配置</p>
-<p>默认情况下，Spring Boot使用Logback作为日志框架</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">logging:</span><br><span class="line"> file: ../logs/spring-boot-hello.log</span><br><span class="line"> level.org.springframework.web: DEBUG</span><br></pre></td></tr></table></figure>
-
-<h2 id="关闭特定的自动配置"><a href="#关闭特定的自动配置" class="headerlink" title="关闭特定的自动配置"></a>关闭特定的自动配置</h2><hr>
-<p>关闭特定的自动配置使用<code>@SpringBootApplication</code>注解的<code>exclude</code>参数即可，这里以关闭数据源的自动配置为例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication(exclude = &#123;DataSourceAutoConfiguration.class&#125;)</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Spring Boot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/31/Spring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-系统升级及加域-美国礼来项目" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/24/%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE/">系统升级及加域 美国礼来项目</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/24/%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE/" class="archive-article-date">
-  	<time datetime="2019-10-24T07:20:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="分辨机型"><a href="#分辨机型" class="headerlink" title="分辨机型"></a>分辨机型</h1><h3 id="1-HP-840-G3型号"><a href="#1-HP-840-G3型号" class="headerlink" title="(1)HP 840 G3型号"></a>(1)HP 840 G3型号</h3><ol>
-<li>开机按F10</li>
-<li>在<code>Security</code>–&gt;&gt;<code>Security Configuration</code>下,选择<code>TPM Embedded Security</code></li>
-<li>确认<code>TPM Device</code>–&gt;&gt;设置为<code>Available</code></li>
-<li>确认<code>TPM State</code>是<code>checked</code></li>
-<li>确认<code>Clear TPM</code>这是为<code>NO</code></li>
-<li>确认<code>TPM Activation Policy</code> 设置为<code>No prompts</code></li>
-<li>在<code>Advanced</code>下,选择<code>Boot Options</code></li>
-<li>确认<code>UEFI Boot Order</code> is <strong>checked</strong></li>
-<li>确认<code>Legacy Boot Order</code> is not <strong>checked</strong></li>
-<li><code>UEFI Boot Oeder</code>下确认<code>hard drive</code>是最优先启动(排在第一个)</li>
-</ol>
-<h3 id="2-HP-9480M"><a href="#2-HP-9480M" class="headerlink" title="(2)HP 9480M"></a>(2)HP 9480M</h3><ol>
-<li>开机按F10</li>
-<li>在<code>Security</code>,确认<code>TPM Embedded Security</code>是否存在,若存在,清确认是否已将其设置为<strong>available</strong></li>
-<li>在Advanced–&gt;&gt;Boot Options下</li>
-<li>确认<code>SecureBoot Configuration</code> 的两个选项<strong>SecureBoot</strong> &amp;&amp; <strong>Clear</strong> <strong>SecureBoot</strong> <strong>Keys</strong> 都未被选择。</li>
-<li><code>Boot Mode</code>–&gt;&gt;<strong>UEFI</strong> <strong>Hybrid</strong> <strong>(with</strong> <strong>CSM)</strong> </li>
-<li><strong>UEFI</strong> <strong>Boot</strong> <strong>Order</strong>–&gt;&gt;hard drive 是最优先启动（排在第一个） </li>
-<li><strong><code>Advanced</code></strong>–&gt;&gt; <strong>Built-in</strong> <strong>Device</strong> <strong>Option</strong> 确认选择了<strong>LAN/WLAN</strong> <strong>Switching</strong> </li>
-</ol>
-<h3 id="3-配置好以后按F10保存并退出BIOS"><a href="#3-配置好以后按F10保存并退出BIOS" class="headerlink" title="(3)配置好以后按F10保存并退出BIOS"></a>(3)配置好以后按F10保存并退出BIOS</h3><h1 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h1><ul>
-<li>HP</li>
-<li>开机按F9</li>
-<li>选择the USB hard dive</li>
-<li>进入系统安装界面</li>
-</ul>
-<p>​    <img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/B2C263FB852C4585848C4A83CE5F982E/1080" alt="1"></p>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/8477E02B6D764ED8B15691A177CA6ACB/1088" alt="1572423573433"></p>
-<ul>
-<li>这里可以区分台式机和笔记本</li>
-</ul>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/F6544BA2BC2C4EF8B2C0A97D03FE0714/1079" alt="1572423702170"></p>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/F94D124F876544C89EBE36669CC221E1/1086" alt="1572423920982"></p>
-<ul>
-<li><p>安装的语言:Chinese(PRC)</p>
-</li>
-<li><p>安装系统过程中注意接通电源</p>
-</li>
-<li><p>若在装机过程中,自动重启,出现黑屏情况,清确认是否将硬盘启动设置为第一启动项。</p>
-<p>(黑屏解决方案:强制关机,按F9(Lenovo按F12)选择硬盘启动)</p>
-</li>
-</ul>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/764D613BE40741C0ABDCBF0E952DB6F7/1093" alt="1572424911875"></p>
-<ul>
-<li>装完机后会如图所示,点击Start Windows进入登录页面</li>
-</ul>
-<h1 id="系统配置"><a href="#系统配置" class="headerlink" title="系统配置"></a>系统配置</h1><p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/D6991DB2608C4ED88679B83532456AD3/1085" alt="1572425411865"></p>
-<ul>
-<li><p>用本地管理员账号登录</p>
-<ul>
-<li>用户名:Deployment        密码:@W10PreRL/@W7PreRL</li>
-</ul>
-<h4 id="WIN-R–-gt-gt-输入TPM-MSC"><a href="#WIN-R–-gt-gt-输入TPM-MSC" class="headerlink" title="WIN+R–&gt;&gt;输入TPM.MSC"></a>WIN+R–&gt;&gt;输入TPM.MSC</h4></li>
-</ul>
-<p>有三种情况:</p>
-<h5 id="情况一-如下图所示-则跳过此步骤-直接进入加域"><a href="#情况一-如下图所示-则跳过此步骤-直接进入加域" class="headerlink" title="情况一:如下图所示,则跳过此步骤,直接进入加域"></a>情况一:如下图所示,则跳过此步骤,直接进入加域</h5><p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/C75C44F64C7C4D57B223B2318BF40855/1076" alt="1572425508980"></p>
-<h5 id="情况二-如下图所示-选择右侧的Tunr-TPM-on"><a href="#情况二-如下图所示-选择右侧的Tunr-TPM-on" class="headerlink" title="情况二:如下图所示,选择右侧的Tunr TPM on"></a>情况二:如下图所示,选择右侧的Tunr TPM on</h5><p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/80706E7CA09D4859ABF27E59A4BE345A/1082" alt="1572425660574"></p>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/9148845F648D4EEEA8C273C5F111B82F/1089" alt="1572426163633"></p>
-<h5 id="情况三-如下图所示-选择右侧的Initialize-TPM"><a href="#情况三-如下图所示-选择右侧的Initialize-TPM" class="headerlink" title="情况三:如下图所示,选择右侧的Initialize TPM"></a>情况三:如下图所示,选择右侧的Initialize TPM</h5><p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/2018E1547E1B4D95936B402BE8C4859C/1075" alt="1572426298476"></p>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/5F42BB8D68B0407189B44731C748E38A/1091" alt="1572426317377"></p>
-<ul>
-<li>点击重启</li>
-</ul>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/31044D7183404AE8BEE06D2DC5BE9AB1/1087" alt="1572426349563"></p>
-<ul>
-<li>重启后会自动跳出左侧的弹窗点击Automatically create the password(recommended)</li>
-</ul>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/4AF8C314C23E42B6BED3A6AEEC844A5D/1081" alt="1572426510566"></p>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/7CFEB086B6E24BCFAC585077479855B0/1078" alt="1572426524079"></p>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/82DF89441E5C4B13838BBA31F640C221/1074" alt="1572426537019"></p>
-<h5 id="完成后-再次进入TPM控制台确认是否TPM状态已如情况一所示即可"><a href="#完成后-再次进入TPM控制台确认是否TPM状态已如情况一所示即可" class="headerlink" title="完成后,再次进入TPM控制台确认是否TPM状态已如情况一所示即可"></a>完成后,再次进入TPM控制台确认是否TPM状态已如情况一所示即可</h5><h1 id="加密设置"><a href="#加密设置" class="headerlink" title="加密设置"></a>加密设置</h1><p>点开controlpanel找到bitlocker驱动器加密</p>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/4121C517CF5F42F1BA0786FB0DB9A6A2/1061" alt="1572427105696"></p>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/5B54E39C851B47EAB897267ED0595600/1068" alt="1572428543562"></p>
-<ul>
-<li>点击开始加密</li>
-</ul>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/99EEF5385C61462C954F83ED9400F32B/1063" alt="1572428591453"></p>
-<ul>
-<li>选择Print the recovery key</li>
-<li>选择XPS打印机<ul>
-<li>保存地址为C:Temp,文件名改为:XXXX</li>
-</ul>
-</li>
-<li>点击继续,将会自动开始加密</li>
-</ul>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/D19EA8E3087B4A40BAE15DA9A74E20D9/1060" alt="1572485959461"></p>
-<h1 id="加域-需插上连接礼来网络的网线"><a href="#加域-需插上连接礼来网络的网线" class="headerlink" title="加域(需插上连接礼来网络的网线)"></a>加域(<code>需插上连接礼来网络的网线</code>)</h1><p>右键computer-属性</p>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/92D10F329019418AB58C572856B4C7A3/1084" alt="1572429090909"></p>
-<ul>
-<li>确保在域控上已经添加过该计算机名</li>
-<li>加域:AP.LILLY.COM(需输入DS账号密码)</li>
-<li>域管理员账号DS账号,密码(每天都会更新,这个要跟同事沟通)</li>
-<li>成功加入AP域,点击OK重启电脑。</li>
-</ul>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/0D8D49A2FB9C4042B1808E2F3573C7F2/1083" alt="1572429353070"></p>
-<h1 id="加管理员组-需插上连接礼来网络的网线"><a href="#加管理员组-需插上连接礼来网络的网线" class="headerlink" title="加管理员组(需插上连接礼来网络的网线)"></a>加管理员组(<code>需插上连接礼来网络的网线</code>)</h1><ul>
-<li>用本地管理员账号登录<ul>
-<li>用户名: .\Deployment</li>
-<li>密码:@W10PreRL/@W7PreRL</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/54ECC90DDFAF454486B422C6DAAF1240/1059" alt="1572486190860"></p>
-<ul>
-<li>选择Administrator Group</li>
-</ul>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/ABBAA9AE5D5048A1B55B45CE9F00AEC3/1055" alt="1572486398975"></p>
-<ul>
-<li>添加以下账户到管理员组(每添加一个管理员都需要输入DS账号密码)<ul>
-<li>用户账号</li>
-<li>AP_WP_dskadmp_dl</li>
-</ul>
-</li>
-</ul>
-<h1 id="注销Deployment账号"><a href="#注销Deployment账号" class="headerlink" title="注销Deployment账号"></a>注销Deployment账号</h1><ul>
-<li>点击开始</li>
-<li>选择Log off</li>
-</ul>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/1705EA9F9C444FE9B0390FB85AE56AC3/1077" alt="1572486720243"></p>
-<ul>
-<li>输入用户账户的账号密码登录Windows</li>
-</ul>
-<p>  <strong>刷新组策略</strong></p>
-<ul>
-<li>点击开始</li>
-<li>在搜索框中输入CMD</li>
-<li>打开programs中的CMD程序</li>
-</ul>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/F06759CD06124013B8055EB4D5C14F19/1065" alt="1572487281415"></p>
-<ul>
-<li>输入Gpupdate /force</li>
-<li>出现上图所示的两个Successful即成功</li>
-</ul>
-<h1 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h1><ul>
-<li>点击屏幕右下角时间</li>
-<li>点击Change date and time settings…</li>
-</ul>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/6BA60AE6CE1C43FCBB1F172532B4F2BC/1064" alt="1572487425400"></p>
-<ul>
-<li>点击Change time zone…</li>
-<li>选择beijing </li>
-<li>点击OK</li>
-</ul>
-<h1 id="配置Outlook"><a href="#配置Outlook" class="headerlink" title="配置Outlook"></a>配置Outlook</h1><ul>
-<li>打开Outlook</li>
-<li>配置Outlook profile时若出现下图情况,点击Useanother account</li>
-<li>输入用户的账号\密码点击OK</li>
-</ul>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/6F9AFEA2EA51474CAD917FC761CAF69F/1058" alt="1572488126569"></p>
-<ul>
-<li>打开Outlook加载数据</li>
-<li>修改junk mail level:NO Automatic Fitering</li>
-</ul>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/90EADF54295B4CB895F914A1716BD2B5/1062" alt="1572488261435"></p>
-<ul>
-<li>选择canlendar</li>
-<li>选择New Online Metting(<code>需要开启Skype for business</code>)</li>
-<li>选择Metting options</li>
-</ul>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/1054CB97BC7442429BB4D7EF401439E9/1072" alt="1572488649743"></p>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/18237EF177584B55BBD25DD241F7B479/1066" alt="11111"></p>
-<ul>
-<li>在Audio and phone中选择china,勾上Remember settings,然后OK关闭页面</li>
-<li>完成配置Outlook后需要退出Skype for business 和Outlook</li>
-</ul>
-<h1 id="安装必装软件"><a href="#安装必装软件" class="headerlink" title="安装必装软件"></a>安装必装软件</h1><ul>
-<li>安装软件路径如下:\40.197.57.19</li>
-<li>安装软件过程中,凡是遇到需要重启电脑的,一律选择稍后重启,等待全部软件安装完成,且其他如硬盘加密,更新sep,安装打印机等配置完成后再进行重启电脑。</li>
-</ul>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/2A21DBE64FCA445AACCAEF7524E2FD81/1069" alt="1572489350793"></p>
-<ul>
-<li>安装必装文件夹里的软件(``Firmware Updates里文件需要根据安装的电脑型号进行安装)</li>
-</ul>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/AC9C67540265406AA8C2F8E8FB0BDBDA/1071" alt="1572489512183"></p>
-<h1 id="安装打印机"><a href="#安装打印机" class="headerlink" title="安装打印机"></a>安装打印机</h1><ul>
-<li>打印机地址: \\40.197.6.156</li>
-</ul>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/F10BDFCC03664AEFBC813318187A30E4/1057" alt="1572489621571"></p>
-<h1 id="桌面配置"><a href="#桌面配置" class="headerlink" title="桌面配置"></a>桌面配置</h1><ul>
-<li>将公司网站设置成主页</li>
-<li>将office常用应用的快捷方式发到桌面(``word、excel、PPT、Outlook等)</li>
-<li>测试WIFI</li>
-<li>将用户之前旧电脑上安装过的软件也安装上</li>
-</ul>
-<h1 id="禁用Deployment账号"><a href="#禁用Deployment账号" class="headerlink" title="禁用Deployment账号"></a>禁用Deployment账号</h1><ul>
-<li>用户账号登录系统</li>
-<li>Disable Deployment</li>
-<li>Apply—&gt;&gt;OK</li>
-<li>在Computer右键–&gt;&gt;Manage–&gt;&gt;Computer–&gt;&gt;Management–&gt;&gt;SystemTools–&gt;&gt;Local user and Groups–&gt;&gt;Users</li>
-<li>即可找到Deployment账号</li>
-</ul>
-<h1 id="Health-Check"><a href="#Health-Check" class="headerlink" title="Health Check"></a>Health Check</h1><ul>
-<li>运行Health Check Tool</li>
-<li>点击两次Start</li>
-</ul>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/6991344C1FFC475E9FB3AA1CCE64EEBA/1092" alt="1572490415187"></p>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/21092A8F9BD44D9AA157792F23429635/1090" alt="1572490467691"></p>
-<ul>
-<li>核对用户账号,计算机名和检测结果,点击print打印,附加在checklist后面。</li>
-</ul>
-<p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/4FADE593E51A42CCB31FAB15E844C70F/1073" alt="1572490941996"></p>
-<h1 id="填写Check-Lisk和IT-设备单"><a href="#填写Check-Lisk和IT-设备单" class="headerlink" title="填写Check Lisk和IT 设备单"></a>填写Check Lisk和IT 设备单</h1><p><img src="https://note.youdao.com/yws/public/resource/962be98b32efe634441a86efa5810c5b/xmlnote/E493F05818294B50905A9CB195E8665D/1067" alt="1572490880150"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">__桌面运维</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/24/%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring-Boot-3-Spring-Boot-单元测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/23/Spring-Boot-3-Spring-Boot-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">[Spring Boot] 3 Spring Boot 单元测试</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/23/Spring-Boot-3-Spring-Boot-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" class="archive-article-date">
-  	<time datetime="2019-10-23T09:12:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>主要是通过<code>@RunWith</code>和<code>@SpringBootTest</code>注解来开启单元测试功能</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.funtl.hello.spring.boot;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.web.client.TestRestTemplate;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.web.server.LocalServerPort;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.ResponseEntity;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.hamcrest.CoreMatchers.equalTo;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.assertThat;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span>(classes = HelloSpringBootApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloSpringBootApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@LocalServerPort</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> port;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> URL base;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> TestRestTemplate template;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.base = <span class="keyword">new</span> URL(<span class="string">"http://localhost:"</span> + port + <span class="string">"/"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ResponseEntity&lt;String&gt; response = template.getForEntity(base.toString(), String.class);</span><br><span class="line">        assertThat(response.getBody(), equalTo(<span class="string">"Hello Spring Boot"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>运行它会先启动Spring Boot工程，再启动单元测试</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Spring Boot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/23/Spring-Boot-3-Spring-Boot-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring-Boot-2-Spring-Boot-应用案例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/23/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/">[Spring Boot] 2 Spring Boot 应用案例</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/23/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/" class="archive-article-date">
-  	<time datetime="2019-10-23T08:14:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>这里我们使用 Intellij IDEA 来新建一个 Spring Boot 项目。</p>
-<h3 id="打开-IDEA-gt-New-Project-gt-Spring-Initializr"><a href="#打开-IDEA-gt-New-Project-gt-Spring-Initializr" class="headerlink" title="打开 IDEA -&gt; New Project -&gt; Spring Initializr"></a>打开 IDEA -&gt; New Project -&gt; Spring Initializr</h3><p><img src="https://wvincen.gitee.io/2019/06/29/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/1.png" alt="1"></p>
-<h3 id="填写项目信息"><a href="#填写项目信息" class="headerlink" title="填写项目信息"></a>填写项目信息</h3><p><img src="https://wvincen.gitee.io/2019/06/29/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/2.png" alt="2"></p>
-<h3 id="选择-Spring-Boot-版本及-Web-开发所需的依赖"><a href="#选择-Spring-Boot-版本及-Web-开发所需的依赖" class="headerlink" title="选择 Spring Boot 版本及 Web 开发所需的依赖"></a>选择 Spring Boot 版本及 Web 开发所需的依赖</h3><p><img src="https://wvincen.gitee.io/2019/06/29/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/3.png" alt="3"></p>
-<h3 id="保存项目到指定目录"><a href="#保存项目到指定目录" class="headerlink" title="保存项目到指定目录"></a>保存项目到指定目录</h3><p><img src="https://wvincen.gitee.io/2019/06/29/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/4.png" alt="4"></p>
-<h3 id="工程目录结构"><a href="#工程目录结构" class="headerlink" title="工程目录结构"></a>工程目录结构</h3><p>创建完成后的工程目录结构如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">│  .gitignore</span><br><span class="line">│  pom.xml</span><br><span class="line">│</span><br><span class="line">│</span><br><span class="line">└─src</span><br><span class="line">    ├─main</span><br><span class="line">    │  ├─java</span><br><span class="line">    │  │  └─com</span><br><span class="line">    │  │      └─funtl</span><br><span class="line">    │  │          └─hello</span><br><span class="line">    │  │              └─spring</span><br><span class="line">    │  │                  └─boot</span><br><span class="line">    │  │                          HelloSpringBootApplication.java</span><br><span class="line">    │  │</span><br><span class="line">    │  └─resources</span><br><span class="line">    │      │  application.properties</span><br><span class="line">    │      │</span><br><span class="line">    │      ├─static</span><br><span class="line">    │      └─templates</span><br><span class="line">    └─test</span><br><span class="line">        └─java</span><br><span class="line">            └─com</span><br><span class="line">                └─funtl</span><br><span class="line">                    └─hello</span><br><span class="line">                        └─spring</span><br><span class="line">                            └─boot</span><br><span class="line">                                    HelloSpringBootApplicationTests.java</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>.gitignore：Git 过滤配置文件</li>
-<li>pom.xml：Maven 的依赖管理配置文件</li>
-<li>HelloSpringBootApplication.java：程序入口</li>
-<li>resources：资源文件目录<ul>
-<li>static: 静态资源文件目录</li>
-<li>templates：模板资源文件目录</li>
-<li>application.properties：Spring Boot 的配置文件，实际开发中会替换成 YAML 语言配置（application.yml）</li>
-</ul>
-</li>
-</ul>
-<h3 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.funtl<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hello-spring-boot<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hello-spring-boot<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span><span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.reporting.outputEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>parent：继承了 Spring Boot 的 Parent，表示我们是一个 Spring Boot 工程</li>
-<li>spring-boot-starter-web：包含了 spring-boot-starter 还自动帮我们开启了 Web 支持</li>
-</ul>
-<h2 id="功能演示"><a href="#功能演示" class="headerlink" title="功能演示"></a>功能演示</h2><p>我们创建一个 Controller 来演示一下 Spring Boot 的神奇功能</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.funtl.hello.spring.boot.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">""</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">sayHi</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello Spring Boot"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>启动 <code>HelloSpringBootApplication</code> 的 <code>main()</code> 方法，浏览器访问 <a href="https://wvincen.gitee.io/404.html" target="_blank" rel="noopener">http://localhost:8080</a> 可以看到：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello Spring Boot</span><br></pre></td></tr></table></figure>
-
-<h2 id="神奇之处"><a href="#神奇之处" class="headerlink" title="神奇之处"></a>神奇之处</h2><ul>
-<li>没有配置 web.xml</li>
-<li>没有配置 application.xml，Spring Boot 帮你配置了</li>
-<li>没有配置 application-mvc.xml，Spring Boot 帮你配置了</li>
-<li>没有配置 Tomcat，Spring Boot 内嵌了 Tomcat 容器</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Spring Boot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/23/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring-Boot-1-Spring-Boot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/23/Spring-Boot-1-Spring-Boot/">[Spring Boot] 1 Spring Boot</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/23/Spring-Boot-1-Spring-Boot/" class="archive-article-date">
-  	<time datetime="2019-10-23T08:01:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Spring-简史"><a href="#Spring-简史" class="headerlink" title="Spring 简史"></a>Spring 简史</h2><h3 id="Spring-1-x-时代"><a href="#Spring-1-x-时代" class="headerlink" title="Spring 1.x 时代"></a>Spring 1.x 时代</h3><p>在 Spring1.x 时代，都是通过 xml 文件配置 bean，随着项目的不断扩大，需要将 xml 配置分放到不同的配置文件中，需要频繁的在 java 类和 xml 配置文件中切换。</p>
-<h3 id="Spring-2-x-时代"><a href="#Spring-2-x-时代" class="headerlink" title="Spring 2.x 时代"></a>Spring 2.x 时代</h3><p>随着 JDK 1.5 带来的注解支持，Spring2.x 可以使用注解对 Bean 进行申明和注入，大大的减少了 xml 配置文件，同时也大大简化了项目的开发。</p>
-<p>那么，问题来了，究竟是应该使用 xml 还是注解呢？</p>
-<p>最佳实践：</p>
-<ul>
-<li>应用的基本配置用 xml，比如：数据源、资源文件等</li>
-<li>业务开发用注解，比如：Service 中注入 bean 等</li>
-</ul>
-<h3 id="Spring-3-x-时代"><a href="#Spring-3-x-时代" class="headerlink" title="Spring 3.x 时代"></a>Spring 3.x 时代</h3><p>从 Spring3.x 开始提供了 Java 配置方式，使用 Java 配置方式可以更好的理解你配置的 Bean，现在我们就处于这个时代，并且 Spring4.x 和 Spring boot 都推荐使用 java 配置的方式。</p>
-<h3 id="Spring-5-x-时代"><a href="#Spring-5-x-时代" class="headerlink" title="Spring 5.x 时代"></a>Spring 5.x 时代</h3><p>Spring5.x 是 Java 界首个支持响应式的 Web 框架，是 Spring 的一个重要版本，距离 Spring4.x  差不多四年。在此期间，大多数增强都是在 SpringBoot 项目中完成的，其最大的亮点就是提供了完整的端到端响应式编程的支持（新增  Spring WebFlux 模块）。</p>
-<p>Spring WebFlux 同时支持使用旧的 Spring MVC 注解声明 <code>Reactive Controller</code>。和传统的 <code>MVC Controller</code> 不同，<code>Reactive Controller</code> 操作的是 <strong>非阻塞</strong> 的 <code>ServerHttpRequest</code> 和 <code>ServerHttpResponse</code>，而不再是 Spring MVC 里的 HttpServletRequest 和 HttpServletResponse。</p>
-<p>至此也代表着 Java 正式迎来了响应式异步编程的时代。</p>
-<h2 id="Spring-Boot-简介"><a href="#Spring-Boot-简介" class="headerlink" title="Spring Boot 简介"></a>Spring Boot 简介</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>随着动态语言的流行 (Ruby、Groovy、Scala、Node.js)，Java 的开发显得格外的笨重：繁多的配置、低下的开发效率、复杂的部署流程以及第三方技术集成难度大。</p>
-<p>在上述环境下，Spring Boot  应运而生。它使用“习惯优于配置”（项目中存在大量的配置，此外还内置了一个习惯性的配置，让你无需手动进行配置）的理念让你的项目快速的运行起来。使用 Spring Boot 很容易创建一个独立运行（运行 Jar，内嵌 Servlet 容器）准生产级别的基于 Spring 框架的项目，使用  Spring Boot 你可以不用或者只需很少的 Spring 配置。</p>
-<h2 id="Spring-Boot-优缺点"><a href="#Spring-Boot-优缺点" class="headerlink" title="Spring Boot 优缺点"></a>Spring Boot 优缺点</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
-<li>快速构建项目</li>
-<li>对主流开发框架的无配置集成</li>
-<li>项目可独立运行，无需外部依赖 Servlet 容器</li>
-<li>提供运行时的应用监控</li>
-<li>极大地提高了开发、部署效率</li>
-<li>与云计算的天然集成</li>
-</ul>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>版本迭代速度很快，一些模块改动很大</li>
-<li>由于不用自己做配置，报错时很难定位</li>
-<li>网上现成的解决方案比较少</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Spring Boot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/23/Spring-Boot-1-Spring-Boot/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 
@@ -1152,6 +1623,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">__hexo</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">__Spring Boot</a>
