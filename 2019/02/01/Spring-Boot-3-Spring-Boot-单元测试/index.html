@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>[Spring Boot] 4 Spring Boot 常用配置 | DavidRacecourse | 码上说话</title>
+  <title>[Spring Boot] 3 Spring Boot 单元测试 | DavidRacecourse | 码上说话</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Spring Boot 常用配置概述本章节主要介绍一下Spring Boot中的一些常用配置，比如：自定义Banner、配置日志、关闭特定的自动配置等。 自定义 Banner 在Spring Boot启动的时候会有一个默认的启动图案 1234567  .   ____          _            __ _ _ &#x2F;\\ &#x2F; ___&amp;apos;_ __ _ _(_)_ __  __ _ \ \">
+  <meta name="description" content="概述主要是通过@RunWith和@SpringBootTest注解来开启单元测试功能 1234567891011121314151617181920212223242526272829303132333435363738394041package com.funtl.hello.spring.boot;import org.junit.Before;import org.junit.Test;im">
 <meta name="keywords" content="__Spring Boot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Spring Boot] 4 Spring Boot 常用配置">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;31&#x2F;Spring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE&#x2F;index.html">
+<meta property="og:title" content="[Spring Boot] 3 Spring Boot 单元测试">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;02&#x2F;01&#x2F;Spring-Boot-3-Spring-Boot-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95&#x2F;index.html">
 <meta property="og:site_name" content="DavidRacecourse | 码上说话">
-<meta property="og:description" content="Spring Boot 常用配置概述本章节主要介绍一下Spring Boot中的一些常用配置，比如：自定义Banner、配置日志、关闭特定的自动配置等。 自定义 Banner 在Spring Boot启动的时候会有一个默认的启动图案 1234567  .   ____          _            __ _ _ &#x2F;\\ &#x2F; ___&amp;apos;_ __ _ _(_)_ __  __ _ \ \">
+<meta property="og:description" content="概述主要是通过@RunWith和@SpringBootTest注解来开启单元测试功能 1234567891011121314151617181920212223242526272829303132333435363738394041package com.funtl.hello.spring.boot;import org.junit.Before;import org.junit.Test;im">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="d:%5Cblog%5Csource_posts%5CSpring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE.assets%5C1.png">
-<meta property="og:updated_time" content="2019-10-31T03:17:56.193Z">
+<meta property="og:updated_time" content="2019-11-01T09:39:24.468Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="d:%5Cblog%5Csource_posts%5CSpring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE.assets%5C1.png">
   
     <link rel="alternative" href="/atom.xml" title="DavidRacecourse | 码上说话" type="application/atom+xml">
   
@@ -165,65 +163,32 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Spring-Boot-4-Spring-Boot-常用配置" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Spring-Boot-3-Spring-Boot-单元测试" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      [Spring Boot] 4 Spring Boot 常用配置
+      [Spring Boot] 3 Spring Boot 单元测试
     </h1>
   
 
         
-        <a href="/2019/10/31/Spring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/" class="archive-article-date">
-  	<time datetime="2019-10-31T03:08:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-31</time>
+        <a href="/2019/02/01/Spring-Boot-3-Spring-Boot-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" class="archive-article-date">
+  	<time datetime="2019-02-01T04:12:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Spring-Boot-常用配置"><a href="#Spring-Boot-常用配置" class="headerlink" title="Spring Boot 常用配置"></a>Spring Boot 常用配置</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>本章节主要介绍一下Spring Boot中的一些常用配置，比如：自定义Banner、配置日志、关闭特定的自动配置等。</p>
-<h2 id="自定义-Banner"><a href="#自定义-Banner" class="headerlink" title="自定义 Banner"></a>自定义 Banner</h2><hr>
-<p>在Spring Boot启动的时候会有一个默认的启动图案</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  .   ____          _            __ _ _</span><br><span class="line"> /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \</span><br><span class="line">( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \</span><br><span class="line"> \\/  ___)| |_)| | | | | || (_| |  ) ) ) )</span><br><span class="line">  '  |____| .__|_| |_|_| |_\__, | / / / /</span><br><span class="line"> =========|_|==============|___/=/_/_/_/</span><br><span class="line"> :: Spring Boot ::        (v1.5.8.RELEASE)</span><br></pre></td></tr></table></figure>
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>主要是通过<code>@RunWith</code>和<code>@SpringBootTest</code>注解来开启单元测试功能</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.funtl.hello.spring.boot;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.web.client.TestRestTemplate;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.web.server.LocalServerPort;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.ResponseEntity;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.hamcrest.CoreMatchers.equalTo;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.assertThat;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span>(classes = HelloSpringBootApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloSpringBootApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@LocalServerPort</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> port;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> URL base;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> TestRestTemplate template;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.base = <span class="keyword">new</span> URL(<span class="string">"http://localhost:"</span> + port + <span class="string">"/"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ResponseEntity&lt;String&gt; response = template.getForEntity(base.toString(), String.class);</span><br><span class="line">        assertThat(response.getBody(), equalTo(<span class="string">"Hello Spring Boot"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p> 通过<a href="http://patorjk.com/software/taag网站生成字符串，将网站生成的字符复制到banner.txt中" target="_blank" rel="noopener">http://patorjk.com/software/taag网站生成字符串，将网站生成的字符复制到banner.txt中</a> </p>
-<p> 再次运行这个程序 </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">$&#123;AnsiColor.BRIGHT_RED&#125;</span><br><span class="line">////////////////////////////////////////////////////////////////////</span><br><span class="line">//                          _ooOoo_                               //</span><br><span class="line">//                         o8888888o                              //</span><br><span class="line">//                         88" . "88                              //</span><br><span class="line">//                         (| ^_^ |)                              //</span><br><span class="line">//                         O\  =  /O                              //</span><br><span class="line">//                      ____/`---'\____                           //</span><br><span class="line">//                    .'  \\|     |//  `.                         //</span><br><span class="line">//                   /  \\|||  :  |||//  \                        //</span><br><span class="line">//                  /  _||||| -:- |||||-  \                       //</span><br><span class="line">//                  |   | \\\  -  /// |   |                       //</span><br><span class="line">//                  | \_|  ''\---/''  |   |                       //</span><br><span class="line">//                  \  .-\__  `-`  ___/-. /                       //</span><br><span class="line">//                ___`. .'  /--.--\  `. . ___                     //</span><br><span class="line">//              ."" '&lt;  `.___\_&lt;|&gt;_/___.'  &gt;'"".                  //</span><br><span class="line">//            | | :  `- \`.;`\ _ /`;.`/ - ` : | |                 //</span><br><span class="line">//            \  \ `-.   \_ __\ /__ _/   .-` /  /                 //</span><br><span class="line">//      ========`-.____`-.___\_____/___.-`____.-'========         //</span><br><span class="line">//                           `=---='                              //</span><br><span class="line">//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        //</span><br><span class="line">//            佛祖保佑       永不宕机     永无BUG                  //</span><br><span class="line">////////////////////////////////////////////////////////////////////</span><br></pre></td></tr></table></figure>
 
-<h3 id="常用属性设置："><a href="#常用属性设置：" class="headerlink" title="常用属性设置："></a>常用属性设置：</h3><ul>
-<li><code>${AnsiColor.BRIGHT_RED}</code>：设置控制台中输出内容的颜色</li>
-<li><code>${application.version}</code>：用来获取 MANIFEST.MF 文件中的版本号</li>
-<li><code>${application.formatted-version}</code>：格式化后的 <code>${application.version}</code> 版本信息</li>
-<li><code>${spring-boot.version}</code>：Spring Boot 的版本号</li>
-<li><code>${spring-boot.formatted-version}</code>：格式化后的 <code>${spring-boot.version}</code> 版本信息</li>
-</ul>
-<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><hr>
-<p>Spring Boot 项目使用一个全局的配置文件<code>application.properties</code>或者是<code>application.yml</code>在<code>resources</code>目录下或者类路径下的<code>/config</code>下，一般我们放到<code>resources</code>下。</p>
-<p>修改Tomcat的端口为9090，并将默认的访问路径 “/“ 修改为 “boot”，可以在<code>application.properties</code>中添加：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server.port=9090</span><br><span class="line">server.context-path=/boot</span><br></pre></td></tr></table></figure>
 
-<p> 或在<code>application.yml</code>中添加： </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line"> port: 9090</span><br><span class="line"> context-path: /boot</span><br></pre></td></tr></table></figure>
-
-<p> 测试效果： </p>
-<p>  <img src="D:%5Cblog%5Csource_posts%5CSpring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE.assets%5C1.png" alt=""></p>
-<p><a href="https://docs.spring.io/spring-boot/docs/2.0.2.RELEASE/reference/html/common-application-properties.html" target="_blank" rel="noopener">更多配置</a></p>
-<h2 id="Starter-POM"><a href="#Starter-POM" class="headerlink" title="Starter POM"></a>Starter POM</h2><hr>
-<p>Spring Boot为我们提供了简化企业级开发绝大多数场景的starter pom，只要使用了应用场景所需要的starter pom，相关的技术配置将会消除，就可以得到Spring Boot为我们提供的自动配置的Bean。</p>
-<p><a href="https://docs.spring.io/spring-boot/docs/2.0.2.RELEASE/reference/html/using-boot-build-systems.html#using-boot-starter" target="_blank" rel="noopener">更多Starter POM</a></p>
-<h2 id="日志配置"><a href="#日志配置" class="headerlink" title="日志配置"></a>日志配置</h2><hr>
-<p>Spring Boot对各种日志框架都做了支持，我们可以通过配置来修改默认的日志的配置</p>
-<p>默认情况下，Spring Boot使用Logback作为日志框架</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">logging:</span><br><span class="line"> file: ../logs/spring-boot-hello.log</span><br><span class="line"> level.org.springframework.web: DEBUG</span><br></pre></td></tr></table></figure>
-
-<h2 id="关闭特定的自动配置"><a href="#关闭特定的自动配置" class="headerlink" title="关闭特定的自动配置"></a>关闭特定的自动配置</h2><hr>
-<p>关闭特定的自动配置使用<code>@SpringBootApplication</code>注解的<code>exclude</code>参数即可，这里以关闭数据源的自动配置为例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication(exclude = &#123;DataSourceAutoConfiguration.class&#125;)</span><br></pre></td></tr></table></figure>
-
+<p>运行它会先启动Spring Boot工程，再启动单元测试</p>
 
       
 
@@ -293,7 +258,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/31/Spring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/02/01/Spring-Boot-3-Spring-Boot-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -307,18 +272,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/10/31/Spring-Boot-5-Spring-Boot-%E6%95%B4%E5%90%88Thymeleaf/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/02/04/Spring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          [Spring Boot] 5 Spring Boot 整合Thymeleaf
+          [Spring Boot] 4 Spring Boot 常用配置
         
       </div>
     </a>
   
   
-    <a href="/2019/10/24/%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%8F%8A%E5%8A%A0%E5%9F%9F-%E7%BE%8E%E5%9B%BD%E7%A4%BC%E6%9D%A5%E9%A1%B9%E7%9B%AE/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">系统升级及加域 美国礼来项目</div>
+    <a href="/2019/01/25/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[Spring Boot] 2 Spring Boot 应用案例</div>
       <i class="icon-circle-right"></i>
     </a>
   

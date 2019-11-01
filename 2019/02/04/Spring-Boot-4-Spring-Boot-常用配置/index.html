@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>[Spring Boot] 6 Spring Boot 整合Druid、MyBatis和Pagehelper | DavidRacecourse | 码上说话</title>
+  <title>[Spring Boot] 4 Spring Boot 常用配置 | DavidRacecourse | 码上说话</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Spring Boot 整合 Druid概述Druid 是阿里巴巴开源平台上的一个项目，整个项目由数据库连接池、插件框架和 SQL 解析器组成。该项目主要是为了扩展 JDBC  的一些限制，可以让程序员实现一些特殊的需求，比如向密钥服务请求凭证、统计 SQL 信息、SQL 性能收集、SQL 注入检查、SQL  翻译等，程序员可以通过定制来实现自己需要的功能。 Druid 是目前最好的数据库连接池，">
+  <meta name="description" content="Spring Boot 常用配置概述本章节主要介绍一下Spring Boot中的一些常用配置，比如：自定义Banner、配置日志、关闭特定的自动配置等。 自定义 Banner 在Spring Boot启动的时候会有一个默认的启动图案 1234567  .   ____          _            __ _ _ &#x2F;\\ &#x2F; ___&amp;apos;_ __ _ _(_)_ __  __ _ \ \">
 <meta name="keywords" content="__Spring Boot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Spring Boot] 6 Spring Boot 整合Druid、MyBatis和Pagehelper">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;31&#x2F;Spring-Boot-6-Spring-Boot-%E6%95%B4%E5%90%88Druid%E3%80%81MyBatis%E5%92%8CPagehelper&#x2F;index.html">
+<meta property="og:title" content="[Spring Boot] 4 Spring Boot 常用配置">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;02&#x2F;04&#x2F;Spring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE&#x2F;index.html">
 <meta property="og:site_name" content="DavidRacecourse | 码上说话">
-<meta property="og:description" content="Spring Boot 整合 Druid概述Druid 是阿里巴巴开源平台上的一个项目，整个项目由数据库连接池、插件框架和 SQL 解析器组成。该项目主要是为了扩展 JDBC  的一些限制，可以让程序员实现一些特殊的需求，比如向密钥服务请求凭证、统计 SQL 信息、SQL 性能收集、SQL 注入检查、SQL  翻译等，程序员可以通过定制来实现自己需要的功能。 Druid 是目前最好的数据库连接池，">
+<meta property="og:description" content="Spring Boot 常用配置概述本章节主要介绍一下Spring Boot中的一些常用配置，比如：自定义Banner、配置日志、关闭特定的自动配置等。 自定义 Banner 在Spring Boot启动的时候会有一个默认的启动图案 1234567  .   ____          _            __ _ _ &#x2F;\\ &#x2F; ___&amp;apos;_ __ _ _(_)_ __  __ _ \ \">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-01T08:47:19.319Z">
+<meta property="og:image" content="d:%5Cblog%5Csource_posts%5CSpring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE.assets%5C1.png">
+<meta property="og:updated_time" content="2019-11-01T09:39:47.262Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="d:%5Cblog%5Csource_posts%5CSpring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE.assets%5C1.png">
   
     <link rel="alternative" href="/atom.xml" title="DavidRacecourse | 码上说话" type="application/atom+xml">
   
@@ -163,53 +165,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Spring-Boot-6-Spring-Boot-整合Druid、MyBatis和Pagehelper" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Spring-Boot-4-Spring-Boot-常用配置" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      [Spring Boot] 6 Spring Boot 整合Druid、MyBatis和Pagehelper
+      [Spring Boot] 4 Spring Boot 常用配置
     </h1>
   
 
         
-        <a href="/2019/10/31/Spring-Boot-6-Spring-Boot-%E6%95%B4%E5%90%88Druid%E3%80%81MyBatis%E5%92%8CPagehelper/" class="archive-article-date">
-  	<time datetime="2019-10-31T03:09:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-31</time>
+        <a href="/2019/02/04/Spring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/" class="archive-article-date">
+  	<time datetime="2019-02-04T03:08:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Spring-Boot-整合-Druid"><a href="#Spring-Boot-整合-Druid" class="headerlink" title="Spring Boot 整合 Druid"></a>Spring Boot 整合 Druid</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>Druid 是阿里巴巴开源平台上的一个项目，整个项目由数据库连接池、插件框架和 SQL 解析器组成。该项目主要是为了扩展 JDBC  的一些限制，可以让程序员实现一些特殊的需求，比如向密钥服务请求凭证、统计 SQL 信息、SQL 性能收集、SQL 注入检查、SQL  翻译等，程序员可以通过定制来实现自己需要的功能。</p>
-<p>Druid 是目前最好的数据库连接池，在功能、性能、扩展性方面，都超过其他数据库连接池，包括  DBCP、C3P0、BoneCP、Proxool、JBoss DataSource。Druid 已经在阿里巴巴部署了超过 600  个应用，经过多年生产环境大规模部署的严苛考验。Druid 是阿里巴巴开发的号称为监控而生的数据库连接池！</p>
-<h3 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h3><hr>
-<p>在 <code>pom.xml</code> 文件中引入 <code>druid-spring-boot-starter</code> 依赖</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+        <h1 id="Spring-Boot-常用配置"><a href="#Spring-Boot-常用配置" class="headerlink" title="Spring Boot 常用配置"></a>Spring Boot 常用配置</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>本章节主要介绍一下Spring Boot中的一些常用配置，比如：自定义Banner、配置日志、关闭特定的自动配置等。</p>
+<h2 id="自定义-Banner"><a href="#自定义-Banner" class="headerlink" title="自定义 Banner"></a>自定义 Banner</h2><hr>
+<p>在Spring Boot启动的时候会有一个默认的启动图案</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  .   ____          _            __ _ _</span><br><span class="line"> /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \</span><br><span class="line">( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \</span><br><span class="line"> \\/  ___)| |_)| | | | | || (_| |  ) ) ) )</span><br><span class="line">  '  |____| .__|_| |_|_| |_\__, | / / / /</span><br><span class="line"> =========|_|==============|___/=/_/_/_/</span><br><span class="line"> :: Spring Boot ::        (v1.5.8.RELEASE)</span><br></pre></td></tr></table></figure>
 
-<p> 引入数据库连接依赖 </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p> 通过<a href="http://patorjk.com/software/taag网站生成字符串，将网站生成的字符复制到banner.txt中" target="_blank" rel="noopener">http://patorjk.com/software/taag网站生成字符串，将网站生成的字符复制到banner.txt中</a> </p>
+<p> 再次运行这个程序 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">$&#123;AnsiColor.BRIGHT_RED&#125;</span><br><span class="line">////////////////////////////////////////////////////////////////////</span><br><span class="line">//                          _ooOoo_                               //</span><br><span class="line">//                         o8888888o                              //</span><br><span class="line">//                         88" . "88                              //</span><br><span class="line">//                         (| ^_^ |)                              //</span><br><span class="line">//                         O\  =  /O                              //</span><br><span class="line">//                      ____/`---'\____                           //</span><br><span class="line">//                    .'  \\|     |//  `.                         //</span><br><span class="line">//                   /  \\|||  :  |||//  \                        //</span><br><span class="line">//                  /  _||||| -:- |||||-  \                       //</span><br><span class="line">//                  |   | \\\  -  /// |   |                       //</span><br><span class="line">//                  | \_|  ''\---/''  |   |                       //</span><br><span class="line">//                  \  .-\__  `-`  ___/-. /                       //</span><br><span class="line">//                ___`. .'  /--.--\  `. . ___                     //</span><br><span class="line">//              ."" '&lt;  `.___\_&lt;|&gt;_/___.'  &gt;'"".                  //</span><br><span class="line">//            | | :  `- \`.;`\ _ /`;.`/ - ` : | |                 //</span><br><span class="line">//            \  \ `-.   \_ __\ /__ _/   .-` /  /                 //</span><br><span class="line">//      ========`-.____`-.___\_____/___.-`____.-'========         //</span><br><span class="line">//                           `=---='                              //</span><br><span class="line">//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        //</span><br><span class="line">//            佛祖保佑       永不宕机     永无BUG                  //</span><br><span class="line">////////////////////////////////////////////////////////////////////</span><br></pre></td></tr></table></figure>
 
-<h3 id="配置-application-yml"><a href="#配置-application-yml" class="headerlink" title="配置 application.yml"></a>配置 <code>application.yml</code></h3><p>在 <code>application.yml</code> 中配置数据库连接</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    druid:</span><br><span class="line">      url: jdbc:mysql://ip:port/dbname?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false</span><br><span class="line">      username: root</span><br><span class="line">      password: 123456</span><br><span class="line">      initial-size: 1</span><br><span class="line">      min-idle: 1</span><br><span class="line">      max-active: 20</span><br><span class="line">      test-on-borrow: true</span><br><span class="line">      # MySQL 8.x: com.mysql.cj.jdbc.Driver</span><br><span class="line">      driver-class-name: com.mysql.jdbc.Driver</span><br></pre></td></tr></table></figure>
+<h3 id="常用属性设置："><a href="#常用属性设置：" class="headerlink" title="常用属性设置："></a>常用属性设置：</h3><ul>
+<li><code>${AnsiColor.BRIGHT_RED}</code>：设置控制台中输出内容的颜色</li>
+<li><code>${application.version}</code>：用来获取 MANIFEST.MF 文件中的版本号</li>
+<li><code>${application.formatted-version}</code>：格式化后的 <code>${application.version}</code> 版本信息</li>
+<li><code>${spring-boot.version}</code>：Spring Boot 的版本号</li>
+<li><code>${spring-boot.formatted-version}</code>：格式化后的 <code>${spring-boot.version}</code> 版本信息</li>
+</ul>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><hr>
+<p>Spring Boot 项目使用一个全局的配置文件<code>application.properties</code>或者是<code>application.yml</code>在<code>resources</code>目录下或者类路径下的<code>/config</code>下，一般我们放到<code>resources</code>下。</p>
+<p>修改Tomcat的端口为9090，并将默认的访问路径 “/“ 修改为 “boot”，可以在<code>application.properties</code>中添加：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server.port=9090</span><br><span class="line">server.context-path=/boot</span><br></pre></td></tr></table></figure>
 
-<h2 id="Spring-Boot-整合-tk-mybatis"><a href="#Spring-Boot-整合-tk-mybatis" class="headerlink" title="Spring Boot 整合 tk.mybatis"></a>Spring Boot 整合 tk.mybatis</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><p>tk.mybatis 是在 MyBatis 框架的基础上提供了很多工具，让开发更加高效</p>
-<h3 id="引入依赖-1"><a href="#引入依赖-1" class="headerlink" title="引入依赖"></a>引入依赖</h3><hr>
-<p>在 <code>pom.xml</code> 文件中引入 <code>mapper-spring-boot-starter</code> 依赖，该依赖会自动引入MyBaits相关依赖</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>tk.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mapper-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p> 或在<code>application.yml</code>中添加： </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line"> port: 9090</span><br><span class="line"> context-path: /boot</span><br></pre></td></tr></table></figure>
 
-<h3 id="配置-application-yml-1"><a href="#配置-application-yml-1" class="headerlink" title="配置 application.yml"></a>配置 <code>application.yml</code></h3><p>配置 MyBatis</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mybatis:</span><br><span class="line"> type-aliases-package: 实体类的存放路径，如：com.funtl.hello.spring.boot.entity</span><br><span class="line"> mapper-locations: classpath:mapper/*.xml</span><br></pre></td></tr></table></figure>
+<p> 测试效果： </p>
+<p>  <img src="D:%5Cblog%5Csource_posts%5CSpring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE.assets%5C1.png" alt=""></p>
+<p><a href="https://docs.spring.io/spring-boot/docs/2.0.2.RELEASE/reference/html/common-application-properties.html" target="_blank" rel="noopener">更多配置</a></p>
+<h2 id="Starter-POM"><a href="#Starter-POM" class="headerlink" title="Starter POM"></a>Starter POM</h2><hr>
+<p>Spring Boot为我们提供了简化企业级开发绝大多数场景的starter pom，只要使用了应用场景所需要的starter pom，相关的技术配置将会消除，就可以得到Spring Boot为我们提供的自动配置的Bean。</p>
+<p><a href="https://docs.spring.io/spring-boot/docs/2.0.2.RELEASE/reference/html/using-boot-build-systems.html#using-boot-starter" target="_blank" rel="noopener">更多Starter POM</a></p>
+<h2 id="日志配置"><a href="#日志配置" class="headerlink" title="日志配置"></a>日志配置</h2><hr>
+<p>Spring Boot对各种日志框架都做了支持，我们可以通过配置来修改默认的日志的配置</p>
+<p>默认情况下，Spring Boot使用Logback作为日志框架</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">logging:</span><br><span class="line"> file: ../logs/spring-boot-hello.log</span><br><span class="line"> level.org.springframework.web: DEBUG</span><br></pre></td></tr></table></figure>
 
-<h3 id="创建一个通用的父级接口"><a href="#创建一个通用的父级接口" class="headerlink" title="创建一个通用的父级接口"></a>创建一个通用的父级接口</h3><hr>
-<p>主要作用是让 DAO 层的接口继承该接口，以达到使用 tk.mybatis 的目的</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package com.funtl.utils;</span><br><span class="line"></span><br><span class="line">import tk.mybatis.mapper.common.Mapper;</span><br><span class="line">import tk.mybatis.mapper.common.MySqlMapper;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 自己的 Mapper</span><br><span class="line"> * 特别注意，该接口不能被扫描到，否则会出错</span><br><span class="line"> * <span class="tag">&lt;<span class="name">p</span>&gt;</span>Title: MyMapper<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"> * <span class="tag">&lt;<span class="name">p</span>&gt;</span>Description: <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"> *</span><br><span class="line"> * @author Lusifer</span><br><span class="line"> * @version 1.0.0</span><br><span class="line"> * @date 2018/5/29 0:57</span><br><span class="line"> */</span><br><span class="line">public interface MyMapper<span class="tag">&lt;<span class="name">T</span>&gt;</span> extends Mapper<span class="tag">&lt;<span class="name">T</span>&gt;</span>, MySqlMapper<span class="tag">&lt;<span class="name">T</span>&gt;</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Spring-Boot-整合-PageHelper"><a href="#Spring-Boot-整合-PageHelper" class="headerlink" title="Spring Boot 整合 PageHelper"></a>Spring Boot 整合 PageHelper</h2><h3 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h3><p>PageHelper 是 Mybatis 的分页插件，支持多数据库、多数据源。可以简化数据库的分页查询操作，整合过程也极其简单，只需引入依赖即可。</p>
-<h3 id="引入依赖-2"><a href="#引入依赖-2" class="headerlink" title="引入依赖"></a>引入依赖</h3><p>在 <code>pom.xml</code> 文件中引入 <code>pagehelper-spring-boot-starter</code> 依赖</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.pagehelper<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>pagehelper-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="关闭特定的自动配置"><a href="#关闭特定的自动配置" class="headerlink" title="关闭特定的自动配置"></a>关闭特定的自动配置</h2><hr>
+<p>关闭特定的自动配置使用<code>@SpringBootApplication</code>注解的<code>exclude</code>参数即可，这里以关闭数据源的自动配置为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication(exclude = &#123;DataSourceAutoConfiguration.class&#125;)</span><br></pre></td></tr></table></figure>
 
 
       
@@ -280,7 +293,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/31/Spring-Boot-6-Spring-Boot-%E6%95%B4%E5%90%88Druid%E3%80%81MyBatis%E5%92%8CPagehelper/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/02/04/Spring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -294,18 +307,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/10/31/Spring-Boot-7-Spring-Boot-%E6%B5%8B%E8%AF%95MyBatis%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/02/07/Spring-Boot-5-Spring-Boot-%E6%95%B4%E5%90%88Thymeleaf/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          [Spring Boot] 7 Spring Boot 测试MyBatis操作数据库
+          [Spring Boot] 5 Spring Boot 整合Thymeleaf
         
       </div>
     </a>
   
   
-    <a href="/2019/10/31/Spring-Boot-5-Spring-Boot-%E6%95%B4%E5%90%88Thymeleaf/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">[Spring Boot] 5 Spring Boot 整合Thymeleaf</div>
+    <a href="/2019/02/01/Spring-Boot-3-Spring-Boot-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[Spring Boot] 3 Spring Boot 单元测试</div>
       <i class="icon-circle-right"></i>
     </a>
   
