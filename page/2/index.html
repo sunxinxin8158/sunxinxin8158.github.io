@@ -161,50 +161,33 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Spring-Boot-5-Spring-Boot-整合Thymeleaf" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Web-3-Web-Servlet输出JSON数据" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/07/Spring-Boot-5-Spring-Boot-%E6%95%B4%E5%90%88Thymeleaf/">[Spring Boot] 5 Spring Boot 整合Thymeleaf</a>
+      <a class="article-title" href="/2019/05/17/Web-3-Web-Servlet%E8%BE%93%E5%87%BAJSON%E6%95%B0%E6%8D%AE/">[Web] 3 Web Servlet输出JSON数据</a>
     </h1>
   
 
         
-        <a href="/2019/02/07/Spring-Boot-5-Spring-Boot-%E6%95%B4%E5%90%88Thymeleaf/" class="archive-article-date">
-  	<time datetime="2019-02-07T08:08:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-07</time>
+        <a href="/2019/05/17/Web-3-Web-Servlet%E8%BE%93%E5%87%BAJSON%E6%95%B0%E6%8D%AE/" class="archive-article-date">
+  	<time datetime="2019-05-17T04:11:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h2><hr>
-<p>主要增加<code>spring-boot-starter-thymeleaf</code> 和 <code>nekohtml</code> 这两个依赖</p>
-<ul>
-<li><code>spring-boot-starter-thymeleaf</code>：Thymeleaf 自动配置</li>
-<li><code>nekohtml</code>：允许使用非严格的 HTML 语法<br>完整的 <code>pom.xml</code> 如下：</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.funtl<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hello-spring-boot<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hello-spring-boot<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span><span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.reporting.outputEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-tomcat<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-actuator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.sourceforge.nekohtml<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>nekohtml<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.9.22<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>com.funtl.hello.spring.boot.HelloSpringBootApplication<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+        <h2 id="依赖jar包"><a href="#依赖jar包" class="headerlink" title="依赖jar包"></a>依赖jar包</h2><p>gson-2.8.5： 对象和 json 字符串之间相互转换。</p>
+<h2 id="代码实现-–-普通字符串返回"><a href="#代码实现-–-普通字符串返回" class="headerlink" title="代码实现 – 普通字符串返回"></a>代码实现 – 普通字符串返回</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@WebServlet("/jsonServlet")</span><br><span class="line">public class JsonServlet extends HttpServlet &#123;</span><br><span class="line">    private static final long serialVersionUID = 1L;</span><br><span class="line">    </span><br><span class="line">    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws     ServletException, IOException &#123;</span><br><span class="line">        // 解决json中文乱码</span><br><span class="line">        response.setContentType("text/json;charset=UTF-8");</span><br><span class="line">        response.setCharacterEncoding("UTF-8");</span><br><span class="line">        PrintWriter out = response.getWriter();</span><br><span class="line">        String str ="&#123;\"姓名\":\"HaHa先生\",\"年龄\":\"18岁啦\"&#125;";</span><br><span class="line">        out.println(str);</span><br><span class="line">        out.flush();</span><br><span class="line">        out.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="在-application-yml-中配置-Thymeleaf"><a href="#在-application-yml-中配置-Thymeleaf" class="headerlink" title="在 application.yml 中配置 Thymeleaf"></a>在 application.yml 中配置 Thymeleaf</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  thymeleaf:</span><br><span class="line">    cache: false # 开发时关闭缓存,不然没法看到实时页面</span><br><span class="line">    mode: LEGACYHTML5 # 用非严格的 HTML</span><br><span class="line">    encoding: UTF-<span class="number">8</span></span><br><span class="line">    servlet:</span><br><span class="line">      content-type: text/html</span><br></pre></td></tr></table></figure>
+<h2 id="代码实现-–-对象-–-使用-Gson-对象转字符串"><a href="#代码实现-–-对象-–-使用-Gson-对象转字符串" class="headerlink" title="代码实现 – 对象 – 使用 Gson 对象转字符串"></a>代码实现 – 对象 – 使用 Gson 对象转字符串</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException &#123;</span><br><span class="line">    // 解决json中文乱码</span><br><span class="line">    response.setContentType("text/json;charset=UTF-8");</span><br><span class="line">    response.setCharacterEncoding("UTF-8");</span><br><span class="line">    PrintWriter out = response.getWriter();</span><br><span class="line">    List<span class="tag">&lt;<span class="name">Client</span>&gt;</span> list = clientService.findList(new Client());</span><br><span class="line">    Gson gson = new Gson();</span><br><span class="line">    String json = gson.toJson(list);</span><br><span class="line">    out.println(json);</span><br><span class="line">    out.flush();</span><br><span class="line">    out.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="创建测试用-JavaBean"><a href="#创建测试用-JavaBean" class="headerlink" title="创建测试用 JavaBean"></a>创建测试用 JavaBean</h2><hr>
-<h3 id="创建一个测试效果的-JavaBean，简单封装一下即可"><a href="#创建一个测试效果的-JavaBean，简单封装一下即可" class="headerlink" title="创建一个测试效果的 JavaBean，简单封装一下即可"></a>创建一个测试效果的 JavaBean，简单封装一下即可</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.funtl.hello.spring.boot.entity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PersonBean</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用-ajax-获取-json-数据"><a href="#使用-ajax-获取-json-数据" class="headerlink" title="使用 ajax 获取 json 数据"></a>使用 ajax 获取 json 数据</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="javascript">    $.ajax(&#123;</span></span><br><span class="line"><span class="actionscript">        url:<span class="string">'$&#123;ctx&#125;/jsonServlet'</span>,</span></span><br><span class="line"><span class="actionscript">        type:<span class="string">'POST'</span>,</span></span><br><span class="line">        data:&#123;&#125;,</span><br><span class="line"><span class="actionscript">        dataType:<span class="string">'json'</span>,</span></span><br><span class="line"><span class="actionscript">        success:<span class="function"><span class="keyword">function</span><span class="params">(data)</span></span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> str =<span class="built_in">JSON</span>.stringify(data);</span></span><br><span class="line">            alert(str);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
 
-<h3 id="创建测试用-Controller"><a href="#创建测试用-Controller" class="headerlink" title="创建测试用 Controller"></a>创建测试用 Controller</h3><p>创建一个 Controller，造一些测试数据并设置跳转</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.funtl.hello.spring.boot.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.funtl.hello.spring.boot.entity.PersonBean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.ui.Model;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"thymeleaf"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"index"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">(Model model)</span> </span>&#123;</span><br><span class="line">        PersonBean person = <span class="keyword">new</span> PersonBean();</span><br><span class="line">        person.setName(<span class="string">"张三"</span>);</span><br><span class="line">        person.setAge(<span class="number">22</span>);</span><br><span class="line"></span><br><span class="line">        List&lt;PersonBean&gt; people = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        PersonBean p1 = <span class="keyword">new</span> PersonBean();</span><br><span class="line">        p1.setName(<span class="string">"李四"</span>);</span><br><span class="line">        p1.setAge(<span class="number">23</span>);</span><br><span class="line">        people.add(p1);</span><br><span class="line"></span><br><span class="line">        PersonBean p2 = <span class="keyword">new</span> PersonBean();</span><br><span class="line">        p2.setName(<span class="string">"王五"</span>);</span><br><span class="line">        p2.setAge(<span class="number">24</span>);</span><br><span class="line">        people.add(p2);</span><br><span class="line"></span><br><span class="line">        PersonBean p3 = <span class="keyword">new</span> PersonBean();</span><br><span class="line">        p3.setName(<span class="string">"赵六"</span>);</span><br><span class="line">        p3.setAge(<span class="number">25</span>);</span><br><span class="line">        people.add(p3);</span><br><span class="line"></span><br><span class="line">        model.addAttribute(<span class="string">"person"</span>, person);</span><br><span class="line">        model.addAttribute(<span class="string">"people"</span>, people);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"index"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="创建测试页面"><a href="#创建测试页面" class="headerlink" title="创建测试页面"></a>创建测试页面</h3><p>在 templates 目录下创建 <code>index.html</code> 文件，代码如下：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html SYSTEM <span class="string">"http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd"</span>&gt;</span><br><span class="line">&lt;html xmlns=<span class="string">"http://www.w3.org/1999/xhtml"</span> xmlns:th=<span class="string">"http://www.thymeleaf.org"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;Hello Thymeleaf&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;span&gt;访问 Model：&lt;/span&gt;&lt;span th:text="$&#123;person.name&#125;"&gt;&lt;/span&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;span&gt;访问列表&lt;/span&gt;</span><br><span class="line">        &lt;table&gt;</span><br><span class="line">            &lt;thead&gt;</span><br><span class="line">                &lt;tr&gt;</span><br><span class="line">                    &lt;th&gt;姓名&lt;/th&gt;</span><br><span class="line">                    &lt;th&gt;年龄&lt;/th&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">            &lt;/thead&gt;</span><br><span class="line">            &lt;tbody&gt;</span><br><span class="line">                &lt;tr th:each=<span class="string">"human : $&#123;people&#125;"</span>&gt;</span><br><span class="line">                    &lt;td th:text="$&#123;human.name&#125;"&gt;&lt;/td&gt;</span><br><span class="line">                    &lt;td th:text="$&#123;human.age&#125;"&gt;&lt;/td&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">            &lt;/tbody&gt;</span><br><span class="line">        &lt;/table&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-<p> 修改 html 标签用于引入 thymeleaf 引擎，这样才可以在其他标签里使用 <code>th:*</code> 语法，声明如下： </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html SYSTEM <span class="string">"http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd"</span>&gt;</span><br><span class="line">&lt;html xmlns=<span class="string">"http://www.w3.org/1999/xhtml"</span> xmlns:th=<span class="string">"http://www.thymeleaf.org"</span>&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="测试访问"><a href="#测试访问" class="headerlink" title="测试访问"></a>测试访问</h3><p>启动成功后，访问：<a href="https://wvincen.gitee.io/404.html" target="_blank" rel="noopener">http://localhost:9090/thymeleaf/index</a> 即可看到效果</p>
-<p><img src="D:%5Cblog%5Csource_posts%5CSpring-Boot-5-Spring-Boot-%E6%95%B4%E5%90%88Thymeleaf.assets%5C1.png" alt=""></p>
 
       
 
@@ -218,7 +201,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Spring Boot</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">__Web</a>
         		</li>
       		
 		</ul>
@@ -228,7 +211,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/02/07/Spring-Boot-5-Spring-Boot-%E6%95%B4%E5%90%88Thymeleaf/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/05/17/Web-3-Web-Servlet%E8%BE%93%E5%87%BAJSON%E6%95%B0%E6%8D%AE/">展开全文 >></a>
         </p>
       
 
@@ -258,65 +241,47 @@
 
 
   
-    <article id="post-Spring-Boot-4-Spring-Boot-常用配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Web-2-Web-重定向与请求转发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/04/Spring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/">[Spring Boot] 4 Spring Boot 常用配置</a>
+      <a class="article-title" href="/2019/05/15/Web-2-Web-%E9%87%8D%E5%AE%9A%E5%90%91%E4%B8%8E%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91/">[Web] 2 Web 重定向与请求转发 </a>
     </h1>
   
 
         
-        <a href="/2019/02/04/Spring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/" class="archive-article-date">
-  	<time datetime="2019-02-04T03:08:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-04</time>
+        <a href="/2019/05/15/Web-2-Web-%E9%87%8D%E5%AE%9A%E5%90%91%E4%B8%8E%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91/" class="archive-article-date">
+  	<time datetime="2019-05-15T13:28:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Spring-Boot-常用配置"><a href="#Spring-Boot-常用配置" class="headerlink" title="Spring Boot 常用配置"></a>Spring Boot 常用配置</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>本章节主要介绍一下Spring Boot中的一些常用配置，比如：自定义Banner、配置日志、关闭特定的自动配置等。</p>
-<h2 id="自定义-Banner"><a href="#自定义-Banner" class="headerlink" title="自定义 Banner"></a>自定义 Banner</h2><hr>
-<p>在Spring Boot启动的时候会有一个默认的启动图案</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  .   ____          _            __ _ _</span><br><span class="line"> /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \</span><br><span class="line">( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \</span><br><span class="line"> \\/  ___)| |_)| | | | | || (_| |  ) ) ) )</span><br><span class="line">  '  |____| .__|_| |_|_| |_\__, | / / / /</span><br><span class="line"> =========|_|==============|___/=/_/_/_/</span><br><span class="line"> :: Spring Boot ::        (v1.5.8.RELEASE)</span><br></pre></td></tr></table></figure>
-
-<p> 通过<a href="http://patorjk.com/software/taag网站生成字符串，将网站生成的字符复制到banner.txt中" target="_blank" rel="noopener">http://patorjk.com/software/taag网站生成字符串，将网站生成的字符复制到banner.txt中</a> </p>
-<p> 再次运行这个程序 </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">$&#123;AnsiColor.BRIGHT_RED&#125;</span><br><span class="line">////////////////////////////////////////////////////////////////////</span><br><span class="line">//                          _ooOoo_                               //</span><br><span class="line">//                         o8888888o                              //</span><br><span class="line">//                         88" . "88                              //</span><br><span class="line">//                         (| ^_^ |)                              //</span><br><span class="line">//                         O\  =  /O                              //</span><br><span class="line">//                      ____/`---'\____                           //</span><br><span class="line">//                    .'  \\|     |//  `.                         //</span><br><span class="line">//                   /  \\|||  :  |||//  \                        //</span><br><span class="line">//                  /  _||||| -:- |||||-  \                       //</span><br><span class="line">//                  |   | \\\  -  /// |   |                       //</span><br><span class="line">//                  | \_|  ''\---/''  |   |                       //</span><br><span class="line">//                  \  .-\__  `-`  ___/-. /                       //</span><br><span class="line">//                ___`. .'  /--.--\  `. . ___                     //</span><br><span class="line">//              ."" '&lt;  `.___\_&lt;|&gt;_/___.'  &gt;'"".                  //</span><br><span class="line">//            | | :  `- \`.;`\ _ /`;.`/ - ` : | |                 //</span><br><span class="line">//            \  \ `-.   \_ __\ /__ _/   .-` /  /                 //</span><br><span class="line">//      ========`-.____`-.___\_____/___.-`____.-'========         //</span><br><span class="line">//                           `=---='                              //</span><br><span class="line">//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        //</span><br><span class="line">//            佛祖保佑       永不宕机     永无BUG                  //</span><br><span class="line">////////////////////////////////////////////////////////////////////</span><br></pre></td></tr></table></figure>
-
-<h3 id="常用属性设置："><a href="#常用属性设置：" class="headerlink" title="常用属性设置："></a>常用属性设置：</h3><ul>
-<li><code>${AnsiColor.BRIGHT_RED}</code>：设置控制台中输出内容的颜色</li>
-<li><code>${application.version}</code>：用来获取 MANIFEST.MF 文件中的版本号</li>
-<li><code>${application.formatted-version}</code>：格式化后的 <code>${application.version}</code> 版本信息</li>
-<li><code>${spring-boot.version}</code>：Spring Boot 的版本号</li>
-<li><code>${spring-boot.formatted-version}</code>：格式化后的 <code>${spring-boot.version}</code> 版本信息</li>
+        <h2 id="转发是服务器行为，重定向是客户端行为"><a href="#转发是服务器行为，重定向是客户端行为" class="headerlink" title="转发是服务器行为，重定向是客户端行为"></a>转发是服务器行为，重定向是客户端行为</h2><p>为什么这样说呢，这就要看两个动作的工作流程：</p>
+<h3 id="转发过程：转发是浏览器上的网址不变"><a href="#转发过程：转发是浏览器上的网址不变" class="headerlink" title="转发过程：转发是浏览器上的网址不变"></a>转发过程：转发是浏览器上的网址不变</h3><p>客户浏览器发送 http 请求 –&gt; web 服务器接受此请求 –&gt; 调用内部的一个方法在容器内部完成请求处理和转发动作 –&gt;  将目标资源发送给客户；在这里，转发的路径必须是同一个 web 容器下的 url ，其不能转向到其他的 web  路径上去，中间传递的是自己的容器内的 request  。在客户浏览器路径栏显示的仍然是其第一次访问的路径，也就是说客户是感觉不到服务器做了转发的。转发行为是浏览器只做了一次访问请求。</p>
+<h3 id="重定向过程：重定向时浏览器上的网址改变"><a href="#重定向过程：重定向时浏览器上的网址改变" class="headerlink" title="重定向过程：重定向时浏览器上的网址改变"></a>重定向过程：重定向时浏览器上的网址改变</h3><p>客户浏览器发送 http 请求 –&gt; web 服务器接受后发送302状态码响应及对应新的 location 给客户浏览器 –&gt;  客户浏览器发现是302响应，则自动再发送一个新的 http 请求，请求 url 是新的 location 地址 –&gt;  服务器根据此请求寻找资源并发送给客户。在这里 location 可以重定向到任意 url ，既然是浏览器重新发出了请求，则就没有什么  request 传递的概念了。在客户浏览器路径栏显示的是其重定向的路径，客户可以观察到地址的变化的。重定向行为是浏览器做了至少两次的访问请求的。</p>
+<h2 id="请求转发和重定向的区别"><a href="#请求转发和重定向的区别" class="headerlink" title="请求转发和重定向的区别"></a>请求转发和重定向的区别</h2><h3 id="请求转发：转发只有一次请求"><a href="#请求转发：转发只有一次请求" class="headerlink" title="请求转发：转发只有一次请求"></a>请求转发：转发只有一次请求</h3><p>是服务器内部把对一个 request/response 的处理权，移交给另外一个。对于客户端而言，它只知道自己最早请求的那个 A ，而不知道中间的 B ，甚至 C、D 。传输的信息不会丢失。</p>
+<p>例子：<br>request.getRequestDispatcher(“loginsuccess.jsp”).forward(request,response);</p>
+<h3 id="重定向：重定向实际上产生了两次请求"><a href="#重定向：重定向实际上产生了两次请求" class="headerlink" title="重定向：重定向实际上产生了两次请求"></a>重定向：重定向实际上产生了两次请求</h3><p>其实是两次 request 。第一次，客户端 request A ,服务器响应，并 response 回来，告诉浏览器，你应该去 B 。这个时候 IE 可以看到地址变了，而且历史的回退按钮也亮了。重定向可以访问自己 web 应用以外的资源。在重定向的过程中，传输的信息会被丢失。</p>
+<p>例子：<br>response.sendRedirect(“loginsuccess.jsp”);</p>
+<ul>
+<li>重定向：</li>
 </ul>
-<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><hr>
-<p>Spring Boot 项目使用一个全局的配置文件<code>application.properties</code>或者是<code>application.yml</code>在<code>resources</code>目录下或者类路径下的<code>/config</code>下，一般我们放到<code>resources</code>下。</p>
-<p>修改Tomcat的端口为9090，并将默认的访问路径 “/“ 修改为 “boot”，可以在<code>application.properties</code>中添加：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server.port=9090</span><br><span class="line">server.context-path=/boot</span><br></pre></td></tr></table></figure>
-
-<p> 或在<code>application.yml</code>中添加： </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line"> port: 9090</span><br><span class="line"> context-path: /boot</span><br></pre></td></tr></table></figure>
-
-<p> 测试效果： </p>
-<p>  <img src="D:%5Cblog%5Csource_posts%5CSpring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE.assets%5C1.png" alt=""></p>
-<p><a href="https://docs.spring.io/spring-boot/docs/2.0.2.RELEASE/reference/html/common-application-properties.html" target="_blank" rel="noopener">更多配置</a></p>
-<h2 id="Starter-POM"><a href="#Starter-POM" class="headerlink" title="Starter POM"></a>Starter POM</h2><hr>
-<p>Spring Boot为我们提供了简化企业级开发绝大多数场景的starter pom，只要使用了应用场景所需要的starter pom，相关的技术配置将会消除，就可以得到Spring Boot为我们提供的自动配置的Bean。</p>
-<p><a href="https://docs.spring.io/spring-boot/docs/2.0.2.RELEASE/reference/html/using-boot-build-systems.html#using-boot-starter" target="_blank" rel="noopener">更多Starter POM</a></p>
-<h2 id="日志配置"><a href="#日志配置" class="headerlink" title="日志配置"></a>日志配置</h2><hr>
-<p>Spring Boot对各种日志框架都做了支持，我们可以通过配置来修改默认的日志的配置</p>
-<p>默认情况下，Spring Boot使用Logback作为日志框架</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">logging:</span><br><span class="line"> file: ../logs/spring-boot-hello.log</span><br><span class="line"> level.org.springframework.web: DEBUG</span><br></pre></td></tr></table></figure>
-
-<h2 id="关闭特定的自动配置"><a href="#关闭特定的自动配置" class="headerlink" title="关闭特定的自动配置"></a>关闭特定的自动配置</h2><hr>
-<p>关闭特定的自动配置使用<code>@SpringBootApplication</code>注解的<code>exclude</code>参数即可，这里以关闭数据源的自动配置为例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication(exclude = &#123;DataSourceAutoConfiguration.class&#125;)</span><br></pre></td></tr></table></figure>
-
+<p>　　发送请求 –&gt; 服务器运行 –&gt; 响应请求，返回给浏览器一个新的地址与响应码 –&gt; 浏览器根据响应码，判定该响应为重定向，自动发送一个新的请求给服务器，请求地址为之前返回的地址 –&gt; 服务器运行 –&gt; 响应请求给浏览器</p>
+<ul>
+<li>转发：</li>
+</ul>
+<p>　　发送请求 –&gt; 服务器运行 –&gt; 进行请求的重新设置，例如通过 request.setAttribute(name,value) –&gt;  根据转发的地址，获取该地址的网页 –&gt;  响应请求给浏览器 </p>
+<h2 id="重定向时的网址可以是任何网址，转发的网址必须是本站点的网址"><a href="#重定向时的网址可以是任何网址，转发的网址必须是本站点的网址" class="headerlink" title="重定向时的网址可以是任何网址，转发的网址必须是本站点的网址"></a>重定向时的网址可以是任何网址，转发的网址必须是本站点的网址</h2><h3 id="重定向与请求转发使用"><a href="#重定向与请求转发使用" class="headerlink" title="重定向与请求转发使用"></a>重定向与请求转发使用</h3><p>前后两个页面有数据传递，用请求转发，没有则用重定向。</p>
+<ul>
+<li>比如：servlet  查询了数据需要在页面显示，就用请求转发。</li>
+<li>比如：servlet 做了 update 操作跳转到其他页面，就用重定向。</li>
+</ul>
+<p>想共享信息，使用转发；想访问 WEB-INF 内容，使用转发；想跨域访问，使用重定向。</p>
 
       
 
@@ -330,7 +295,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Spring Boot</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">__Web</a>
         		</li>
       		
 		</ul>
@@ -340,7 +305,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/02/04/Spring-Boot-4-Spring-Boot-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/05/15/Web-2-Web-%E9%87%8D%E5%AE%9A%E5%90%91%E4%B8%8E%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91/">展开全文 >></a>
         </p>
       
 
@@ -370,32 +335,129 @@
 
 
   
-    <article id="post-Spring-Boot-3-Spring-Boot-单元测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Web-1-Web-学习总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/01/Spring-Boot-3-Spring-Boot-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">[Spring Boot] 3 Spring Boot 单元测试</a>
+      <a class="article-title" href="/2019/05/12/Web-1-Web-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">[Web] 1 Web 学习总结 </a>
     </h1>
   
 
         
-        <a href="/2019/02/01/Spring-Boot-3-Spring-Boot-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" class="archive-article-date">
-  	<time datetime="2019-02-01T04:12:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-01</time>
+        <a href="/2019/05/12/Web-1-Web-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="archive-article-date">
+  	<time datetime="2019-05-12T02:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>主要是通过<code>@RunWith</code>和<code>@SpringBootTest</code>注解来开启单元测试功能</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.funtl.hello.spring.boot;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.web.client.TestRestTemplate;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.web.server.LocalServerPort;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.ResponseEntity;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.hamcrest.CoreMatchers.equalTo;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.assertThat;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span>(classes = HelloSpringBootApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloSpringBootApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@LocalServerPort</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> port;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> URL base;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> TestRestTemplate template;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.base = <span class="keyword">new</span> URL(<span class="string">"http://localhost:"</span> + port + <span class="string">"/"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ResponseEntity&lt;String&gt; response = template.getForEntity(base.toString(), String.class);</span><br><span class="line">        assertThat(response.getBody(), equalTo(<span class="string">"Hello Spring Boot"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>运行它会先启动Spring Boot工程，再启动单元测试</p>
+        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><hr>
+<h3 id="WEB-开发的相关知识"><a href="#WEB-开发的相关知识" class="headerlink" title="WEB 开发的相关知识"></a>WEB 开发的相关知识</h3><p>WEB，在英语中 web 即表示网页的意思，它用于表示 Internet 主机上供外界访问的资源。Internet 上供外界访问的 Web 资源分为：</p>
+<blockquote>
+<ul>
+<li>静态 web 资源（如 html 页面）：指 web 页面中供人们浏览的数据始终是不变。</li>
+<li>动态 web 资源：指 web 页面中供人们浏览的数据是由程序产生的，不同时间点访问 web页面看到的内容各不相同。</li>
+</ul>
+</blockquote>
+<p>静态 web 资源开发技术：Html<br>常用动态 web 资源开发技术：JSP/Servlet、ASP、PHP 等<br>在 Java 中，动态web资源开发技术统称为 Javaweb。</p>
+<h3 id="WEB-应用程序"><a href="#WEB-应用程序" class="headerlink" title="WEB 应用程序"></a>WEB 应用程序</h3><p>WEB 应用程序指供浏览器访问的程序，通常也简称为 web 应用。例如有 a.html 、b.html …..多个 web 资源，这多个 web  资源用于对外提供服务，此时应把这多个 web 资源放在一个目录中，以组成一个 web 应用（或 web 应用程序）<br>一个 web 应用由多个静态web资源和动态 web 资源组成，如: html、css、js 文件，Jsp 文件、java 程序、支持 jar 包、配置文件等等。<br>Web 应用开发好后，若想供外界访问，需要把 web 应用所在目录交给 web 服务器管理，这个过程称之为虚似目录的映射</p>
+<h3 id="WEB-发展史"><a href="#WEB-发展史" class="headerlink" title="WEB 发展史"></a>WEB 发展史</h3><p>WEB 发展的两个阶段：静态、动态</p>
+<h3 id="静态-WEB"><a href="#静态-WEB" class="headerlink" title="静态 WEB"></a>静态 WEB</h3><p><em>htm、</em>html，这些是网页的后缀，如果现在在一个服务器上直接读取这些内容，那么意味着是把这些网页的内容通过网络服务器展现给用户。整个静态WEB操作的过程图如下：</p>
+<p><img src="https://wvincen.gitee.io/2019/06/11/Web-1-Web-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1.png" alt="图片1"></p>
+<p>在静态 WEB 程序中，客户端使用 WEB 浏览器（IE、FireFox 等）经过网络（Network）连接到服务器上，使用 HTTP  协议发起一个请求（Request），告诉服务器我现在需要得到哪个页面，所有的请求交给 WEB 服务器，之后 WEB  服务器根据用户的需要，从文件系统（存放了所有静态页面的磁盘）取出内容。之后通过 WEB  服务器返回给客户端，客户端接收到内容之后经过浏览器渲染解析，得到显示的效果。静态 WEB 中存在以下几个缺点：</p>
+<ul>
+<li>Web 页面中的内容无法动态更新，所有的用户每时每刻看见的内容和最终效果都是一样的。</li>
+</ul>
+<p>为了可以让静态的 WEB 的显示更加好看，可以加入了 JavaScript 以完成一些页面上的显示特效，但是这些特效都是在客户端上借助于浏览器展现给用户的，所以在服务器上本身并没有任何的变化。实现静态WEB 客户端动态效果的手段：</p>
+<blockquote>
+<ul>
+<li>JavaScript</li>
+<li>VBScript<br>在实际的开发中 JavaScript 使用得最多。</li>
+</ul>
+</blockquote>
+<ul>
+<li>静态 WEB 无法连接数据库，无法实现和用户的交互。<br>使用数据库保存数据是现在大多数系统的选择，因为数据库中可以方便地管理数据，增删改查操作可以使用标准的 SQL 语句完成。</li>
+</ul>
+<h2 id="动态-WEB"><a href="#动态-WEB" class="headerlink" title="动态 WEB"></a>动态 WEB</h2><p>所谓的动态不是指页面会动，主要的特性的是：“ WEB 的页面展示效果因时因人而变”，而且动态 WEB 具有交互性，WEB 的页面的内容可以动态更新。整个动态 WEB 操作的过程图如下：</p>
+<p><img src="https://wvincen.gitee.io/2019/06/11/Web-1-Web-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/2.png" alt="图片2"></p>
+<p>动态 WEB 中，程序依然使用客户端和服务端，客户端依然使用浏览器（IE、FireFox  等），通过网络（Network）连接到服务器上，使用 HTTP 协议发起请求（Request），现在的所有请求都先经过一个WEB Server  Plugin（服务器插件）来处理，此插件用于区分是请求的是静态资源（<em>.htm 或者是</em> .htm）还是动态资源。</p>
+<p>如果 WEB Server Plugin 发现客户端请求的是静态资源（<em>.htm或者是</em>.htm），则将请求直接转交给 WEB 服务器，之后 WEB 服务器从文件系统中取出内容，发送回客户端浏览器进行解析执行。</p>
+<p>如果 WEB Server Plugin 发现客户端请求的是动态资源（<em>.jsp、</em>.asp/<em>.aspx、</em>.php），则先将请求转交给WEB Container（WEB容器），在 WEB Container  中连接数据库，从数据库中取出数据等一系列操作后动态拼凑页面的展示内容，拼凑页面的展示内容后，把所有的展示内容交给 WEB 服务器，之后通过  WEB 服务器将内容发送回客户端浏览器进行解析执行。</p>
+<h2 id="动态-WEB-应用的实现手段"><a href="#动态-WEB-应用的实现手段" class="headerlink" title="动态 WEB 应用的实现手段"></a>动态 WEB 应用的实现手段</h2><p>动态 WEB 现在的实现手段非常多，较为常见的有以下几种：</p>
+<blockquote>
+<ul>
+<li>Microsoft ASP、ASP.NET</li>
+<li>PHP</li>
+<li>JAVA Servlet/JSP</li>
+</ul>
+</blockquote>
+<p><strong>Microsoft ASP、ASP.NET</strong></p>
+<p>微软公司动态 WEB 开发是比较早的，而且最早在国内最流行的是 ASP 。ASP 就是在 HTML 语言之中增加了 VB  脚本，但是标准的开发应用应该是使用 ASP+COM ，但是实际情况来看，在开发 ASP  的时候基本上都在一个页面中写上成百上千的代码，页面代码极其混乱。</p>
+<p>ASP 本身有开发平台的限制：Windows+IIS+SQL Server/Access，ASP 只能运行在 Windows  操作系统上，ASP 现在基本上已经淘汰，现在基本上都是使用 ASP.NET 进行开发，ASP.NET  在性能有了很大的改善，而且开发迅速，但是依然受限于平台。ASP.NET 中主要是使用 C# 语言。</p>
+<p><strong>PHP</strong></p>
+<p>PHP 开发速度很快，功能强大，跨平台（平台指的就是运行的操作系统），而且代码也简单。</p>
+<p><strong>Servlet/JSP</strong></p>
+<p>这是SUN公司（SUN现在已经被Oracle公司收购）主推的 B/S 架构的实现语言，是基于 JAVA 语言发展起来的，因为 JAVA 语言足够简单，而且很干净。</p>
+<p>Servlet/JSP 技术的性能也是非常高的，不受平台的限制，各个平台基本上都可以使用。而且在运行中是使用多线程的处理方式，所以性能非常高。</p>
+<p>SUN 公司最早推出的 WEB 技术推出的是 Servlet 程序，Servlet 程序本身使用的时候有一些问题，所有的程序是采用  JAVA 代码+ HTML 的方式编写的，即，要使用 JAVA 输出语句，一行一行地输出所有的HTML 代码，之后，SUN 公司受到了 ASP  的启发，发展出了 JSP（Java Server Page），JSP 某些代码的编写效果与 ASP 是非常相似的。这样可以很方便地使一些 ASP 程序员转向 JSP 的学习，加大市场的竞争力度。</p>
+<h2 id="WEB-服务器"><a href="#WEB-服务器" class="headerlink" title="WEB 服务器"></a>WEB 服务器</h2><h3 id="WEB-服务器简介"><a href="#WEB-服务器简介" class="headerlink" title="WEB 服务器简介"></a>WEB 服务器简介</h3><p>Web 服务器是指驻留于因特网上某种类型计算机的程序，是可以向发出请求的浏览器提供文档的程序。当 Web 浏览器（客户端）连到服务器上并请求文件时，服务器将处理该请求并将文件反馈到该浏览器上，附带的信息会告诉浏览器如何查看该文件（即文件类型）。</p>
+<p><img src="https://wvincen.gitee.io/2019/06/11/Web-1-Web-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/3.jpeg" alt="图片3"></p>
+<p>服务器是一种被动程序：只有当 Internet 上运行在其他计算机中的浏览器发出请求时，服务器才会响应。</p>
+<p><img src="https://wvincen.gitee.io/2019/06/11/Web-1-Web-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/4.png" alt="图片4"></p>
+<h3 id="常见的-Web-服务器介绍"><a href="#常见的-Web-服务器介绍" class="headerlink" title="常见的 Web 服务器介绍"></a>常见的 Web 服务器介绍</h3><p><strong>WebLogic</strong></p>
+<p>WebLogic 是美国 bea 公司出品的一个 application server 。BEA WebLogic  是用于开发、集成、部署和管理大型分布式 Web 应用、网络应用和数据库应用的 Java 应用服务器。将 Java 的动态功能和 Java  Enterprise 标准的安全性引入大型网络应用的开发、集成、部署和管理之中。是目前应用最广泛的 Web 服务器，支持 J2EE  规范，而且不断的完善以适应新的开发要求，启动界面如图：</p>
+<p><img src="https://wvincen.gitee.io/2019/06/11/Web-1-Web-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/5.png" alt="图片5"></p>
+<p><strong>WebSphere</strong></p>
+<p>WebSphere Application Server 是一种功能完善、开放的 Web 应用程序服务器，是 IBM  公司电子商务计划的核心部分，它是基于 Java 的应用环境，用于建立、部署和管理 Internet 和 Intranet Web  应用程序。这一整套产品进行了扩展，以适应 Web 应用程序服务器的需要，范围从简单到高级直到企业级。启动界面如图：</p>
+<p><img src="https://wvincen.gitee.io/2019/06/11/Web-1-Web-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/6.png" alt="图片6"></p>
+<p><strong>Tomcat</strong></p>
+<p>TomcatTomcat 是一个实现了 JAVA EE 标准的最小的WEB服务器，是 Apache 软件基金会的 Jakarta  项目中的一个核心项目，由 Apache、Sun 和其他一些公司及个人共同开发而成。因为 Tomcat 技术先进、性能稳定，而且开源免费，因而深受 Java 爱好者的喜爱并得到了部分软件开发商的认可，成为目前比较流行的 Web 应用服务器。学习 JavaWeb 开发一般都使用 Tomcat 服务器，该服务器支持全部 JSP 以及Servlet 规范，启动界面如图：</p>
+<p><img src="https://wvincen.gitee.io/2019/06/11/Web-1-Web-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/7.png" alt="图片7"></p>
+<p><strong>IIS</strong></p>
+<p>Microsoft 的 Web 服务器产品为 Internet Information Services （IIS），IIS 是允许在公共 Intranet 或Internet 上发布信息的Web服务器。IIS 是目前最流行的Web服务器产品之一，很多著名的网站都是建立在 IIS  的平台上。IIS 提供了一个图形界面的管理工具，称为 Internet 信息服务管理器，可用于监视配置和控制 Internet 服务。</p>
+<p>IIS 是一种 Web 服务组件，其中包括 Web 服务器、FTP 服务器、NNTP 服务器和 SMTP  服务器，分别用于网页浏览、文件传输、新闻服务和邮件发送等方面，它使得在网络（包括互联网和局域网）上发布信息成了一件很容易的事。它提供  ISAPI（Intranet Server API）作为扩展Web服务器功能的编程接口；同时，它还提供一个 Internet  数据库连接器，可以实现对数据库的查询和更新。</p>
+<p><img src="https://wvincen.gitee.io/2019/06/11/Web-1-Web-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/8.png" alt="图片8"></p>
+<p>学习 web 开发，需要先安装一台 web 服务器，然后再在 web 服务器中开发相应的 web 资源，供用户使用浏览器访问。</p>
+<h2 id="搭建-JavaWeb-应用开发环境-——-Tomcat-服务器"><a href="#搭建-JavaWeb-应用开发环境-——-Tomcat-服务器" class="headerlink" title="搭建 JavaWeb 应用开发环境 —— Tomcat 服务器"></a>搭建 JavaWeb 应用开发环境 —— Tomcat 服务器</h2><p><strong>疑问：学习 web 开发，为什么必须要先装一个 WEB 服务器？</strong></p>
+<p>在本地计算机上随便创建一个 web页面，用户是无法访问到的，但是如果启动 tomcat 服务器，把 web页面放在 tomcat 服务器中，用户就可以访问了。这说明什么问题?</p>
+<ul>
+<li>不管什么 web 资源，想被远程计算机访问，都必须有一个与之对应的网络通信程序，当用户来访问时，这个网络通信程序读取 web 资源数据，并把数据发送给来访者。</li>
+<li>WEB 服务器就是这样一个程序，它用于完成底层网络通迅。使用这些服务器，We 应用的开发者只需要关注 web 资源怎么编写，而不需要关心资源如何发送到客户端手中，从而极大的减轻了开发者的开发工作量。</li>
+</ul>
+<p><strong>下载和安装 Tomcat 服务器</strong></p>
+<p>Tomcat 官方站点：<a href="http://jakarta.apache.org" target="_blank" rel="noopener">http://jakarta.apache.org</a></p>
+<p>下载 Tomcat 安装程序包：<a href="http://tomcat.apache.org/" target="_blank" rel="noopener">http://tomcat.apache.org/</a></p>
+<p><img src="https://wvincen.gitee.io/2019/06/11/Web-1-Web-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/9.png" alt="图片9"></p>
+<p>点击【Download】跳转到如下图所示的下载页面</p>
+<p><img src="https://wvincen.gitee.io/2019/06/11/Web-1-Web-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/10.png" alt="图片10"></p>
+<ul>
+<li>tar.gz 文件是 Linux 操作系统下的安装版本</li>
+<li>exe 文件是 Windows 系统下的安装版本</li>
+<li>zip 文件是 Windows 系统下的压缩版本</li>
+</ul>
+<p>下载完成后得到的是一个压缩包，将压缩包解压就可以完成 Tomcat 服务器的安装，将压缩包解压后，得到的就是如下图所示的文件夹，这样就完成了 Tomcat 服务器的安装。</p>
+<p><strong>启动和测试 Tomcat 服务器</strong></p>
+<p><img src="https://wvincen.gitee.io/2019/06/11/Web-1-Web-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/11.png" alt="图片11"></p>
+<p>启动 Tomcat 服务器：双击 bin 目录下的 startup.bat 文件启动 Tomcat 服务器</p>
+<p><img src="https://wvincen.gitee.io/2019/06/11/Web-1-Web-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/12.png" alt="图片12"><br><img src="https://wvincen.gitee.io/2019/06/11/Web-1-Web-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/13.png" alt="图片13"></p>
+<p>测试 Tomcat 服务器：打开浏览器，输入 <a href="https://wvincen.gitee.io/404.html" target="_blank" rel="noopener">http://localhost:8080</a> ，能显示如下界面代表安装成功<br><img src="https://wvincen.gitee.io/2019/06/11/Web-1-Web-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/14.png" alt="图片14"></p>
+<p>Tomcat 启动常见问题：导致 Tomcat 服务器无法正常启动的原因一般来说就是如下的两个</p>
+<ul>
+<li>JAVA_HOME 环境变量设置问题</li>
+</ul>
+<p>要想双击 bin 目录下的 startup.bat 文件启动 Tomcat 服务器，首先要做的就是 在windows 中设置  JAVA_HOME 环境变量，因为 Tomcat 服务器的启动需要用到这个 JAVA_HOME 环境变量，如果 windows 中不存在  JAVA_HOME 环境变量，则 Tomcat 服务器是无法启动的。</p>
+<p>在 Window 中配置 JAVA_HOME 变量，操作步骤( win10  系统)：计算机→右键“属性”→高级系统设置→高级→环境变量。点击系统变量下面的“【新建】”，弹出一个新建系统变量对话框，首先在变量名写上  JAVA_HOME ，顾名思义， JAVA_HOME 的含义就是 JDK 的安装路径，，然后在变量值写 JDK  的安装路径，如这里设置的变量值是” D:\Program Files (x86)\Java\jdk1.8.0  “，设置好变量值之后，点击【确定】按钮， JAVA_HOME 环境变量就设置完成，如下图所示：系统变量中多了一个” JAVA_HOME  “变量。正常来说，学习 Java 开发的第一步就是配置 Path 环境变量，比较好的配置方式是先配置 JAVA_HOME 环境变量，然后在  Path 变量中使用” %JAVA_HOME% “引用 JAVA_HOME 变量的值。所以这个 JAVA_HOME 环境变量在 Window  中一般都是已经配置好了的，如果忘记配置 JAVA_HOME 环境变量，那么可以使用上述的方式配置。</p>
+<ul>
+<li>端口占用问题</li>
+</ul>
+<p>因为Tomcat服务器启动时是需要默认是使用8080端口的，如果这个8080端口被别的应用程序占用了，那么Tomcat服务器就无法正常启动，看到的现象就是”Tomcat服务器启动界面会打印出异常错误信息，然后就自动关闭了”，如下图所示：</p>
+<p><img src="https://wvincen.gitee.io/2019/06/11/Web-1-Web-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/15.png" alt="图片15"></p>
+<p>由于这个窗口从启动到关闭的时间非常短，我们很难通过这个窗口看到 Tomcat 启动时的报错异常信息，因此我们一般只能通过 Tomcat  服务器的记录的 log (日志)信息去查看 Tomcat 服务器的运行情况。在 Tomcat 服务器的根目录下有一个logs文件夹， logs  文件夹存放 Tomcat 的日志文件，打开 logs 文件夹，可以看到里面的 log 文件，其中有一个以”  catalina.yyyy-MM-dd.log “形式命名的 log 文件，例如” catalina.2019-05-17.log  “日志文件就是记录 Tomcat 服务器 2019-05-17 这一天的运行情况。打开 catalina.2019-05-17.log  文件，看看里面的日志记录信息。日志信息里面清楚的记录了 Tomcat 服务器的运行情况，如果因为 8080  端口被占用而无法正常启动，就会记录如上图所示的异常信息，通过查看异常信息，我们就可知道 Tomcat 服务器为什么不能够正常启动了！</p>
+<p>总结：当 Tomcat 服务器无法正常启动时，首先检查是否配置了 JAVA_HOME 环境变量，然后再检查 Tomcat 服务器启动时的端口是否被别的应用程序占用了。</p>
 
       
 
@@ -409,7 +471,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Spring Boot</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">__Web</a>
         		</li>
       		
 		</ul>
@@ -419,7 +481,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/02/01/Spring-Boot-3-Spring-Boot-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/05/12/Web-1-Web-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">展开全文 >></a>
         </p>
       
 
@@ -449,65 +511,70 @@
 
 
   
-    <article id="post-Spring-Boot-2-Spring-Boot-应用案例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Ubuntu-8-Ubuntu-常用命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/25/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/">[Spring Boot] 2 Spring Boot 应用案例</a>
+      <a class="article-title" href="/2019/04/30/Ubuntu-8-Ubuntu-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">[Ubuntu] 8 Ubuntu 常用命令</a>
     </h1>
   
 
         
-        <a href="/2019/01/25/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/" class="archive-article-date">
-  	<time datetime="2019-01-25T02:12:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-25</time>
+        <a href="/2019/04/30/Ubuntu-8-Ubuntu-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="archive-article-date">
+  	<time datetime="2019-04-30T08:51:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>这里我们使用 Intellij IDEA 来新建一个 Spring Boot 项目。</p>
-<h3 id="打开-IDEA-gt-New-Project-gt-Spring-Initializr"><a href="#打开-IDEA-gt-New-Project-gt-Spring-Initializr" class="headerlink" title="打开 IDEA -&gt; New Project -&gt; Spring Initializr"></a>打开 IDEA -&gt; New Project -&gt; Spring Initializr</h3><p><img src="https://wvincen.gitee.io/2019/06/29/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/1.png" alt="1"></p>
-<h3 id="填写项目信息"><a href="#填写项目信息" class="headerlink" title="填写项目信息"></a>填写项目信息</h3><p><img src="https://wvincen.gitee.io/2019/06/29/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/2.png" alt="2"></p>
-<h3 id="选择-Spring-Boot-版本及-Web-开发所需的依赖"><a href="#选择-Spring-Boot-版本及-Web-开发所需的依赖" class="headerlink" title="选择 Spring Boot 版本及 Web 开发所需的依赖"></a>选择 Spring Boot 版本及 Web 开发所需的依赖</h3><p><img src="https://wvincen.gitee.io/2019/06/29/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/3.png" alt="3"></p>
-<h3 id="保存项目到指定目录"><a href="#保存项目到指定目录" class="headerlink" title="保存项目到指定目录"></a>保存项目到指定目录</h3><p><img src="https://wvincen.gitee.io/2019/06/29/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/4.png" alt="4"></p>
-<h3 id="工程目录结构"><a href="#工程目录结构" class="headerlink" title="工程目录结构"></a>工程目录结构</h3><p>创建完成后的工程目录结构如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">│  .gitignore</span><br><span class="line">│  pom.xml</span><br><span class="line">│</span><br><span class="line">│</span><br><span class="line">└─src</span><br><span class="line">    ├─main</span><br><span class="line">    │  ├─java</span><br><span class="line">    │  │  └─com</span><br><span class="line">    │  │      └─funtl</span><br><span class="line">    │  │          └─hello</span><br><span class="line">    │  │              └─spring</span><br><span class="line">    │  │                  └─boot</span><br><span class="line">    │  │                          HelloSpringBootApplication.java</span><br><span class="line">    │  │</span><br><span class="line">    │  └─resources</span><br><span class="line">    │      │  application.properties</span><br><span class="line">    │      │</span><br><span class="line">    │      ├─static</span><br><span class="line">    │      └─templates</span><br><span class="line">    └─test</span><br><span class="line">        └─java</span><br><span class="line">            └─com</span><br><span class="line">                └─funtl</span><br><span class="line">                    └─hello</span><br><span class="line">                        └─spring</span><br><span class="line">                            └─boot</span><br><span class="line">                                    HelloSpringBootApplicationTests.java</span><br></pre></td></tr></table></figure>
+        <h2 id="防火墙相关命令（Ubuntu）"><a href="#防火墙相关命令（Ubuntu）" class="headerlink" title="防火墙相关命令（Ubuntu）"></a>防火墙相关命令（Ubuntu）</h2><h3 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ufw</span><br></pre></td></tr></table></figure>
 
+<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><p><strong>启用</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw default deny </span><br><span class="line">sudo ufw enable</span><br></pre></td></tr></table></figure>
 
+<p>通过第一命令，我们设置默认的规则为allow， 这样除非指明打开的端口， 否则所有端口默认都是关闭的。第二个命令则启动了ufw。如果下次重新启动机器， ufw也会自动启动。<br>对于大部分防火墙操作来说， 其实无非就是的打开关闭端口。</p>
+<p><strong>关闭</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw disable</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>.gitignore：Git 过滤配置文件</li>
-<li>pom.xml：Maven 的依赖管理配置文件</li>
-<li>HelloSpringBootApplication.java：程序入口</li>
-<li>resources：资源文件目录<ul>
-<li>static: 静态资源文件目录</li>
-<li>templates：模板资源文件目录</li>
-<li>application.properties：Spring Boot 的配置文件，实际开发中会替换成 YAML 语言配置（application.yml）</li>
-</ul>
-</li>
-</ul>
-<h3 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.funtl<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hello-spring-boot<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hello-spring-boot<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span><span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.reporting.outputEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p> <strong>查看防火墙状态</strong> </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw status</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>parent：继承了 Spring Boot 的 Parent，表示我们是一个 Spring Boot 工程</li>
-<li>spring-boot-starter-web：包含了 spring-boot-starter 还自动帮我们开启了 Web 支持</li>
-</ul>
-<h2 id="功能演示"><a href="#功能演示" class="headerlink" title="功能演示"></a>功能演示</h2><p>我们创建一个 Controller 来演示一下 Spring Boot 的神奇功能</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.funtl.hello.spring.boot.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">""</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">sayHi</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello Spring Boot"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> <strong>开启/禁用相应端口或服务举例</strong> </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># 允许外部访问80端口</span><br><span class="line">sudo ufw allow 80</span><br><span class="line"></span><br><span class="line"># 禁止外部访问80端口</span><br><span class="line">sudo ufw delete allow 80</span><br><span class="line"></span><br><span class="line"># 允许此 IP 访问所有的本机端口</span><br><span class="line">sudo ufw allow from 192.168.1.1</span><br><span class="line"></span><br><span class="line"># 禁止外部访问 smtp 服务</span><br><span class="line">sudo ufw deny smtp</span><br><span class="line"></span><br><span class="line"># 删除上面建立的某条规则</span><br><span class="line">sudo ufw delete allow smtp</span><br><span class="line"></span><br><span class="line"># 要拒绝所有的 TCP 流量从10.0.0.0/8 到192.168.0.1地址的22端口</span><br><span class="line">sudo ufw deny proto tcp from 10.0.0.0/8 to 192.168.0.1 port 22</span><br><span class="line"></span><br><span class="line"># 可以允许所有 RFC 1918网络（局域网/无线局域网的）访问这个主机（/8,/16,/12是一种网络分级）</span><br><span class="line">sudo ufw allow from 10.0.0.0/8</span><br><span class="line">sudo ufw allow from 172.16.0.0/12</span><br><span class="line">sudo ufw allow from 192.168.0.0/16</span><br></pre></td></tr></table></figure>
 
-<p>启动 <code>HelloSpringBootApplication</code> 的 <code>main()</code> 方法，浏览器访问 <a href="https://wvincen.gitee.io/404.html" target="_blank" rel="noopener">http://localhost:8080</a> 可以看到：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello Spring Boot</span><br></pre></td></tr></table></figure>
+<p> 推荐设置 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ufw</span><br><span class="line">sudo ufw enable</span><br><span class="line">sudo ufw default deny</span><br></pre></td></tr></table></figure>
 
-<h2 id="神奇之处"><a href="#神奇之处" class="headerlink" title="神奇之处"></a>神奇之处</h2><ul>
-<li>没有配置 web.xml</li>
-<li>没有配置 application.xml，Spring Boot 帮你配置了</li>
-<li>没有配置 application-mvc.xml，Spring Boot 帮你配置了</li>
-<li>没有配置 Tomcat，Spring Boot 内嵌了 Tomcat 容器</li>
-</ul>
+<p>这样设置已经很安全，如果有特殊需要，可以使用 <code>sudo ufw allow</code> 开启相应服务。</p>
+<h2 id="进程命令"><a href="#进程命令" class="headerlink" title="进程命令"></a>进程命令</h2><p><strong>查看进程</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep mysql</span><br><span class="line">ps -ef | grep tomcat-8</span><br></pre></td></tr></table></figure>
+
+<p> <strong>结束进程</strong> </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Kill -9 进程号</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看端口"><a href="#查看端口" class="headerlink" title="查看端口"></a>查看端口</h2><p><strong>方法一</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">netstat -an | grep 8080</span><br><span class="line"></span><br><span class="line"># 端口已被监听</span><br><span class="line">tcp6       0      0 :::8080                 :::*                    LISTEN</span><br></pre></td></tr></table></figure>
+
+<p> <strong>方法二</strong> </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">telnet 192.168.189.137 8080</span><br><span class="line"></span><br><span class="line"># 表端口已打开</span><br><span class="line">Trying 192.168.189.137...</span><br><span class="line">Connected to 192.168.189.137.</span><br><span class="line">Escape character is '^]'.</span><br><span class="line"></span><br><span class="line"># 表端口未打开</span><br><span class="line">Trying 192.168.189.137...</span><br><span class="line">telnet: Unable to connect to remote host: Connection refused</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h2><p>先切换到你的 <code>tomcat</code> 下的 <code>logs：cd usr/local/tomcat/logs</code> 控制台执行：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -f catalina.out</span><br></pre></td></tr></table></figure>
+
+<p>这样运行时就可以实时查看运行日志了</p>
+<h2 id="网络命令"><a href="#网络命令" class="headerlink" title="网络命令"></a>网络命令</h2><p>查看网路链接的状态：<code>systemctl status networking.service</code></p>
+<p>重启网路链接：<code>systemctl restart networking.service</code></p>
+<p>关闭网路链接：<code>systemctl stop networking.service</code></p>
+<h2 id="MySQL-命令"><a href="#MySQL-命令" class="headerlink" title="MySQL 命令"></a>MySQL 命令</h2><p>启动 mysql 服务：<code>systemctl start mysqld.service</code></p>
+<p>停止 mysql 服务：<code>systemctl stop mysqld.service</code></p>
+<p>重启 mysql 服务：<code>systemctl restart mysqld.service</code></p>
+<p>查看 mysql 服务当前状态：<code>systemctl status mysqld.service</code></p>
+<p>设置 mysql 服务开机自启动：<code>systemctl enable mysqld.service</code></p>
+<p>停止 mysql 服务开机自启动：<code>systemctl disable mysqld.service</code></p>
 
       
 
@@ -521,7 +588,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Spring Boot</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Ubuntu</a>
         		</li>
       		
 		</ul>
@@ -531,7 +598,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/25/Spring-Boot-2-Spring-Boot-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/04/30/Ubuntu-8-Ubuntu-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">展开全文 >></a>
         </p>
       
 
@@ -561,53 +628,65 @@
 
 
   
-    <article id="post-Spring-Boot-1-Spring-Boot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Ubuntu-7-Ubuntu-Server安装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/23/Spring-Boot-1-Spring-Boot/">[Spring Boot] 1 Spring Boot</a>
+      <a class="article-title" href="/2019/04/26/Ubuntu-7-Ubuntu-Server%E5%AE%89%E8%A3%85/">[Ubuntu] 7 Ubuntu Server安装</a>
     </h1>
   
 
         
-        <a href="/2019/01/23/Spring-Boot-1-Spring-Boot/" class="archive-article-date">
-  	<time datetime="2019-01-23T08:01:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-23</time>
+        <a href="/2019/04/26/Ubuntu-7-Ubuntu-Server%E5%AE%89%E8%A3%85/" class="archive-article-date">
+  	<time datetime="2019-04-26T14:20:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Spring-简史"><a href="#Spring-简史" class="headerlink" title="Spring 简史"></a>Spring 简史</h2><h3 id="Spring-1-x-时代"><a href="#Spring-1-x-时代" class="headerlink" title="Spring 1.x 时代"></a>Spring 1.x 时代</h3><p>在 Spring1.x 时代，都是通过 xml 文件配置 bean，随着项目的不断扩大，需要将 xml 配置分放到不同的配置文件中，需要频繁的在 java 类和 xml 配置文件中切换。</p>
-<h3 id="Spring-2-x-时代"><a href="#Spring-2-x-时代" class="headerlink" title="Spring 2.x 时代"></a>Spring 2.x 时代</h3><p>随着 JDK 1.5 带来的注解支持，Spring2.x 可以使用注解对 Bean 进行申明和注入，大大的减少了 xml 配置文件，同时也大大简化了项目的开发。</p>
-<p>那么，问题来了，究竟是应该使用 xml 还是注解呢？</p>
-<p>最佳实践：</p>
-<ul>
-<li>应用的基本配置用 xml，比如：数据源、资源文件等</li>
-<li>业务开发用注解，比如：Service 中注入 bean 等</li>
-</ul>
-<h3 id="Spring-3-x-时代"><a href="#Spring-3-x-时代" class="headerlink" title="Spring 3.x 时代"></a>Spring 3.x 时代</h3><p>从 Spring3.x 开始提供了 Java 配置方式，使用 Java 配置方式可以更好的理解你配置的 Bean，现在我们就处于这个时代，并且 Spring4.x 和 Spring boot 都推荐使用 java 配置的方式。</p>
-<h3 id="Spring-5-x-时代"><a href="#Spring-5-x-时代" class="headerlink" title="Spring 5.x 时代"></a>Spring 5.x 时代</h3><p>Spring5.x 是 Java 界首个支持响应式的 Web 框架，是 Spring 的一个重要版本，距离 Spring4.x  差不多四年。在此期间，大多数增强都是在 SpringBoot 项目中完成的，其最大的亮点就是提供了完整的端到端响应式编程的支持（新增  Spring WebFlux 模块）。</p>
-<p>Spring WebFlux 同时支持使用旧的 Spring MVC 注解声明 <code>Reactive Controller</code>。和传统的 <code>MVC Controller</code> 不同，<code>Reactive Controller</code> 操作的是 <strong>非阻塞</strong> 的 <code>ServerHttpRequest</code> 和 <code>ServerHttpResponse</code>，而不再是 Spring MVC 里的 HttpServletRequest 和 HttpServletResponse。</p>
-<p>至此也代表着 Java 正式迎来了响应式异步编程的时代。</p>
-<h2 id="Spring-Boot-简介"><a href="#Spring-Boot-简介" class="headerlink" title="Spring Boot 简介"></a>Spring Boot 简介</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>随着动态语言的流行 (Ruby、Groovy、Scala、Node.js)，Java 的开发显得格外的笨重：繁多的配置、低下的开发效率、复杂的部署流程以及第三方技术集成难度大。</p>
-<p>在上述环境下，Spring Boot  应运而生。它使用“习惯优于配置”（项目中存在大量的配置，此外还内置了一个习惯性的配置，让你无需手动进行配置）的理念让你的项目快速的运行起来。使用 Spring Boot 很容易创建一个独立运行（运行 Jar，内嵌 Servlet 容器）准生产级别的基于 Spring 框架的项目，使用  Spring Boot 你可以不用或者只需很少的 Spring 配置。</p>
-<h2 id="Spring-Boot-优缺点"><a href="#Spring-Boot-优缺点" class="headerlink" title="Spring Boot 优缺点"></a>Spring Boot 优缺点</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
-<li>快速构建项目</li>
-<li>对主流开发框架的无配置集成</li>
-<li>项目可独立运行，无需外部依赖 Servlet 容器</li>
-<li>提供运行时的应用监控</li>
-<li>极大地提高了开发、部署效率</li>
-<li>与云计算的天然集成</li>
-</ul>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>版本迭代速度很快，一些模块改动很大</li>
-<li>由于不用自己做配置，报错时很难定位</li>
-<li>网上现成的解决方案比较少</li>
-</ul>
+        <h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>官网下载（中文）：<a href="http://www.ubuntu.org.cn/download" target="_blank" rel="noopener">http://www.ubuntu.org.cn/download</a></p>
+<p>官网下载：<a href="https://ubuntu.com/download" target="_blank" rel="noopener">https://ubuntu.com/download</a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>进入系统安装的第一个界面，开始系统的安装操作。每一步的操作，左下角都会提示操作方式。</p>
+<h3 id="选择系统语言-English"><a href="#选择系统语言-English" class="headerlink" title="选择系统语言 - English"></a>选择系统语言 - <code>English</code></h3><p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/1.png" alt="1"></p>
+<h3 id="选择操作-Install-Ubuntu-Server"><a href="#选择操作-Install-Ubuntu-Server" class="headerlink" title="选择操作 - Install Ubuntu Server"></a>选择操作 - <code>Install Ubuntu Server</code></h3><p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/2.png" alt="2"></p>
+<h3 id="选择安装过程和系统的默认语言-English"><a href="#选择安装过程和系统的默认语言-English" class="headerlink" title="选择安装过程和系统的默认语言 - English"></a>选择安装过程和系统的默认语言 - <code>English</code></h3><p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/3.png" alt="3"></p>
+<h3 id="选择区域-other"><a href="#选择区域-other" class="headerlink" title="选择区域 - other"></a>选择区域 - <code>other</code></h3><p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/4.png" alt="4"></p>
+<h3 id="选择亚洲-Asia"><a href="#选择亚洲-Asia" class="headerlink" title="选择亚洲 - Asia"></a>选择亚洲 - <code>Asia</code></h3><p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/5.png" alt="5"></p>
+<h3 id="选择国家-China"><a href="#选择国家-China" class="headerlink" title="选择国家 - China"></a>选择国家 - <code>China</code></h3><p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/6.png" alt="6"></p>
+<h3 id="选择字符集编码-United-States"><a href="#选择字符集编码-United-States" class="headerlink" title="选择字符集编码 - United States"></a>选择字符集编码 - <code>United States</code></h3><p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/7.png" alt="7"></p>
+<h3 id="是否扫描和配置键盘，选择否-No"><a href="#是否扫描和配置键盘，选择否-No" class="headerlink" title="是否扫描和配置键盘，选择否 - No"></a>是否扫描和配置键盘，选择否 - <code>No</code></h3><p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/8.png" alt="8"></p>
+<h3 id="选择键盘类型-English-US"><a href="#选择键盘类型-English-US" class="headerlink" title="选择键盘类型 - English (US)"></a>选择键盘类型 - <code>English (US)</code></h3><p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/9.png" alt="9"></p>
+<h3 id="选择键盘布局-English-US"><a href="#选择键盘布局-English-US" class="headerlink" title="选择键盘布局 - English (US)"></a>选择键盘布局 - <code>English (US)</code></h3><p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/10.png" alt="10"></p>
+<h3 id="设置主机名称"><a href="#设置主机名称" class="headerlink" title="设置主机名称"></a>设置主机名称</h3><p>自行设置，这里我设置为 <code>Ubuntu</code> - <code>Continue</code></p>
+<p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/12.png" alt="12"></p>
+<h3 id="设置用户全名"><a href="#设置用户全名" class="headerlink" title="设置用户全名"></a>设置用户全名</h3><p>自行设置，这里为 <code>yourname</code> - <code>Continue</code></p>
+<p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/13.png" alt="13"></p>
+<h3 id="设置登录账号"><a href="#设置登录账号" class="headerlink" title="设置登录账号"></a>设置登录账号</h3><p>自行设置，这里为 <code>yourname</code> - <code>Continue</code></p>
+<p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/14.png" alt="14"></p>
+<h3 id="设置登录密码"><a href="#设置登录密码" class="headerlink" title="设置登录密码"></a>设置登录密码</h3><p>自行设置，空格选择 <code>Show Password in Clear</code> 可以显示密码 - <code>Continue</code></p>
+<p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/15.png" alt="15"></p>
+<h3 id="重复上一步设置的登录密码-Continue"><a href="#重复上一步设置的登录密码-Continue" class="headerlink" title="重复上一步设置的登录密码 - Continue"></a>重复上一步设置的登录密码 - <code>Continue</code></h3><p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/16.png" alt="16"></p>
+<h3 id="你设置的是弱密码-Yes"><a href="#你设置的是弱密码-Yes" class="headerlink" title="你设置的是弱密码 - Yes"></a>你设置的是弱密码 - <code>Yes</code></h3><p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/17.png" alt="17"></p>
+<h3 id="是否加密-home-文件夹，选择否-No"><a href="#是否加密-home-文件夹，选择否-No" class="headerlink" title="是否加密 home 文件夹，选择否 - No"></a>是否加密 <code>home</code> 文件夹，选择否 - <code>No</code></h3><p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/17-1.png" alt="17"></p>
+<h3 id="选择分区方式"><a href="#选择分区方式" class="headerlink" title="选择分区方式"></a>选择分区方式</h3><p>分区向导-使用整个磁盘 - <code>Guided - use entire disk and set up LVM</code></p>
+<p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/18.png" alt="18"></p>
+<h3 id="选择要分区的磁盘"><a href="#选择要分区的磁盘" class="headerlink" title="选择要分区的磁盘"></a>选择要分区的磁盘</h3><p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/19.png" alt="19"></p>
+<h3 id="是否将变更写入磁盘，选择是-Yes"><a href="#是否将变更写入磁盘，选择是-Yes" class="headerlink" title="是否将变更写入磁盘，选择是 - Yes"></a>是否将变更写入磁盘，选择是 - <code>Yes</code></h3><p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/20.png" alt="20"></p>
+<p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/20-1.png" alt="20-1"></p>
+<h3 id="磁盘分区选择-Yes"><a href="#磁盘分区选择-Yes" class="headerlink" title="磁盘分区选择 - Yes"></a>磁盘分区选择 - <code>Yes</code></h3><p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/21.png" alt="21"></p>
+<h3 id="是否选择代理服务器-Continue"><a href="#是否选择代理服务器-Continue" class="headerlink" title="是否选择代理服务器 - Continue"></a>是否选择代理服务器 - <code>Continue</code></h3><p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/22.png" alt="22"></p>
+<h3 id="选择升级方式"><a href="#选择升级方式" class="headerlink" title="选择升级方式"></a>选择升级方式</h3><p>一定要选择 - <code>No automatic updates</code></p>
+<p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/23.png" alt="23"></p>
+<h3 id="选择要安装的软件"><a href="#选择要安装的软件" class="headerlink" title="选择要安装的软件"></a>选择要安装的软件</h3><p>只选择 - <code>OpenSSH Server</code></p>
+<p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/24.png" alt="24"></p>
+<h3 id="是否安装-GRUB-引导程序，选择是-Yes"><a href="#是否安装-GRUB-引导程序，选择是-Yes" class="headerlink" title="是否安装 GRUB 引导程序，选择是 - Yes"></a>是否安装 <code>GRUB</code> 引导程序，选择是 - <code>Yes</code></h3><p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/25.png" alt="25"></p>
+<h3 id="完成安装，选择下一步-Continue"><a href="#完成安装，选择下一步-Continue" class="headerlink" title="完成安装，选择下一步 - Continue"></a>完成安装，选择下一步 - <code>Continue</code></h3><p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/26.png" alt="26"></p>
+<h3 id="系统安装完会自动启动主机"><a href="#系统安装完会自动启动主机" class="headerlink" title="系统安装完会自动启动主机"></a>系统安装完会自动启动主机</h3><p>输入设置好的登录账户和密码就可以开始使用了</p>
+<p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-Ubuntu-Server-%E5%AE%89%E8%A3%85/27.png" alt="27"></p>
 
       
 
@@ -621,7 +700,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Spring Boot</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Ubuntu</a>
         		</li>
       		
 		</ul>
@@ -631,7 +710,605 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/23/Spring-Boot-1-Spring-Boot/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/04/26/Ubuntu-7-Ubuntu-Server%E5%AE%89%E8%A3%85/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Ubuntu-6-1-Ubuntu-安装MySQL8-0" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/26/Ubuntu-6-1-Ubuntu-%E5%AE%89%E8%A3%85MySQL8-0/">[Ubuntu] 6.1 Ubuntu 安装MySQL8.0</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/26/Ubuntu-6-1-Ubuntu-%E5%AE%89%E8%A3%85MySQL8-0/" class="archive-article-date">
+  	<time datetime="2019-04-26T02:39:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="删除历史版本-MySQL"><a href="#删除历史版本-MySQL" class="headerlink" title="删除历史版本 MySQL"></a>删除历史版本 MySQL</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove mysql-*</span><br></pre></td></tr></table></figure>
+
+<p>然后清理残留的数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -l |grep ^rc|awk &apos;&#123;print $2&#125;&apos; |sudo xargs dpkg -P</span><br></pre></td></tr></table></figure>
+
+<p>它会跳出一个对话框，你选择 yes 就好了</p>
+<h2 id="安装-MySQL-8-0"><a href="#安装-MySQL-8-0" class="headerlink" title="安装 MySQL 8.0"></a>安装 MySQL 8.0</h2><h3 id="下载deb包"><a href="#下载deb包" class="headerlink" title="下载deb包"></a><a href="https://dev.mysql.com/downloads/repo/apt/" target="_blank" rel="noopener">下载deb包</a></h3><p><img src="https://wvincen.gitee.io/2019/07/14/Ubuntu-6-1-Ubuntu-%E5%AE%89%E8%A3%85-MySQL-8-0/1.png" alt="1"></p>
+<h3 id="运行命令"><a href="#运行命令" class="headerlink" title="运行命令"></a>运行命令</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i mysql-apt-config_0.*.****_all.deb</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>安装执行，然后会出现一个紫色框界面。</li>
+<li>它有四个选项：选择第一个，enter 确定。</li>
+<li>然后又会出现一个紫色框界面，选择 8.0 那个，enter 确定。</li>
+<li>会回到第一个紫色框，此时按上下键选择 ok，enter 确定。</li>
+</ol>
+<h3 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line"></span><br><span class="line">sudo apt-get install mysql-server</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>安装过程中会询问，都选择 yes 。</li>
+<li>安装最后会出现紫色框，让你输入密码，输入完成之后，会再让你输入一遍，确定。</li>
+<li>输入完成之后，会出现紫色框问你选择密码的加密方式：因为第一种加密方式Ubuntu不支持，所以我们选择第二个加密方式（密码加密方式选择 5.x）。enter确定。</li>
+</ol>
+<h3 id="启动-MySQL"><a href="#启动-MySQL" class="headerlink" title="启动 MySQL"></a>启动 MySQL</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysql start</span><br></pre></td></tr></table></figure>
+
+<h3 id="允许远程登录"><a href="#允许远程登录" class="headerlink" title="允许远程登录"></a>允许远程登录</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br><span class="line">update user set host = '%' where user ='root';</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>解决：<code>Could not get lock /var/cache/apt/archives/lock</code></p>
+<p>在 <code>apt-get update</code> 的时候，遇到：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">E: Could not get lock /var/cache/</span><br><span class="line"></span><br><span class="line">apt/archives/lock - open (11 Resource temporarily unavailable)</span><br><span class="line">E: Unable to lock the download directory</span><br></pre></td></tr></table></figure>
+
+<p> 解决办法如下： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -rf /var/cache/apt/archives/lock</span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<p> 然后 <code>apt-get</code> 就恢复正常了。 </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Ubuntu</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/26/Ubuntu-6-1-Ubuntu-%E5%AE%89%E8%A3%85MySQL8-0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Ubuntu-6-Ubuntu-安装MySQL5-7" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/21/Ubuntu-6-Ubuntu-%E5%AE%89%E8%A3%85MySQL5-7/">[Ubuntu] 6 Ubuntu 安装MySQL5.7</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/21/Ubuntu-6-Ubuntu-%E5%AE%89%E8%A3%85MySQL5-7/" class="archive-article-date">
+  	<time datetime="2019-04-21T12:19:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="更新数据源"><a href="#更新数据源" class="headerlink" title="更新数据源"></a>更新数据源</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装-MySQL"><a href="#安装-MySQL" class="headerlink" title="安装 MySQL"></a>安装 MySQL</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install mysql-server</span><br></pre></td></tr></table></figure>
+
+<p>系统将提示您在安装过程中创建 root 密码。选择一个安全的密码，并确保你记住它，因为你以后需要它。接下来，我们将完成 MySQL 的配置。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>因为是全新安装，您需要运行附带的安全脚本。这会更改一些不太安全的默认选项，例如远程 root 登录和示例用户。在旧版本的 MySQL 上，您需要手动初始化数据目录，但 Mysql 5.7 已经自动完成了。</p>
+<p>运行安全脚本：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql_secure_installation</span><br></pre></td></tr></table></figure>
+
+<p>这将提示您输入您在之前步骤中创建的 root 密码。您可以按 Y，然后 ENTER 接受所有后续问题的默认值，但是要询问您是否要更改 root 密码。您只需在之前步骤中进行设置即可，因此无需现在更改。</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>按上边方式安装完成后，MySQL 应该已经开始自动运行了。要测试它，请检查其状态。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">lusifer@ubuntu:~$ systemctl status mysql.service</span><br><span class="line">● mysql.service - MySQL Community Server</span><br><span class="line">   Loaded: loaded (/lib/systemd/system/mysql.service; enabled; vendor preset: enabled)</span><br><span class="line">   Active: active (running) since Tue 2017-11-21 13:04:34 CST; 3min 24s ago</span><br><span class="line"> Main PID: 2169 (mysqld)</span><br><span class="line">   CGroup: /system.slice/mysql.service</span><br><span class="line">           └─2169 /usr/sbin/mysqld</span><br><span class="line"></span><br><span class="line">Nov 21 13:04:33 ubuntu systemd[1]: Starting MySQL Community Server...</span><br><span class="line">Nov 21 13:04:34 ubuntu systemd[1]: Started MySQL Community Server.</span><br></pre></td></tr></table></figure>
+
+<p> 查看 MySQL 版本： </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -p -u root version</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置远程访问"><a href="#配置远程访问" class="headerlink" title="配置远程访问"></a>配置远程访问</h2><h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/mysql/mysql.conf.d/mysqld.cnf</span><br></pre></td></tr></table></figure>
+
+<h3 id="注释掉-语句前面加上-即可-："><a href="#注释掉-语句前面加上-即可-：" class="headerlink" title="注释掉(语句前面加上 # 即可)："></a>注释掉(语句前面加上 # 即可)：</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bind-address = 127.0.0.1</span><br></pre></td></tr></table></figure>
+
+<h3 id="重启-MySQL"><a href="#重启-MySQL" class="headerlink" title="重启 MySQL"></a>重启 MySQL</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysql restart</span><br></pre></td></tr></table></figure>
+
+<h3 id="登录-MySQL"><a href="#登录-MySQL" class="headerlink" title="登录 MySQL"></a>登录 MySQL</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+
+<h3 id="授权-root-用户允许所有人连接"><a href="#授权-root-用户允许所有人连接" class="headerlink" title="授权 root 用户允许所有人连接"></a>授权 root 用户允许所有人连接</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on *.* to 'root'@'%' identified by '你的 mysql root 账户密码';</span><br></pre></td></tr></table></figure>
+
+<h2 id="因弱口令无法成功授权解决步骤"><a href="#因弱口令无法成功授权解决步骤" class="headerlink" title="因弱口令无法成功授权解决步骤"></a>因弱口令无法成功授权解决步骤</h2><h3 id="查看和设置密码安全级别"><a href="#查看和设置密码安全级别" class="headerlink" title="查看和设置密码安全级别"></a>查看和设置密码安全级别</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select @@validate_password_policy;</span><br><span class="line">set global validate_password_policy=0;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看和设置密码长度限制"><a href="#查看和设置密码长度限制" class="headerlink" title="查看和设置密码长度限制"></a>查看和设置密码长度限制</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select @@validate_password_length;</span><br><span class="line">set global validate_password_length=1;</span><br></pre></td></tr></table></figure>
+
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysql start</span><br></pre></td></tr></table></figure>
+
+<h3 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysql stop</span><br></pre></td></tr></table></figure>
+
+<h3 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysql restart</span><br></pre></td></tr></table></figure>
+
+<h2 id="其它配置"><a href="#其它配置" class="headerlink" title="其它配置"></a>其它配置</h2><p>修改配置<code>mysqld.cnf</code>配置文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/mysql/mysql.conf.d/mysqld.cnf</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置默认字符集"><a href="#配置默认字符集" class="headerlink" title="配置默认字符集"></a>配置默认字符集</h3><p>在<code>[mysqld]</code>节点上增加如下配置</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">default-character-set=utf8</span><br></pre></td></tr></table></figure>
+
+<p> 在<code>[mysqld]</code>节点底部增加如下配置 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">default-storage-engine=INNODB</span><br><span class="line">character-set-server=utf8</span><br><span class="line">collation-server=utf8_general_ci</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置忽略数据库大小写敏感"><a href="#配置忽略数据库大小写敏感" class="headerlink" title="配置忽略数据库大小写敏感"></a>配置忽略数据库大小写敏感</h3><p>在<code>[mysqld]</code>节点底部增加如下配置</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lower-case-table-names = 1</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Ubuntu</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/21/Ubuntu-6-Ubuntu-%E5%AE%89%E8%A3%85MySQL5-7/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Ubuntu-5-Ubuntu-安装Tomcat" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/14/Ubuntu-5-Ubuntu-%E5%AE%89%E8%A3%85Tomcat/">[Ubuntu] 5 Ubuntu 安装Tomcat</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/14/Ubuntu-5-Ubuntu-%E5%AE%89%E8%A3%85Tomcat/" class="archive-article-date">
+  	<time datetime="2019-04-14T11:14:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>此处以 Tomcat 8.5.23 为例</p>
+<p>下载地址：<a href="https://tomcat.apache.org/" target="_blank" rel="noopener">https://tomcat.apache.org/</a></p>
+<h2 id="解压缩并移动到指定目录"><a href="#解压缩并移动到指定目录" class="headerlink" title="解压缩并移动到指定目录"></a>解压缩并移动到指定目录</h2><h3 id="解压缩"><a href="#解压缩" class="headerlink" title="解压缩"></a>解压缩</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf apache-tomcat-8.5.23.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="变更目录名"><a href="#变更目录名" class="headerlink" title="变更目录名"></a>变更目录名</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv apache-tomcat-8.5.23 tomcat</span><br></pre></td></tr></table></figure>
+
+<h3 id="移动目录"><a href="#移动目录" class="headerlink" title="移动目录"></a>移动目录</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv tomcat/ /usr/local/</span><br></pre></td></tr></table></figure>
+
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/tomcat/bin/startup.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/tomcat/bin/shutdown.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="目录内执行脚本"><a href="#目录内执行脚本" class="headerlink" title="目录内执行脚本"></a>目录内执行脚本</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./startup.sh</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Ubuntu</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/14/Ubuntu-5-Ubuntu-%E5%AE%89%E8%A3%85Tomcat/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Ubuntu-4-Ubuntu-安装JDK" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/06/Ubuntu-4-Ubuntu-%E5%AE%89%E8%A3%85JDK/">[Ubuntu] 4 Ubuntu 安装JDK</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/06/Ubuntu-4-Ubuntu-%E5%AE%89%E8%A3%85JDK/" class="archive-article-date">
+  	<time datetime="2019-04-06T03:58:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>此处以 JDK 1.8.0_152 为例</p>
+<p>下载地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a></p>
+<h2 id="解压缩并移动到指定目录"><a href="#解压缩并移动到指定目录" class="headerlink" title="解压缩并移动到指定目录"></a>解压缩并移动到指定目录</h2><h3 id="解压缩"><a href="#解压缩" class="headerlink" title="解压缩"></a>解压缩</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf jdk-8u152-linux-x64.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /usr/local/java</span><br></pre></td></tr></table></figure>
+
+<h3 id="移动安装包"><a href="#移动安装包" class="headerlink" title="移动安装包"></a>移动安装包</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv jdk1.8.0_152/ /usr/local/java/</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置所有者"><a href="#设置所有者" class="headerlink" title="设置所有者"></a>设置所有者</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R root:root /usr/local/java/</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置环境变"><a href="#配置环境变" class="headerlink" title="配置环境变"></a>配置环境变</h2><h3 id="配置系统环境变量"><a href="#配置系统环境变量" class="headerlink" title="配置系统环境变量"></a>配置系统环境变量</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/environment</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加如下语句"><a href="#添加如下语句" class="headerlink" title="添加如下语句"></a>添加如下语句</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"</span><br><span class="line">export JAVA_HOME=/usr/local/java/jdk1.8.0_152</span><br><span class="line">export JRE_HOME=/usr/local/java/jdk1.8.0_152/jre</span><br><span class="line">export CLASSPATH=$CLASSPATH:$JAVA_HOME/lib:$JAVA_HOME/jre/lib</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置用户环境变量"><a href="#配置用户环境变量" class="headerlink" title="配置用户环境变量"></a>配置用户环境变量</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/profile</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加如下语句-1"><a href="#添加如下语句-1" class="headerlink" title="添加如下语句"></a>添加如下语句</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">if [ "$PS1" ]; then</span><br><span class="line">  if [ "$BASH" ] &amp;&amp; [ "$BASH" != "/bin/sh" ]; then</span><br><span class="line">    # The file bash.bashrc already sets the default PS1.</span><br><span class="line">    # PS1='\h:\w\$ '</span><br><span class="line">    if [ -f /etc/bash.bashrc ]; then</span><br><span class="line">      . /etc/bash.bashrc</span><br><span class="line">    fi</span><br><span class="line">  else</span><br><span class="line">    if [ "`id -u`" -eq 0 ]; then</span><br><span class="line">      PS1='# '</span><br><span class="line">    else</span><br><span class="line">      PS1='$ '</span><br><span class="line">    fi</span><br><span class="line">  fi</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">export JAVA_HOME=/usr/local/java/jdk1.8.0_152</span><br><span class="line">export JRE_HOME=/usr/local/java/jdk1.8.0_152/jre</span><br><span class="line">export CLASSPATH=$CLASSPATH:$JAVA_HOME/lib:$JAVA_HOME/jre/lib</span><br><span class="line">export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH:$HOME/bin</span><br><span class="line"></span><br><span class="line">if [ -d /etc/profile.d ]; then</span><br><span class="line">  for i in /etc/profile.d/*.sh; do</span><br><span class="line">    if [ -r $i ]; then</span><br><span class="line">      . $i</span><br><span class="line">    fi</span><br><span class="line">  done</span><br><span class="line">  unset i</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用户环境变量生效"><a href="#使用户环境变量生效" class="headerlink" title="使用户环境变量生效"></a>使用户环境变量生效</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试是否安装成功"><a href="#测试是否安装成功" class="headerlink" title="测试是否安装成功"></a>测试是否安装成功</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@UbuntuBase:/usr/local/java# java -version</span><br><span class="line">java version "1.8.0_152"</span><br><span class="line">Java(TM) SE Runtime Environment (build 1.8.0_152-b16)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 25.152-b16, mixed mode)</span><br></pre></td></tr></table></figure>
+
+<h2 id="为其他用户更新用户环境变量"><a href="#为其他用户更新用户环境变量" class="headerlink" title="为其他用户更新用户环境变量"></a>为其他用户更新用户环境变量</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su lusifer</span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Ubuntu</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/06/Ubuntu-4-Ubuntu-%E5%AE%89%E8%A3%85JDK/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Ubuntu-3-Ubuntu-文件和权限管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/03/Ubuntu-3-Ubuntu-%E6%96%87%E4%BB%B6%E5%92%8C%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/">[Ubuntu] 3 Ubuntu 文件和权限管理</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/03/Ubuntu-3-Ubuntu-%E6%96%87%E4%BB%B6%E5%92%8C%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" class="archive-article-date">
+  	<time datetime="2019-04-03T04:01:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="查看文件和目录的权限"><a href="#查看文件和目录的权限" class="headerlink" title="查看文件和目录的权限"></a>查看文件和目录的权限</h2><p><code>ls –al</code>：使用<code>ls</code>不带参数只显示文件名称，通过<code>ls –al</code> 可以显示文件或者目录的权限信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l 文件名`：显示信息包括–文件类型 (d 目录，- 普通文件，l 链接文件)，文件权限，文件的用户，文件的所属组，文件的大小，文件的创建时间，文件的名称。例：`-rw-r--r-- 1 lusifer lusifer 675 Oct 26 17:20 .profile</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>-</code>：普通文件</li>
+<li><code>rw-</code>：说明用户lusifer有读写权限，没有运行权限</li>
+<li><code>r--</code>：表示用户组lusifer只有读权限，没有写和运行的权限</li>
+<li><code>r--</code>：其他用户只有读权限，没有写权限和运行的权限</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>-rw-r–r–</th>
+<th>1</th>
+<th>lusifer</th>
+<th>lusifer</th>
+<th>675</th>
+<th>Oct 26 17:20</th>
+<th>.profile</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>文档类型及权限</td>
+<td>连接数</td>
+<td>文档所属用户</td>
+<td>文档所属组</td>
+<td>文档大小</td>
+<td>文档最后被修改日期</td>
+<td>文档名称</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>rw-</th>
+<th>r–</th>
+<th>r–</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>文档类型</td>
+<td>文档所有者权限（user）</td>
+<td>文档所属用户组权限（group）</td>
+<td>其他用户权限（other）</td>
+</tr>
+</tbody></table>
+<h3 id="文档类型"><a href="#文档类型" class="headerlink" title="文档类型"></a>文档类型</h3><p>d 表示目录<br>l 表示软连接<br>– 表示文件<br>c 表示串行端口字符设备文件<br>b 表示可供存储的块设备文件<br>余下的字符 3 个字符为一组。r 只读，w 可写，x 可执行，- 表示无此权限</p>
+<h3 id="连接数"><a href="#连接数" class="headerlink" title="连接数"></a>连接数</h3><p>指有多少个文件指向同一个索引节点。</p>
+<h3 id="文档所属用户和所属组"><a href="#文档所属用户和所属组" class="headerlink" title="文档所属用户和所属组"></a>文档所属用户和所属组</h3><p>就是文档属于哪个用户和用户组。文件所属用户和组是可以更改的</p>
+<h3 id="文档大小"><a href="#文档大小" class="headerlink" title="文档大小"></a>文档大小</h3><p>默认是 bytes</p>
+<h2 id="改操作权限"><a href="#改操作权限" class="headerlink" title="改操作权限"></a>改操作权限</h2><h3 id="chown"><a href="#chown" class="headerlink" title="chown"></a>chown</h3><p>是change owner的意思，主要作用就是改变文件或者目录所有者，所有者包含用户和用户组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chown [-R] 用户名称 文件或者目录</span><br><span class="line">chown [-R] 用户名称 用户组名称 文件或目录</span><br></pre></td></tr></table></figure>
+
+<p><code>-R</code>：进行递归式的权限更改，将目录下的所有文件、子目录更新为指定用户组权限</p>
+<h3 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h3><p>改变访问权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod [who] [+ | - | =] [mode] 文件名</span><br></pre></td></tr></table></figure>
+
+<p><strong>who</strong></p>
+<p>表示操作对象可以是以下字母的一个或者组合</p>
+<ul>
+<li>u：用户 user</li>
+<li>g：用户组 group</li>
+<li>o：表示其他用户</li>
+<li>a：表示所有用户是系统默认的</li>
+</ul>
+<p><strong>操作符号</strong></p>
+<ul>
+<li>+：表示添加某个权限</li>
+<li>-：表示取消某个权限</li>
+<li>=：赋予给定的权限，取消文档以前的所有权限</li>
+</ul>
+<p><strong>mode</strong></p>
+<p>表示可执行的权限，可以是 r、w、x</p>
+<p><strong>文件名</strong></p>
+<p>文件名可以使空格分开的文件列表</p>
+<p><strong>示例</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">lusifer@UbuntuBase:~$ ls -al test.txt </span><br><span class="line">-rw-rw-r-- 1 lusifer lusifer 6 Nov  2 21:47 test.txt</span><br><span class="line">lusifer@UbuntuBase:~$ chmod u=rwx,g+r,o+r test.txt </span><br><span class="line">lusifer@UbuntuBase:~$ ls -al test.txt </span><br><span class="line">-rwxrw-r-- 1 lusifer lusifer 6 Nov  2 21:47 test.txt</span><br><span class="line">lusifer@UbuntuBase:~$</span><br></pre></td></tr></table></figure>
+
+<h2 id="数字设定法"><a href="#数字设定法" class="headerlink" title="数字设定法"></a>数字设定法</h2><h3 id="数字设定法中数字表示的含义："><a href="#数字设定法中数字表示的含义：" class="headerlink" title="数字设定法中数字表示的含义："></a>数字设定法中数字表示的含义：</h3><ul>
+<li>0 表示没有任何权限</li>
+<li>1 表示有可执行权限 = <code>x</code></li>
+<li>2 表示有可写权限 = <code>w</code></li>
+<li>4 表示有可读权限 = <code>r</code></li>
+</ul>
+<p>也可以用数字来表示权限如：<code>chmod 755 file_name</code></p>
+<table>
+<thead>
+<tr>
+<th>r    w    x</th>
+<th>r    –    x</th>
+<th>r    -    x</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>4    2    1</td>
+<td>4    -    1</td>
+<td>4    -    1</td>
+</tr>
+<tr>
+<td>user</td>
+<td>group</td>
+<td>others</td>
+</tr>
+</tbody></table>
+<ul>
+<li>若要 rwx 属性则 4+2+1=7</li>
+<li>若要 rw- 属性则 4+2=6</li>
+<li>若要 r-x 属性则 4+1=5</li>
+</ul>
+<p><strong>例：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lusifer@UbuntuBase:~$ chmod 777 test.txt </span><br><span class="line">lusifer@UbuntuBase:~$ ls -al test.txt </span><br><span class="line">-rwxrwxrwx 1 lusifer lusifer 6 Nov  2 21:47 test.txt</span><br><span class="line"></span><br><span class="line">lusifer@UbuntuBase:~$ chmod 770 test.txt </span><br><span class="line">lusifer@UbuntuBase:~$ ls -al test.txt </span><br><span class="line">-rwxrwx--- 1 lusifer lusifer 6 Nov  2 21:47 test.txt</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">__Ubuntu</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/03/Ubuntu-3-Ubuntu-%E6%96%87%E4%BB%B6%E5%92%8C%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/">展开全文 >></a>
         </p>
       
 
@@ -663,7 +1340,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -763,6 +1440,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">__Spring Boot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">__Thymeleaf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">__Ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">__Web</a>
               </li>
              
               <li class="article-tag-list-item">
